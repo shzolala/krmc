@@ -1,0 +1,61 @@
+@import 'tailwindcss';
+@import './map.css';
+
+@source '../views/components/layouts/site.blade.php';
+@source '../views/components/site/**/*.blade.php';
+@source '../views/components/badge.blade.php';
+@source '../views/components/geo-map.blade.php';
+@source '../views/home.blade.php';
+@source '../views/map/**/*.blade.php';
+@source '../views/clubs/**/*.blade.php';
+@source '../views/coaches/**/*.blade.php';
+@source '../views/destinations/**/*.blade.php';
+@source '../views/accommodations/**/*.blade.php';
+@source '../views/shelters/**/*.blade.php';
+@source '../views/shops/**/*.blade.php';
+@source '../../Modules/**/*.blade.php';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Vazirmatn', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Vazirmatn', ui-sans-serif, system-ui, sans-serif;
+
+    --color-navy-950: #071525;
+    --color-navy-900: #0b1f3a;
+    --color-navy-800: #122a4a;
+    --color-navy-700: #1a3a63;
+    --color-accent: #d4a017;
+    --color-accent-soft: #f0c75e;
+    --color-sand: #f7f4ef;
+    --color-ink: #152033;
+    --color-muted: #5b6577;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-sand font-sans text-ink antialiased;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .hero-overlay {
+        background:
+            linear-gradient(105deg, rgba(7, 21, 37, 0.88) 0%, rgba(7, 21, 37, 0.55) 48%, rgba(7, 21, 37, 0.2) 100%),
+            linear-gradient(0deg, rgba(7, 21, 37, 0.45) 0%, transparent 55%);
+    }
+
+    .section-slash::after {
+        content: '///////';
+        @apply mt-3 block tracking-[0.2em] text-accent;
+        font-size: 0.7rem;
+    }
+}

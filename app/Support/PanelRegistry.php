@@ -1,0 +1,126 @@
+<?php
+
+namespace App\Support;
+
+use App\Enums\UserRole;
+use App\Models\User;
+use Illuminate\Support\Collection;
+
+class PanelRegistry
+{
+    /**
+     * @return array<string, array{role: UserRole, label: string, home: string, path: string, demo_mobile: string, demo_username: string}>
+     */
+    public static function all(): array
+    {
+        return [
+            'admin' => [
+                'role' => UserRole::Admin,
+                'label' => 'پنل مدیر',
+                'home' => 'panel.admin.dashboard',
+                'path' => '/panel/admin',
+                'demo_mobile' => '09120000001',
+                'demo_username' => 'admin',
+            ],
+            'climber' => [
+                'role' => UserRole::Climber,
+                'label' => 'پنل کوهنورد',
+                'home' => 'panel.climber.dashboard',
+                'path' => '/panel/climber',
+                'demo_mobile' => '09120000010',
+                'demo_username' => 'climber',
+            ],
+            'club' => [
+                'role' => UserRole::Club,
+                'label' => 'پنل باشگاه',
+                'home' => 'panel.club.dashboard',
+                'path' => '/panel/club',
+                'demo_mobile' => '09120000002',
+                'demo_username' => 'club-kerman',
+            ],
+            'coach' => [
+                'role' => UserRole::Coach,
+                'label' => 'پنل مربی',
+                'home' => 'panel.coach.dashboard',
+                'path' => '/panel/coach',
+                'demo_mobile' => '09120000006',
+                'demo_username' => 'sara-mohammadi',
+            ],
+            'leader' => [
+                'role' => UserRole::Leader,
+                'label' => 'پنل سرپرست',
+                'home' => 'panel.leader.dashboard',
+                'path' => '/panel/leader',
+                'demo_mobile' => '09120000005',
+                'demo_username' => 'ali-rezaei',
+            ],
+            'shop' => [
+                'role' => UserRole::Shop,
+                'label' => 'پنل فروشگاه',
+                'home' => 'panel.shop.dashboard',
+                'path' => '/panel/shop',
+                'demo_mobile' => '09120000003',
+                'demo_username' => 'shop-kouhestan',
+            ],
+            'organization' => [
+                'role' => UserRole::Organization,
+                'label' => 'پنل ارگان',
+                'home' => 'panel.organization.dashboard',
+                'path' => '/panel/organization',
+                'demo_mobile' => '09120000004',
+                'demo_username' => 'organization',
+            ],
+        ];
+    }
+
+    /**
+     * @return array{role: UserRole, label: string, home: string, path: string, demo_mobile: string, demo_username: string}|null
+     */
+    public static function forRole(UserRole $role): ?array
+    {
+        foreach (self::all() as $panel) {
+            if ($panel['role'] === $role) {
+                return $panel;
+            }
+        }
+
+        return null;
+    }
+
+    public static function homeRouteFor(User $user): string
+    {
+        return self::forRole($user->role)['home'] ?? 'home';
+    }
+
+    public static function pathFor(User $user): string
+    {
+        return self::forRole($user->role)['path'] ?? '/';
+    }
+
+    /**
+     * @return Collection<int, array{mobile: string, username: string, name: string, role: UserRole, label: string, path: string, home: string}>
+     */
+    public static function demoAccounts(): Collection
+    {
+        return collect(self::all())
+            ->map(function (array $panel): array {
+                $user = User::query()->where('mobile', $panel['demo_mobile'])->first();
+
+                return [
+                    'mobile' => $panel['demo_mobile'],
+                    'username' => $panel['demo_username'],
+                    'name' => $user?->name ?? $panel['label'],
+                    'role' => $panel['role'],
+                    'label' => $panel['label'],
+                    'path' => $panel['path'],
+                    'home' => $panel['home'],
+                ];
+            })
+            ->values();
+    }
+
+    public static function switcherEnabled(): bool
+    {
+        return app()->environment(['local', 'testing']) || (bool) config('app.debug');
+    }
+}
