@@ -1,5 +1,11 @@
-<x-layouts::app.sidebar :title="$title ?? null">
-    <flux:main>
+@props(['title' => null])
+
+@if (auth()->user()?->isAdmin())
+    <x-layouts::admin :title="$title">
         {{ $slot }}
-    </flux:main>
-</x-layouts::app.sidebar>
+    </x-layouts::admin>
+@else
+    <x-layouts::panel :title="$title">
+        {{ $slot }}
+    </x-layouts::panel>
+@endif

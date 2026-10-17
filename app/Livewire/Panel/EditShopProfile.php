@@ -65,6 +65,8 @@ class EditShopProfile extends Component
 
     public function render(): View
     {
-        return view('livewire.panel.edit-shop-profile');
+        return view('livewire.panel.edit-shop-profile', [
+            'shop' => Shop::query()->find($this->shopId),
+        ]);
     }
 }

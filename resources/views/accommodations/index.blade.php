@@ -1,54 +1,45 @@
-<x-layouts.site title="اقامتگاه‌ها">
-    <section class="bg-navy-900 text-white">
-        <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-            <p class="text-sm text-white/60">خانه / اقامتگاه‌ها</p>
-            <h1 class="mt-3 text-4xl font-extrabold">اقامتگاه‌ها</h1>
-            <p class="mt-3 max-w-2xl text-sm leading-8 text-white/75">
-                خانه‌های بوم‌گردی، هتل‌ها و سایر اقامتگاه‌ها — هر کدام با موقعیت جغرافیایی روی نقشه.
-            </p>
-        </div>
-    </section>
+@php
+    $types = collect(\App\Enums\LodgingType::cases())->mapWithKeys(fn ($case) => [$case->value => $case->label()]);
+@endphp
 
-    <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        @if ($mapMarkers->isNotEmpty())
-            <div class="mb-10">
-                <x-geo-map :markers="$mapMarkers" class="h-96" :zoom="9" />
-            </div>
-        @endif
+<x-layouts.site title="اقامتگاه‌ها" meta-description="بوم‌گردی، هتل و مهمان‌سرا در مسیرها و مقاصد کوهستانی کرمان.">
+    <x-site.page-hero
+        section="accommodations"
+        overlap
+        :crumbs="['اقامتگاه‌ها' => null]"
+        eyebrow="اقامت"
+        title="اقامتگاه‌ها"
+        description="خانه‌های بوم‌گردی، هتل‌ها و سایر اقامتگاه‌ها — هر کدام با موقعیت جغرافیایی روی نقشه."
+    />
 
-        <div class="grid gap-4 md:grid-cols-2">
-            @foreach ($accommodations as $accommodation)
-                <article class="overflow-hidden rounded-2xl border border-navy-900/8 bg-white">
-                    @if ($accommodation->cover_path)
-                        <img src="{{ $accommodation->cover_path }}" alt="" class="h-44 w-full object-cover">
-                    @endif
-                    <div class="p-5">
-                        <div class="flex flex-wrap items-start justify-between gap-2">
-                            <div>
-                                <p class="text-[11px] font-semibold text-accent">{{ $accommodation->type->label() }}</p>
-                                <h2 class="mt-1 text-lg font-bold text-navy-900">
-                                    <a href="{{ route('accommodations.show', $accommodation) }}" class="hover:text-accent">{{ $accommodation->name }}</a>
-                                </h2>
-                            </div>
-                            @if ($accommodation->is_verified)
-                                <x-badge tone="verified">تأییدشده</x-badge>
-                            @endif
-                        </div>
-                        <p class="mt-3 line-clamp-2 text-sm leading-7 text-muted">{{ $accommodation->summary }}</p>
-                        <p class="mt-3 text-xs text-muted">
-                            {{ $accommodation->city }}
-                            @if ($accommodation->destination)
-                                · نزدیک {{ $accommodation->destination->name }}
-                            @endif
-                            @if ($accommodation->hasCoordinates())
-                                · روی نقشه
-                            @endif
-                        </p>
-                    </div>
-                </article>
-            @endforeach
+    <x-site.toolbar
+        :action="route('accommodations.index')"
+        placeholder="نام اقامتگاه یا شهر..."
+        :query="$search"
+        :hidden="['type' => $activeType]"
+        :total="$accommodations->total()"
+        :filters="collect(['' => 'همه'])->union($types)->map(fn ($label, $type) => [
+            'label' => $label,
+            'href' => route('accommodations.index', array_filter(['q' => $search, 'type' => $type])),
+            'active' => (string) $activeType === (string) $type,
+        ])->values()->all()"
+    />
+
+    <x-site.section spacing="pt-10">
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            @forelse ($accommodations as $accommodation)
+                <x-cards.accommodation :accommodation="$accommodation" />
+            @empty
+                <x-site.empty class="col-span-full" message="اقامتگاهی با این مشخصات پیدا نشد." :href="route('accommodations.index')" />
+            @endforelse
         </div>
 
-        <div class="mt-8">{{ $accommodations->links() }}</div>
-    </section>
+        <div class="mt-10">{{ $accommodations->links() }}</div>
+    </x-site.section>
+
+    @if ($mapMarkers->isNotEmpty())
+        <x-site.section eyebrow="موقعیت جغرافیایی" title="اقامتگاه‌ها روی نقشه" :href="route('map')" link-label="نقشه کامل">
+            <x-geo-map :markers="$mapMarkers" class="h-72" :zoom="9" />
+        </x-site.section>
+    @endif
 </x-layouts.site>

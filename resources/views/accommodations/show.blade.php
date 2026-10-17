@@ -1,39 +1,51 @@
 <x-layouts.site :title="$accommodation->name" :meta-description="$accommodation->summary">
-    <section class="bg-navy-900 text-white">
-        <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-            <p class="text-sm text-white/60">خانه / اقامتگاه‌ها / {{ $accommodation->name }}</p>
-            <p class="mt-4 text-xs font-semibold tracking-wide text-accent-soft">{{ $accommodation->type->label() }}</p>
-            <h1 class="mt-2 text-4xl font-extrabold">{{ $accommodation->name }}</h1>
-            <p class="mt-3 max-w-2xl text-sm leading-8 text-white/75">{{ $accommodation->summary }}</p>
-            @if ($accommodation->destination)
-                <p class="mt-4 text-sm">
-                    مقصد مرتبط:
-                    <a href="{{ route('destinations.show', $accommodation->destination) }}" class="text-accent-soft hover:underline">{{ $accommodation->destination->name }}</a>
-                </p>
+    <x-site.detail-header
+        :title="$accommodation->name"
+        :crumbs="['اقامتگاه‌ها' => route('accommodations.index'), $accommodation->name => null]"
+        :kicker="$accommodation->type->label()"
+        :cover="$accommodation->cover_path ?: \App\Support\CatalogCover::path('cover-lodge.jpg')"
+        :seed="'accommodation-'.$accommodation->slug"
+        :reviewable="$accommodation"
+    >
+        <x-slot:badges>
+            @if ($accommodation->is_verified)<x-badge tone="verified">تأییدشده</x-badge>@endif
+        </x-slot:badges>
+        <x-slot:meta>
+            @if ($accommodation->city)
+                <span class="inline-flex items-center gap-1.5"><x-site.icon name="pin" class="h-4 w-4 text-accent" />{{ $accommodation->city }}</span>
             @endif
-        </div>
-    </section>
+            @if ($accommodation->destination)
+                <a href="{{ route('destinations.show', $accommodation->destination) }}" class="inline-flex items-center gap-1.5 hover:text-accent">
+                    <x-site.icon name="mountain" class="h-4 w-4 text-accent" />نزدیک {{ $accommodation->destination->name }}
+                </a>
+            @endif
+        </x-slot:meta>
+    </x-site.detail-header>
 
-    <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-            <div>
-                <h2 class="text-xl font-bold text-navy-900">درباره اقامتگاه</h2>
-                <p class="mt-4 whitespace-pre-line text-sm leading-8 text-muted">{{ $accommodation->description }}</p>
-                @if ($accommodation->address)
-                    <p class="mt-6 text-sm text-muted">آدرس: {{ $accommodation->address }}</p>
-                @endif
-            </div>
-            <div>
-                @if ($mapMarkers->isNotEmpty())
-                    <x-geo-map :markers="$mapMarkers" class="h-80" :zoom="12" />
-                @else
-                    <div class="rounded-2xl bg-white p-6 text-sm text-muted ring-1 ring-navy-900/5">موقعیت جغرافیایی هنوز ثبت نشده است.</div>
-                @endif
-            </div>
-        </div>
+    <x-site.detail-layout>
+        <x-site.panel title="درباره اقامتگاه" icon="home">
+            <p class="whitespace-pre-line text-sm leading-8 text-muted">{{ $accommodation->description }}</p>
+        </x-site.panel>
 
-        <div class="mt-10">
-            <livewire:review.section :reviewable="$accommodation" :key="'accommodation-reviews-'.$accommodation->id" />
-        </div>
-    </section>
+        <x-slot:aside>
+            <x-site.panel title="اطلاعات" icon="document">
+                <x-site.facts :columns="1" :items="[
+                    ['label' => 'نوع', 'value' => $accommodation->type->label(), 'icon' => 'home'],
+                    ['label' => 'شهر', 'value' => $accommodation->city, 'icon' => 'pin'],
+                    ['label' => 'آدرس', 'value' => $accommodation->address, 'icon' => 'pin'],
+                    ['label' => 'مقصد مرتبط', 'value' => $accommodation->destination?->name, 'icon' => 'mountain'],
+                ]" />
+            </x-site.panel>
+
+            @if ($mapMarkers->isNotEmpty())
+                <x-site.map-panel :markers="$mapMarkers" :zoom="12" />
+            @else
+                <x-site.panel><p class="text-sm text-muted">موقعیت جغرافیایی هنوز ثبت نشده است.</p></x-site.panel>
+            @endif
+        </x-slot:aside>
+    </x-site.detail-layout>
+
+    <x-site.section spacing="pt-14">
+        <livewire:review.section :reviewable="$accommodation" :key="'accommodation-reviews-'.$accommodation->id" />
+    </x-site.section>
 </x-layouts.site>

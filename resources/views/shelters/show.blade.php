@@ -1,39 +1,44 @@
 <x-layouts.site :title="$shelter->name" :meta-description="$shelter->summary">
-    <section class="bg-amber-950 text-white">
-        <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-            <p class="text-sm text-white/60">خانه / پناهگاه‌ها / {{ $shelter->name }}</p>
-            <x-badge tone="premium" class="mt-4 !bg-accent/20 !text-accent-soft !ring-accent/40">پناهگاه — نه اقامتگاه</x-badge>
-            <h1 class="mt-4 text-4xl font-extrabold">{{ $shelter->name }}</h1>
-            <p class="mt-3 max-w-2xl text-sm leading-8 text-white/80">{{ $shelter->summary }}</p>
-            <p class="mt-4 text-sm text-white/70">
-                @if ($shelter->destination)
-                    مقصد: <a href="{{ route('destinations.show', $shelter->destination) }}" class="text-accent-soft hover:underline">{{ $shelter->destination->name }}</a>
-                @endif
-                @if ($shelter->elevation)
-                    · ارتفاع {{ number_format($shelter->elevation) }} متر
-                @endif
-                @if ($shelter->capacity)
-                    · ظرفیت حدودی {{ $shelter->capacity }} نفر
-                @endif
-            </p>
-        </div>
-    </section>
+    <x-site.detail-header
+        :title="$shelter->name"
+        :crumbs="['پناهگاه‌ها' => route('shelters.index'), $shelter->name => null]"
+        kicker="پناهگاه کوهستانی — نه اقامتگاه تجاری"
+        :cover="$shelter->cover_path"
+        :seed="'shelter-'.$shelter->slug"
+        :reviewable="$shelter"
+        :facts="[
+            ['value' => $shelter->elevation ? fa_num($shelter->elevation).' متر' : null, 'label' => 'ارتفاع'],
+            ['value' => $shelter->capacity ? fa_num($shelter->capacity).' نفر' : null, 'label' => 'ظرفیت حدودی'],
+        ]"
+    >
+        <x-slot:meta>
+            @if ($shelter->destination)
+                <a href="{{ route('destinations.show', $shelter->destination) }}" class="inline-flex items-center gap-1.5 hover:text-accent">
+                    <x-site.icon name="mountain" class="h-4 w-4 text-accent" />{{ $shelter->destination->name }}
+                </a>
+            @endif
+        </x-slot:meta>
+    </x-site.detail-header>
 
-    <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-            <div class="rounded-3xl bg-amber-50/70 p-6 ring-1 ring-amber-900/10">
-                <h2 class="text-xl font-bold text-navy-900">راهنمای پناهگاه</h2>
-                <p class="mt-4 whitespace-pre-line text-sm leading-8 text-muted">{{ $shelter->description }}</p>
-            </div>
-            <div>
-                @if ($mapMarkers->isNotEmpty())
-                    <x-geo-map :markers="$mapMarkers" class="h-80" :zoom="12" />
-                @endif
-            </div>
-        </div>
+    <x-site.detail-layout>
+        <x-site.panel title="راهنمای پناهگاه" icon="shelter" tone="warm">
+            <p class="whitespace-pre-line text-sm leading-8 text-muted">{{ $shelter->description }}</p>
+        </x-site.panel>
 
-        <div class="mt-10">
-            <livewire:review.section :reviewable="$shelter" :key="'shelter-reviews-'.$shelter->id" />
-        </div>
-    </section>
+        <x-slot:aside>
+            <x-site.map-panel :markers="$mapMarkers" :zoom="12" />
+
+            <x-site.panel title="اطلاعات" icon="document">
+                <x-site.facts :columns="1" :items="[
+                    ['label' => 'مقصد', 'value' => $shelter->destination?->name],
+                    ['label' => 'ارتفاع', 'value' => $shelter->elevation ? fa_num($shelter->elevation).' متر' : null],
+                    ['label' => 'آدرس', 'value' => $shelter->address],
+                ]" />
+            </x-site.panel>
+        </x-slot:aside>
+    </x-site.detail-layout>
+
+    <x-site.section spacing="pt-14">
+        <livewire:review.section :reviewable="$shelter" :key="'shelter-reviews-'.$shelter->id" />
+    </x-site.section>
 </x-layouts.site>

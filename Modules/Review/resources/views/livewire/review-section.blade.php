@@ -1,4 +1,4 @@
-<div class="rounded-2xl bg-white p-6 ring-1 ring-navy-900/5">
+<div id="reviews" class="scroll-mt-24 rounded-2xl bg-white p-6 ring-1 ring-navy-900/5">
     <div class="flex flex-wrap items-end justify-between gap-4">
         <div>
             <h2 class="text-xl font-bold text-navy-900">نظرات و امتیازها</h2>
@@ -6,8 +6,8 @@
         </div>
         <div class="text-left">
             @if ($reviewsCount > 0)
-                <p class="text-2xl font-extrabold text-navy-900">{{ number_format($averageRating, 1) }}</p>
-                <p class="text-xs text-muted">از ۵ · {{ number_format($reviewsCount) }} نظر</p>
+                <p class="text-2xl font-extrabold text-navy-900">{{ fa_num($averageRating, 1) }}</p>
+                <p class="text-xs text-muted">از ۵ · {{ fa_num($reviewsCount) }} نظر</p>
             @else
                 <p class="text-sm text-muted">هنوز نظری تأیید نشده است.</p>
             @endif
@@ -36,7 +36,7 @@
                         class="mt-2 w-full rounded-xl border-0 bg-navy-50 px-3 py-2.5 text-sm text-navy-900 ring-1 ring-navy-900/10 focus:ring-2 focus:ring-accent"
                     >
                         @for ($score = 5; $score >= 1; $score--)
-                            <option value="{{ $score }}">{{ $score }} از ۵</option>
+                            <option value="{{ $score }}">{{ fa_num($score) }} از ۵</option>
                         @endfor
                     </select>
                     @error('rating')
@@ -91,13 +91,13 @@
             <article class="rounded-xl bg-navy-50/60 p-4 ring-1 ring-navy-900/5">
                 <div class="flex flex-wrap items-center justify-between gap-2">
                     <p class="text-sm font-semibold text-navy-900">{{ $review->user->name }}</p>
-                    <p class="text-xs font-bold text-accent">{{ $review->rating }} / ۵</p>
+                    <p class="text-xs font-bold text-accent">{{ fa_num($review->rating) }} / ۵</p>
                 </div>
                 @if ($review->title)
                     <h3 class="mt-2 text-sm font-bold text-navy-900">{{ $review->title }}</h3>
                 @endif
                 <p class="mt-2 whitespace-pre-line text-sm leading-7 text-muted">{{ $review->body }}</p>
-                <p class="mt-2 text-[11px] text-muted">{{ $review->created_at?->format('Y/m/d') }}</p>
+                <p class="mt-2 text-[11px] text-muted">{{ fa_digits($review->created_at?->format('Y/m/d')) }}</p>
             </article>
         @empty
             <p class="text-sm text-muted">هنوز نظری برای نمایش وجود ندارد.</p>

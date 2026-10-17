@@ -26,7 +26,7 @@ class PanelAccessTest extends TestCase
         $this->actingAs($admin)
             ->get(route('panel.admin.dashboard'))
             ->assertOk()
-            ->assertSee('پنل مدیر', false);
+            ->assertSee('مرکز مدیریت', false);
 
         $this->actingAs($admin)
             ->get(route('panel.admin.users.index'))

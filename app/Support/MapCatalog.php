@@ -3,8 +3,10 @@
 namespace App\Support;
 
 use App\Models\Accommodation;
+use App\Models\Attraction;
 use App\Models\Club;
 use App\Models\Destination;
+use App\Models\MountainRegion;
 use App\Models\ProgramReport;
 use App\Models\Shelter;
 use App\Models\Shop;
@@ -20,7 +22,9 @@ class MapCatalog
         $layers = $this->layers();
 
         $markers = collect()
+            ->merge($this->regionMarkers())
             ->merge($this->destinationMarkers())
+            ->merge($this->attractionMarkers())
             ->merge($this->clubMarkers())
             ->merge($this->accommodationMarkers())
             ->merge($this->shelterMarkers())
@@ -51,7 +55,9 @@ class MapCatalog
     public function layers(): array
     {
         return [
-            'destination' => ['label' => 'مناطق و مقاصد', 'color' => '#d4a017'],
+            'region' => ['label' => 'مناطق کوهستانی', 'color' => '#0f766e'],
+            'destination' => ['label' => 'قله‌ها و نقاط طبیعی', 'color' => '#d4a017'],
+            'attraction' => ['label' => 'جاذبه‌های گردشگری', 'color' => '#7c3aed'],
             'accommodation' => ['label' => 'اقامتگاه‌ها', 'color' => '#2563eb'],
             'shelter' => ['label' => 'پناهگاه‌ها', 'color' => '#b45309'],
             'program' => ['label' => 'برنامه‌ها', 'color' => '#c026d3'],
@@ -63,9 +69,43 @@ class MapCatalog
     /**
      * @return Collection<int, array<string, mixed>|null>
      */
+    protected function regionMarkers(): Collection
+    {
+        return MountainRegion::query()
+            ->withCoordinates()
+            ->withCount(['destinations', 'attractions'])
+            ->orderByDesc('is_featured')
+            ->orderByDesc('highest_elevation')
+            ->get()
+            ->map(function (MountainRegion $item): ?array {
+                $badges = [];
+                if ($item->is_featured) {
+                    $badges[] = 'منطقه پیشنهادی';
+                }
+
+                return $item->toMapMarker('region', route('regions.show', $item), [
+                    'subtitle' => $item->typeLabel(),
+                    'summary' => $item->summary,
+                    'cover' => $item->cover_path,
+                    'badges' => $badges,
+                    'meta' => collect([
+                        $item->highest_elevation ? fa_num($item->highest_elevation).' متر' : null,
+                        $item->destinations_count ? fa_num($item->destinations_count).' مقصد' : null,
+                        $item->attractions_count ? fa_num($item->attractions_count).' جاذبه' : null,
+                    ])->filter()->implode(' · '),
+                    'featured' => (bool) $item->is_featured,
+                    'sort' => (int) ($item->highest_elevation ?? $item->view_count),
+                ]);
+            });
+    }
+
+    /**
+     * @return Collection<int, array<string, mixed>|null>
+     */
     protected function destinationMarkers(): Collection
     {
         return Destination::query()
+            ->with('mountainRegion')
             ->withCoordinates()
             ->withCount(['programReports', 'accommodations', 'shelters'])
             ->orderByDesc('is_featured')
@@ -74,21 +114,58 @@ class MapCatalog
             ->map(function (Destination $item): ?array {
                 $badges = [];
                 if ($item->is_featured) {
-                    $badges[] = 'منطقه پیشنهادی';
+                    $badges[] = 'مقصد پیشنهادی';
                 }
                 if ($item->program_reports_count > 0) {
-                    $badges[] = $item->program_reports_count.' برنامه';
+                    $badges[] = fa_num($item->program_reports_count).' برنامه';
                 }
 
                 return $item->toMapMarker('destination', route('destinations.show', $item), [
-                    'subtitle' => $item->region ?: 'مقصد کوهنوردی',
+                    'subtitle' => $item->mountainRegion?->name ?: ($item->region ?: $item->categoryLabel()),
                     'summary' => $item->summary,
                     'cover' => $item->cover_path,
                     'badges' => $badges,
                     'meta' => collect([
-                        $item->elevation ? number_format($item->elevation).' متر' : null,
-                        $item->accommodations_count ? $item->accommodations_count.' اقامتگاه' : null,
-                        $item->shelters_count ? $item->shelters_count.' پناهگاه' : null,
+                        $item->categoryLabel(),
+                        $item->elevation ? fa_num($item->elevation).' متر' : null,
+                        $item->accommodations_count ? fa_num($item->accommodations_count).' اقامتگاه' : null,
+                        $item->shelters_count ? fa_num($item->shelters_count).' پناهگاه' : null,
+                    ])->filter()->implode(' · '),
+                    'featured' => (bool) $item->is_featured,
+                    'sort' => (int) $item->view_count,
+                ]);
+            });
+    }
+
+    /**
+     * @return Collection<int, array<string, mixed>|null>
+     */
+    protected function attractionMarkers(): Collection
+    {
+        return Attraction::query()
+            ->with('mountainRegion')
+            ->withCoordinates()
+            ->orderByDesc('is_featured')
+            ->orderByDesc('view_count')
+            ->get()
+            ->map(function (Attraction $item): ?array {
+                $badges = [];
+                if ($item->is_featured) {
+                    $badges[] = 'پیشنهادی';
+                }
+                if ($item->isUnesco()) {
+                    $badges[] = 'یونسکو';
+                }
+
+                return $item->toMapMarker('attraction', route('attractions.show', $item), [
+                    'subtitle' => $item->mountainRegion?->name ?: ($item->city ?: $item->typeLabel()),
+                    'summary' => $item->summary,
+                    'cover' => $item->cover_path,
+                    'badges' => $badges,
+                    'meta' => collect([
+                        $item->typeLabel(),
+                        $item->city,
+                        $item->era,
                     ])->filter()->implode(' · '),
                     'featured' => (bool) $item->is_featured,
                     'sort' => (int) $item->view_count,
@@ -122,8 +199,8 @@ class MapCatalog
                     'cover' => $item->cover_path ?: $item->logo_path,
                     'badges' => $badges,
                     'meta' => collect([
-                        $item->member_count ? number_format($item->member_count).' عضو' : null,
-                        $item->program_count ? number_format($item->program_count).' برنامه' : null,
+                        $item->member_count ? fa_num($item->member_count).' عضو' : null,
+                        $item->program_count ? fa_num($item->program_count).' برنامه' : null,
                     ])->filter()->implode(' · '),
                     'featured' => (bool) ($item->is_featured || $item->is_premium),
                     'sort' => (int) $item->member_count,
@@ -193,8 +270,8 @@ class MapCatalog
                     'cover' => $item->cover_path,
                     'badges' => $badges,
                     'meta' => collect([
-                        $item->elevation ? number_format($item->elevation).' متر' : null,
-                        $item->capacity ? 'ظرفیت '.$item->capacity.' نفر' : null,
+                        $item->elevation ? fa_num($item->elevation).' متر' : null,
+                        $item->capacity ? 'ظرفیت '.fa_num($item->capacity).' نفر' : null,
                     ])->filter()->implode(' · '),
                     'featured' => (bool) $item->is_featured,
                     'sort' => (int) $item->view_count,

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Shelter;
+use App\Support\CatalogCover;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +23,7 @@ class ShelterFactory extends Factory
             'description' => fake()->paragraphs(2, true),
             'elevation' => fake()->numberBetween(2500, 3800),
             'capacity' => fake()->numberBetween(10, 40),
-            'cover_path' => 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80',
+            'cover_path' => CatalogCover::path('cover-17.jpg'),
             'latitude' => fake()->latitude(29.2, 30.5),
             'longitude' => fake()->longitude(56.8, 57.6),
             'address' => 'مسیر کوهستانی',

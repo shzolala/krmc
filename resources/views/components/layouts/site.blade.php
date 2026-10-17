@@ -20,6 +20,7 @@
     @stack('head')
 </head>
 <body @class(['min-h-screen', 'flex h-dvh flex-col overflow-hidden' => $hideFooter])>
+    <x-admin.impersonation-banner />
     <x-site.header />
 
     <main @class(['min-h-0 flex-1' => $hideFooter])>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Accommodation;
+use App\Models\Attraction;
 use App\Models\Club;
 use App\Models\CoachProfile;
 use App\Models\Destination;
@@ -26,6 +27,7 @@ return [
         'shelter' => Shelter::class,
         'shop' => Shop::class,
         'coach' => CoachProfile::class,
+        'attraction' => Attraction::class,
     ],
 
     'min_rating' => 1,

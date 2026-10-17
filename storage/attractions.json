@@ -1,0 +1,3179 @@
+{
+  "meta": {
+    "generated_at": "2026-10-17T09:30:43+03:30",
+    "count": 45,
+    "language": "fa",
+    "encoding": "UTF-8",
+    "coordinate_system": "WGS84 decimal degrees",
+    "notes": [
+      "مختصات از OpenStreetMap/Nominatim.",
+      "ساعات بازدید و ورودیه به دلیل تغییر مداوم null گذاشته شده‌اند.",
+      "era برای مواردی که منبع معتبر یافت نشد null یا با برچسب «نیازمند تأیید» است."
+    ]
+  },
+  "attractions": [
+    {
+      "id": "att-bagh-shahzadeh",
+      "category": "attraction",
+      "name_fa": "باغ شاهزاده ماهان",
+      "name_en": "Shazdeh Garden (Mahan)",
+      "alt_names": [
+        "باغ شازده",
+        "Bagh-e Shazdeh"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "garden",
+        "recreational"
+      ],
+      "era": "قاجار (حدود ۱۲۹۸ ق / ۱۸۸۰ م)",
+      "unesco": {
+        "inscribed": true,
+        "year": 2011,
+        "listing": "The Persian Garden"
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "ماهان"
+      },
+      "coordinates": {
+        "lat": 30.02391,
+        "lng": 57.28214,
+        "datum": "WGS84",
+        "source": "OSM relation/7680243",
+        "accuracy": "high"
+      },
+      "description_fa": "باغ شاهزاده ماهان از زیباترین باغ‌های ایرانی است که در دوره قاجار به دستور عبدالحمید میرزا ناصرالدوله، حاکم کرمان، در دامنه کوه‌های جنوب ماهان ساخته شد. باغ بر شیبی ملایم بنا شده و آب از قنات در امتداد محور اصلی، از میان آبنماها و آبشارهای پلکانی به سوی سردر ورودی جاری است. تضاد سرسبزی باغ با بیابان پیرامون، آن را به نمادی از باغ ایرانی تبدیل کرده و در سال ۲۰۱۱ به همراه هشت باغ دیگر در فهرست میراث جهانی یونسکو (باغ ایرانی) ثبت شد. شب‌های باغ با نورپردازی دیدنی است.",
+      "description_word_count": 91,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "فروردین تا خرداد و مهر تا آبان؛ عصر و شب برای نورپردازی",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q619742"
+      },
+      "seo": {
+        "title": "باغ شاهزاده ماهان | جاذبه تاریخی ماهان",
+        "meta_description": "باغ شاهزاده ماهان در ماهان (کرمان)، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "باغ شاهزاده ماهان",
+          "باغ شازده",
+          "Bagh-e Shazdeh",
+          "جاذبه‌های ماهان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "shazdeh-garden-mahan",
+        "og_title": "باغ شاهزاده ماهان",
+        "og_description": "باغ شاهزاده ماهان در ماهان (کرمان)، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/shazdeh-garden-mahan"
+      },
+      "sources": [
+        "https://whc.unesco.org/en/list/1372",
+        "https://www.openstreetmap.org/relation/7680243"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-ganjalikhan-square",
+      "category": "attraction",
+      "name_fa": "مجموعه و میدان گنجعلیخان",
+      "name_en": "Ganjali Khan Complex & Square",
+      "alt_names": [
+        "میدان گنجعلیخان"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "architectural_complex"
+      ],
+      "era": "صفوی (۱۰۰۵–۱۰۳۴ ق، دوره شاه عباس اول)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.29059,
+        "lng": 57.07821,
+        "datum": "WGS84",
+        "source": "OSM relation/7633160",
+        "accuracy": "high"
+      },
+      "description_fa": "مجموعه گنجعلیخان در مرکز بافت تاریخی کرمان، به دستور گنجعلیخان، حاکم کرمان در دوره شاه عباس اول، ساخته شد. این مجموعه شامل میدانی وسیع و بناهای پیرامون آن مانند حمام، مسجد، کاروانسرا، ضرابخانه، آب‌انبار و بازار است و نمونه‌ای کامل از شهرسازی صفوی به شمار می‌رود. کاشی‌کاری‌ها، سردرها و معماری هماهنگ مجموعه، آن را به یکی از مهم‌ترین جاذبه‌های شهر کرمان تبدیل کرده است. بازدید از میدان رایگان و آزاد است.",
+      "description_word_count": 71,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "تمام سال؛ صبح یا عصر",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "مجموعه و میدان گنجعلیخان | جاذبه تاریخی کرمان",
+        "meta_description": "مجموعه و میدان گنجعلیخان در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره صفوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "مجموعه و میدان گنجعلیخان",
+          "میدان گنجعلیخان",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "ganjali-khan-complex-square",
+        "og_title": "مجموعه و میدان گنجعلیخان",
+        "og_description": "مجموعه و میدان گنجعلیخان در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره صفوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/ganjali-khan-complex-square"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/relation/7633160"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-ganjalikhan-bath",
+      "category": "attraction",
+      "name_fa": "حمام گنجعلیخان (موزه مردم‌شناسی)",
+      "name_en": "Ganjali Khan Bathhouse (Anthropology Museum)",
+      "alt_names": [
+        "Hamam-e Ganjali Khan"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "museum"
+      ],
+      "era": "صفوی (۱۰۲۰ ق / ۱۶۱۱ م)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.29,
+        "lng": 57.0786,
+        "datum": "WGS84",
+        "source": "OSM way/527043419",
+        "accuracy": "high"
+      },
+      "description_fa": "حمام گنجعلیخان در ضلع جنوبی میدان گنجعلیخان، از زیباترین حمام‌های تاریخی ایران است که در سال ۱۰۲۰ قمری ساخته شد. بینه هشت‌ضلعی، سکوهای سنگی، کاشی‌کاری‌ها، نقاشی‌های دیواری و سقف‌های مقرنس آن چشمگیرند. این بنا امروز به موزه مردم‌شناسی تبدیل شده و با مجسمه‌های مومی، آداب سنتی استحمام و قشرهای مختلف جامعه قدیم را به نمایش می‌گذارد. سردر ورودی آن با کاشی‌های معرق تزیین شده است.",
+      "description_word_count": 65,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "تمام سال",
+        "notes": "دارای بلیت؛ ساعات بازدید از سامانه میراث فرهنگی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "حمام گنجعلیخان (موزه مردم‌شناسی) | جاذبه تاریخی کرمان",
+        "meta_description": "حمام گنجعلیخان (موزه مردم‌شناسی) در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره صفوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | کرمان",
+        "keywords": [
+          "حمام گنجعلیخان (موزه مردم‌شناسی)",
+          "Hamam-e Ganjali Khan",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "ganjali-khan-bathhouse-anthropology-museum",
+        "og_title": "حمام گنجعلیخان (موزه مردم‌شناسی)",
+        "og_description": "حمام گنجعلیخان (موزه مردم‌شناسی) در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره صفوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/ganjali-khan-bathhouse-anthropology-museum"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/527043419"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-ganjalikhan-caravanserai",
+      "category": "attraction",
+      "name_fa": "کاروانسرای گنجعلیخان",
+      "name_en": "Ganjali Khan Caravanserai",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "caravanserai"
+      ],
+      "era": "صفوی",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.2909,
+        "lng": 57.079,
+        "datum": "WGS84",
+        "source": "OSM relation/6522668",
+        "accuracy": "high"
+      },
+      "description_fa": "کاروانسرای گنجعلیخان در ضلع شرقی میدان گنجعلیخان و بخشی از مجموعه صفوی گنجعلیخان است. این کاروانسرا با حیاط مرکزی، حجره‌های پیرامونی و ایوان‌های آجری، محل اقامت بازرگانان و کاروان‌ها در مرکز شهر بوده است. امروزه بخش‌هایی از آن در اختیار دانشکده هنر و معماری یا کاربری‌های فرهنگی قرار گرفته است. بازدید از آن همراه با میدان، حمام و ضرابخانه گنجعلیخان توصیه می‌شود.",
+      "description_word_count": 62,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5905314"
+      },
+      "seo": {
+        "title": "کاروانسرای گنجعلیخان | جاذبه تاریخی کرمان",
+        "meta_description": "کاروانسرای گنجعلیخان در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره صفوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "کاروانسرای گنجعلیخان",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "ganjali-khan-caravanserai",
+        "og_title": "کاروانسرای گنجعلیخان",
+        "og_description": "کاروانسرای گنجعلیخان در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره صفوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/ganjali-khan-caravanserai"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/relation/6522668"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [
+          "description_fa (current use)"
+        ],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-ganjalikhan-mosque",
+      "category": "attraction",
+      "name_fa": "مسجد گنجعلیخان",
+      "name_en": "Ganjali Khan Mosque",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "religious"
+      ],
+      "era": "صفوی",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.29102,
+        "lng": 57.07866,
+        "datum": "WGS84",
+        "source": "OSM way/526803645",
+        "accuracy": "high"
+      },
+      "description_fa": "مسجد گنجعلیخان مسجدی کوچک اما بسیار زیبا در مجموعه گنجعلیخان کرمان است که در دوره صفوی ساخته شد. کاشی‌کاری‌های ظریف، کتیبه‌ها و سنگ‌های مرمر آن، نمونه‌ای از هنر معماری مذهبی صفوی در کرمان است. این مسجد در کنار بازار و حمام گنجعلیخان قرار دارد و هنوز محل برگزاری نماز است. بازدید از آن با رعایت آداب مذهبی امکان‌پذیر است.",
+      "description_word_count": 59,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q61064416"
+      },
+      "seo": {
+        "title": "مسجد گنجعلیخان | جاذبه تاریخی کرمان",
+        "meta_description": "مسجد گنجعلیخان در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره صفوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "مسجد گنجعلیخان",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "ganjali-khan-mosque",
+        "og_title": "مسجد گنجعلیخان",
+        "og_description": "مسجد گنجعلیخان در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره صفوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/ganjali-khan-mosque"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/526803645"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-zarrabkhaneh",
+      "category": "attraction",
+      "name_fa": "موزه ضرابخانه گنجعلیخان (موزه سکه)",
+      "name_en": "Ganjali Khan Mint (Coin Museum)",
+      "alt_names": [
+        "Kerman Coin Museum"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "museum"
+      ],
+      "era": "صفوی",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.291,
+        "lng": 57.07801,
+        "datum": "WGS84",
+        "source": "OSM way/533950072",
+        "accuracy": "high"
+      },
+      "description_fa": "ضرابخانه گنجعلیخان بنایی گنبددار در مجموعه گنجعلیخان است که در دوره صفوی محل ضرب سکه بوده است. این بنا امروز به موزه سکه تبدیل شده و مجموعه‌ای از سکه‌های تاریخی ایران از دوره‌های باستان تا دوره معاصر در آن به نمایش گذاشته شده است. معماری گنبدی و تزیینات داخلی بنا نیز دیدنی است. موزه در کنار حمام گنجعلیخان قرار دارد.",
+      "description_word_count": 60,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "موزه ضرابخانه گنجعلیخان (موزه سکه) | جاذبه تاریخی کرمان",
+        "meta_description": "موزه ضرابخانه گنجعلیخان (موزه سکه) در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره صفوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | کرمان",
+        "keywords": [
+          "موزه ضرابخانه گنجعلیخان (موزه سکه)",
+          "Kerman Coin Museum",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "ganjali-khan-mint-coin-museum",
+        "og_title": "موزه ضرابخانه گنجعلیخان (موزه سکه)",
+        "og_description": "موزه ضرابخانه گنجعلیخان (موزه سکه) در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره صفوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/ganjali-khan-mint-coin-museum"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/533950072"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-vakil-caravanserai",
+      "category": "attraction",
+      "name_fa": "کاروانسرای وکیل",
+      "name_en": "Vakil Caravanserai",
+      "alt_names": [
+        "هتل کاروانیکا",
+        "Karvanica Hotel"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "caravanserai",
+        "hotel"
+      ],
+      "era": "قاجار",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.2914,
+        "lng": 57.0808,
+        "datum": "WGS84",
+        "source": "OSM relation/11177847",
+        "accuracy": "high"
+      },
+      "description_fa": "کاروانسرای وکیل در میانه بازار تاریخی کرمان، در دوره قاجار به دستور محمداسماعیل خان وکیل‌الملک، حاکم کرمان، ساخته شد. این کاروانسرای دوطبقه با حیاط مرکزی، حوض، ایوان‌ها و حجره‌های آجری، از نمونه‌های شاخص کاروانسراهای شهری ایران است. پس از مرمت، بنا به هتل سنتی کاروانیکا تبدیل شده و حال و هوای کاروانسرای قدیم را برای مسافران زنده کرده است. حمام و چایخانه وکیل نیز در نزدیکی آن قرار دارند.",
+      "description_word_count": 69,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "تمام سال",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q6448583"
+      },
+      "seo": {
+        "title": "کاروانسرای وکیل | جاذبه تاریخی کرمان",
+        "meta_description": "کاروانسرای وکیل در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "کاروانسرای وکیل",
+          "هتل کاروانیکا",
+          "Karvanica Hotel",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "vakil-caravanserai",
+        "og_title": "کاروانسرای وکیل",
+        "og_description": "کاروانسرای وکیل در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/vakil-caravanserai"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/relation/11177847"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-vakil-teahouse",
+      "category": "attraction",
+      "name_fa": "حمام و چایخانه وکیل",
+      "name_en": "Vakil Bathhouse & Teahouse",
+      "alt_names": [
+        "رستوران وکیل"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "restaurant",
+        "recreational"
+      ],
+      "era": "قاجار",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.2911,
+        "lng": 57.0803,
+        "datum": "WGS84",
+        "source": "OSM node/4362038545",
+        "accuracy": "high"
+      },
+      "description_fa": "حمام وکیل از بناهای قاجاری مجموعه وکیل در بازار کرمان است که پس از مرمت به رستوران و چایخانه سنتی تبدیل شده است. فضای گرم‌خانه و سربینه با طاق‌ها و ستون‌های آجری، کاشی‌کاری و نورگیرهای سقف، محیطی دلنشین برای صرف غذاهای محلی کرمان مانند کله‌جوش و بادمجان کرمانی فراهم می‌کند. بازدید از آن در کنار کاروانسرای وکیل و بازار توصیه می‌شود.",
+      "description_word_count": 61,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "تمام سال؛ وقت ناهار",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5703713"
+      },
+      "seo": {
+        "title": "حمام و چایخانه وکیل | جاذبه تاریخی کرمان",
+        "meta_description": "حمام و چایخانه وکیل در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "حمام و چایخانه وکیل",
+          "رستوران وکیل",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "vakil-bathhouse-teahouse",
+        "og_title": "حمام و چایخانه وکیل",
+        "og_description": "حمام و چایخانه وکیل در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/vakil-bathhouse-teahouse"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/4362038545"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-kerman-bazaar",
+      "category": "attraction",
+      "name_fa": "بازار تاریخی کرمان",
+      "name_en": "Kerman Grand Bazaar",
+      "alt_names": [
+        "بازار سرپوشیده کرمان",
+        "بازار قدیم کرمان"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "bazaar",
+        "shopping"
+      ],
+      "era": "سلجوقی تا قاجار (عمده بنا صفوی و قاجار)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.29011,
+        "lng": 57.08038,
+        "datum": "WGS84",
+        "source": "OSM relation/8135089",
+        "accuracy": "high"
+      },
+      "description_fa": "بازار تاریخی کرمان از کهن‌ترین و طولانی‌ترین بازارهای سرپوشیده ایران است که از میدان ارگ تا میدان مشتاق امتداد دارد و از راسته‌هایی مانند بازار ارگ، گنجعلیخان، اختیاری، وکیل، مظفری، قدمگاه، مسگرها و طلافروش‌ها تشکیل شده است. طاق‌ها و گنبدهای آجری، تیمچه‌ها، کاروانسراها و مساجد متعدد در دل بازار، آن را به موزه‌ای زنده از معماری و زندگی شهری تبدیل کرده است. خرید پته‌دوزی، زیره، خرما، فرش و صنایع مسی در این بازار پیشنهاد می‌شود.",
+      "description_word_count": 75,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "صبح تا ظهر؛ تمام سال",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5901690",
+        "sections": [
+          {
+            "name": "بازار ارگ",
+            "osm": "way/526767183"
+          },
+          {
+            "name": "بازار گنجعلیخان",
+            "osm": "way/526768685"
+          },
+          {
+            "name": "بازار اختیاری",
+            "osm": "way/526769304"
+          },
+          {
+            "name": "بازار وکیل",
+            "osm": "way/526769885"
+          },
+          {
+            "name": "بازار مظفری",
+            "osm": "way/438450467"
+          },
+          {
+            "name": "بازار قدمگاه",
+            "osm": "way/123538606"
+          },
+          {
+            "name": "بازار مسگرها",
+            "osm": "way/1203270486"
+          }
+        ]
+      },
+      "seo": {
+        "title": "بازار تاریخی کرمان | جاذبه تاریخی کرمان",
+        "meta_description": "بازار تاریخی کرمان در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره سلجوقی تا قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "بازار تاریخی کرمان",
+          "بازار سرپوشیده کرمان",
+          "بازار قدیم کرمان",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "kerman-grand-bazaar",
+        "og_title": "بازار تاریخی کرمان",
+        "og_description": "بازار تاریخی کرمان در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره سلجوقی تا قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/kerman-grand-bazaar"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/relation/8135089"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-jameh-mosque-kerman",
+      "category": "attraction",
+      "name_fa": "مسجد جامع کرمان (مظفری)",
+      "name_en": "Jameh Mosque of Kerman",
+      "alt_names": [
+        "مسجد مظفری"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "religious"
+      ],
+      "era": "آل مظفر (۷۵۰ ق / ۱۳۴۹ م)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.29275,
+        "lng": 57.0845,
+        "datum": "WGS84",
+        "source": "OSM (Nominatim) amenity=place_of_worship",
+        "accuracy": "high"
+      },
+      "description_fa": "مسجد جامع کرمان که به مسجد مظفری نیز شهرت دارد، در سال ۷۵۰ قمری به دستور امیر مبارزالدین محمد مظفری ساخته شد و از شاهکارهای معماری دوره آل مظفر است. سردر بلند با کاشی‌کاری معرق، چهار ایوان، حیاط وسیع و برج ساعت قاجاری از ویژگی‌های آن است. این مسجد در ضلع شمالی بازار قدمگاه و نزدیک میدان شهدا قرار دارد و در دوره‌های صفوی و قاجار مرمت و تکمیل شده است.",
+      "description_word_count": 71,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "مسجد جامع کرمان (مظفری) | جاذبه تاریخی کرمان",
+        "meta_description": "مسجد جامع کرمان (مظفری) در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره آل مظفر؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "مسجد جامع کرمان (مظفری)",
+          "مسجد مظفری",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "jameh-mosque-of-kerman",
+        "og_title": "مسجد جامع کرمان (مظفری)",
+        "og_description": "مسجد جامع کرمان (مظفری) در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره آل مظفر؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/jameh-mosque-of-kerman"
+      },
+      "sources": [
+        "https://nominatim.openstreetmap.org/",
+        "https://www.openstreetmap.org/(Nominatim) amenity=place_of_worship"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-gonbad-jabalieh",
+      "category": "attraction",
+      "name_fa": "گنبد جبلیه (موزه سنگ)",
+      "name_en": "Gonbad-e Jabalieh (Stone Museum)",
+      "alt_names": [
+        "گبری"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "museum"
+      ],
+      "era": "نامشخص (منسوب به ساسانی تا سلجوقی)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.29236,
+        "lng": 57.11685,
+        "datum": "WGS84",
+        "source": "OSM way/442677912",
+        "accuracy": "high"
+      },
+      "description_fa": "گنبد جبلیه بنایی هشت‌ضلعی و سنگی در دامنه کوه‌های شرق شهر کرمان است که برخلاف بیشتر بناهای تاریخی منطقه، به جای آجر از سنگ و گچ ساخته شده است. درباره کاربری و تاریخ ساخت آن نظرات متفاوتی وجود دارد؛ برخی آن را آتشکده ساسانی و برخی آرامگاهی از دوره سلجوقی می‌دانند. امروز این بنا به موزه سنگ تبدیل شده و آثار سنگی تاریخی در آن نگهداری می‌شود.",
+      "description_word_count": 67,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5949917"
+      },
+      "seo": {
+        "title": "گنبد جبلیه (موزه سنگ) | جاذبه تاریخی کرمان",
+        "meta_description": "گنبد جبلیه (موزه سنگ) در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره نامشخص؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "گنبد جبلیه (موزه سنگ)",
+          "گبری",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "gonbad-e-jabalieh-stone-museum",
+        "og_title": "گنبد جبلیه (موزه سنگ)",
+        "og_description": "گنبد جبلیه (موزه سنگ) در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره نامشخص؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/gonbad-e-jabalieh-stone-museum"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/442677912"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-moshtaghieh",
+      "category": "attraction",
+      "name_fa": "آرامگاه مشتاقیه (سه‌گنبدان)",
+      "name_en": "Moshtaghieh Mausoleum (Three Domes)",
+      "alt_names": [
+        "سه گنبدان"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "religious",
+        "tomb"
+      ],
+      "era": "قاجار",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.293,
+        "lng": 57.0881,
+        "datum": "WGS84",
+        "source": "OSM node/4328248637",
+        "accuracy": "high"
+      },
+      "description_fa": "آرامگاه مشتاقیه که به سبب سه گنبد کاشی‌کاری‌شده‌اش «سه‌گنبدان» نیز خوانده می‌شود، در میدان مشتاق کرمان قرار دارد و مزار مشتاقعلیشاه، عارف و سه‌تارنواز معروف دوره قاجار، و چند تن از عرفای نعمت‌اللهی است. کاشی‌های فیروزه‌ای گنبدها، از نمادهای بصری شهر کرمان است. محوطه پیرامون آرامگاه با باغچه و حوض، فضایی آرام در میان بافت شلوغ مرکز شهر پدید آورده است.",
+      "description_word_count": 61,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5720912"
+      },
+      "seo": {
+        "title": "آرامگاه مشتاقیه (سه‌گنبدان) | جاذبه تاریخی کرمان",
+        "meta_description": "آرامگاه مشتاقیه (سه‌گنبدان) در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "آرامگاه مشتاقیه (سه‌گنبدان)",
+          "سه گنبدان",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "moshtaghieh-mausoleum-three-domes",
+        "og_title": "آرامگاه مشتاقیه (سه‌گنبدان)",
+        "og_description": "آرامگاه مشتاقیه (سه‌گنبدان) در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/moshtaghieh-mausoleum-three-domes"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/4328248637"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-malek-mosque",
+      "category": "attraction",
+      "name_fa": "مسجد ملک",
+      "name_en": "Malek Mosque",
+      "alt_names": [
+        "مسجد امام"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "religious"
+      ],
+      "era": "سلجوقی (قرن ۵ ق)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.2877,
+        "lng": 57.0817,
+        "datum": "WGS84",
+        "source": "OSM relation/8835375",
+        "accuracy": "high"
+      },
+      "description_fa": "مسجد ملک از قدیمی‌ترین و بزرگ‌ترین مساجد کرمان است که هسته اولیه آن به دوره سلجوقیان کرمان (قرن پنجم قمری) و ملک تورانشاه سلجوقی نسبت داده می‌شود. ایوان‌های بلند، شبستان‌های وسیع و محراب گچبری نفیس آن از ویژگی‌های معماری این بناست. مسجد در دوره‌های بعد، به‌ویژه صفوی و قاجار، مرمت و تکمیل شده و در خیابان امام کرمان قرار دارد.",
+      "description_word_count": 60,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5891054"
+      },
+      "seo": {
+        "title": "مسجد ملک | جاذبه تاریخی کرمان",
+        "meta_description": "مسجد ملک در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره سلجوقی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "مسجد ملک",
+          "مسجد امام",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "malek-mosque",
+        "og_title": "مسجد ملک",
+        "og_description": "مسجد ملک در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره سلجوقی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/malek-mosque"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/relation/8835375"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-pamenar-mosque",
+      "category": "attraction",
+      "name_fa": "مسجد پامنار",
+      "name_en": "Pamenar Mosque",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "religious"
+      ],
+      "era": "منسوب به قرن هشتم ق؛ نیازمند تأیید",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.2969,
+        "lng": 57.0804,
+        "datum": "WGS84",
+        "source": "OSM node/6094714895",
+        "accuracy": "high"
+      },
+      "description_fa": "مسجد پامنار از مساجد تاریخی محله‌ای در بافت قدیم کرمان است که نام خود را از مناره‌ای که در گذشته در کنار آن قرار داشته گرفته است. سردر کاشی‌کاری و کتیبه‌های تاریخی آن از ارزش‌های هنری بناست. اطلاعات دقیق درباره تاریخ ساخت آن در منابع باز یافت نشد و دوره درج‌شده تخمینی است.",
+      "description_word_count": 53,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q16046936"
+      },
+      "seo": {
+        "title": "مسجد پامنار | جاذبه تاریخی کرمان",
+        "meta_description": "مسجد پامنار در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره منسوب به قرن هشتم ق؛ نیازمند تأیید؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | کرمان",
+        "keywords": [
+          "مسجد پامنار",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "pamenar-mosque",
+        "og_title": "مسجد پامنار",
+        "og_description": "مسجد پامنار در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره منسوب به قرن هشتم ق؛ نیازمند تأیید؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/pamenar-mosque"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/6094714895"
+      ],
+      "data_confidence": {
+        "level": "low",
+        "estimated_fields": [
+          "era"
+        ],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-khajeh-atabak",
+      "category": "attraction",
+      "name_fa": "آرامگاه خواجه اتابک",
+      "name_en": "Khajeh Atabak Mausoleum",
+      "alt_names": [
+        "Khajeh Atabak"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "tomb"
+      ],
+      "era": "سلجوقی (قرن ۶ ق)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.29892,
+        "lng": 57.07983,
+        "datum": "WGS84",
+        "source": "OSM way/527277500",
+        "accuracy": "high"
+      },
+      "description_fa": "آرامگاه خواجه اتابک بنایی هشت‌ضلعی از دوره سلجوقیان کرمان است که با گچبری‌ها و کاشی‌کاری‌های بسیار ظریف و کتیبه‌های کوفی تزیین شده است. این آرامگاه از نمونه‌های ارزشمند معماری آرامگاهی سلجوقی در ایران محسوب می‌شود و تزیینات کاشی و گچ آن از کهن‌ترین نمونه‌های این هنر در کرمان است. بنا در محله‌ای قدیمی در شمال مرکز شهر قرار دارد.",
+      "description_word_count": 59,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "آرامگاه خواجه اتابک | جاذبه تاریخی کرمان",
+        "meta_description": "آرامگاه خواجه اتابک در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره سلجوقی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "آرامگاه خواجه اتابک",
+          "Khajeh Atabak",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "khajeh-atabak-mausoleum",
+        "og_title": "آرامگاه خواجه اتابک",
+        "og_description": "آرامگاه خواجه اتابک در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره سلجوقی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/khajeh-atabak-mausoleum"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/527277500"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-qobbeh-sabz",
+      "category": "attraction",
+      "name_fa": "گنبد سبز (قبه سبز)",
+      "name_en": "Qobbeh Sabz (Green Dome)",
+      "alt_names": [
+        "Green Dome"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "ruins"
+      ],
+      "era": "قراختاییان (قرن ۷ ق)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.29716,
+        "lng": 57.0767,
+        "datum": "WGS84",
+        "source": "OSM way/547427783",
+        "accuracy": "high"
+      },
+      "description_fa": "قبه سبز بقایای مجموعه آرامگاهی و مدرسه دوره قراختاییان کرمان در قرن هفتم قمری است که گنبد کاشی‌کاری‌شده سبز آن در زلزله اواخر قرن سیزدهم قمری فرو ریخت. امروزه تنها ایوان و سردر بلند با کاشی‌کاری‌های نفیس و کتیبه‌های آن باقی مانده که نشان‌دهنده شکوه اولیه بناست. این اثر از نمونه‌های ارزشمند هنر کاشی‌کاری پیش از دوره تیموری است.",
+      "description_word_count": 59,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "گنبد سبز (قبه سبز) | جاذبه تاریخی کرمان",
+        "meta_description": "گنبد سبز (قبه سبز) در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قراختاییان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "گنبد سبز (قبه سبز)",
+          "Green Dome",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "qobbeh-sabz-green-dome",
+        "og_title": "گنبد سبز (قبه سبز)",
+        "og_description": "گنبد سبز (قبه سبز) در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قراختاییان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/qobbeh-sabz-green-dome"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/547427783"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [
+          "era (date of collapse)"
+        ],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-moayedi-icehouse",
+      "category": "attraction",
+      "name_fa": "یخدان مؤیدی",
+      "name_en": "Moayedi Icehouse",
+      "alt_names": [
+        "یخچال مؤیدی",
+        "Moaiiedi Yakhdan"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "architecture"
+      ],
+      "era": "قاجار",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.2951,
+        "lng": 57.0668,
+        "datum": "WGS84",
+        "source": "OSM way/597753376",
+        "accuracy": "high"
+      },
+      "description_fa": "یخدان مؤیدی بنایی مخروطی و خشتی از دوره قاجار در کرمان است که برای تولید و نگهداری یخ در تابستان ساخته شده بود. آب در زمستان در حوضچه‌های کم‌عمق کنار یخدان یخ می‌زد و قالب‌های یخ در مخزن عمیق زیر گنبد بلند انبار می‌شد. این یخدان از بزرگ‌ترین و سالم‌ترین یخدان‌های ایران است و امروز به عنوان فضای فرهنگی و کتابخانه/موزه کاربری دارد.",
+      "description_word_count": 63,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5702202"
+      },
+      "seo": {
+        "title": "یخدان مؤیدی | جاذبه تاریخی کرمان",
+        "meta_description": "یخدان مؤیدی در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "یخدان مؤیدی",
+          "یخچال مؤیدی",
+          "Moaiiedi Yakhdan",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "moayedi-icehouse",
+        "og_title": "یخدان مؤیدی",
+        "og_description": "یخدان مؤیدی در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/moayedi-icehouse"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/597753376"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [
+          "description_fa (current use)"
+        ],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-zarisf-icehouse",
+      "category": "attraction",
+      "name_fa": "یخدان زریسف",
+      "name_en": "Zarisf Icehouse",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "architecture"
+      ],
+      "era": "قاجار",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.29441,
+        "lng": 57.09972,
+        "datum": "WGS84",
+        "source": "OSM way/653873199",
+        "accuracy": "high"
+      },
+      "description_fa": "یخدان زریسف یکی دیگر از یخدان‌های تاریخی شهر کرمان است که در محله زریسف، در نزدیکی کوه‌های شرق شهر قرار دارد. این بنای خشتی مخروطی، همانند یخدان مؤیدی، برای ذخیره یخ زمستانی و استفاده در تابستان ساخته شده و نمونه‌ای از فناوری بومی سازگار با اقلیم خشک کرمان است. اطلاعات بیشتری درباره کاربری فعلی آن یافت نشد.",
+      "description_word_count": 57,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5889267"
+      },
+      "seo": {
+        "title": "یخدان زریسف | جاذبه تاریخی کرمان",
+        "meta_description": "یخدان زریسف در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "یخدان زریسف",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "zarisf-icehouse",
+        "og_title": "یخدان زریسف",
+        "og_description": "یخدان زریسف در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/zarisf-icehouse"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/653873199"
+      ],
+      "data_confidence": {
+        "level": "low",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-ghaleh-dokhtar",
+      "category": "attraction",
+      "name_fa": "قلعه دختر کرمان",
+      "name_en": "Qal'eh Dokhtar (Kerman)",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "castle",
+        "ruins"
+      ],
+      "era": "ساسانی",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.2919,
+        "lng": 57.0939,
+        "datum": "WGS84",
+        "source": "OSM node/5679165480",
+        "accuracy": "high"
+      },
+      "description_fa": "قلعه دختر بر فراز تپه‌ای در شرق شهر کرمان قرار دارد و از کهن‌ترین بناهای شهر به شمار می‌رود که به دوره ساسانی نسبت داده می‌شود. بقایای دیوارها و برج‌های خشتی آن هنوز بر فراز تپه دیده می‌شود. از بالای قلعه چشم‌انداز وسیعی از شهر کرمان و کوه‌های اطراف پیداست. قلعه اردشیر بر فراز تپه‌ای مجاور، همزاد تاریخی آن محسوب می‌شود. صعود تا قلعه پیاده‌روی کوتاهی است.",
+      "description_word_count": 67,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "صبح زود یا عصر",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "قلعه دختر کرمان | جاذبه تاریخی کرمان",
+        "meta_description": "قلعه دختر کرمان در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره ساسانی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "قلعه دختر کرمان",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "qaleh-dokhtar-kerman",
+        "og_title": "قلعه دختر کرمان",
+        "og_description": "قلعه دختر کرمان در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره ساسانی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/qaleh-dokhtar-kerman"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/5679165480"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-ghaleh-ardeshir",
+      "category": "attraction",
+      "name_fa": "قلعه اردشیر",
+      "name_en": "Qal'eh Ardeshir",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "castle",
+        "ruins"
+      ],
+      "era": "ساسانی (منسوب به اردشیر بابکان)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.2886,
+        "lng": 57.0999,
+        "datum": "WGS84",
+        "source": "OSM node/5747725312",
+        "accuracy": "high"
+      },
+      "description_fa": "قلعه اردشیر بر فراز کوهی در شرق شهر کرمان قرار دارد و ساخت آن را به اردشیر بابکان، بنیانگذار سلسله ساسانی، نسبت می‌دهند. این قلعه نظامی با دیوارهای خشتی و سنگی، در کنار قلعه دختر، از قدیمی‌ترین آثار کرمان است. مسیر پیاده‌روی به قلعه چشم‌انداز زیبایی از شهر دارد و برای علاقه‌مندان به تاریخ و کوهپیمایی سبک جذاب است.",
+      "description_word_count": 59,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "صبح زود یا عصر",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "قلعه اردشیر | جاذبه تاریخی کرمان",
+        "meta_description": "قلعه اردشیر در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره ساسانی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "قلعه اردشیر",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "qaleh-ardeshir",
+        "og_title": "قلعه اردشیر",
+        "og_description": "قلعه اردشیر در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره ساسانی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/qaleh-ardeshir"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/5747725312"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-atashkadeh",
+      "category": "attraction",
+      "name_fa": "آتشکده زرتشتیان کرمان و موزه زرتشتیان",
+      "name_en": "Kerman Zoroastrian Fire Temple & Museum",
+      "alt_names": [
+        "Atashkadeh-e Kerman"
+      ],
+      "type": "religious",
+      "types": [
+        "religious",
+        "museum"
+      ],
+      "era": "پهلوی (ساخت حدود ۱۳۰۳ خ)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.2963,
+        "lng": 57.089,
+        "datum": "WGS84",
+        "source": "OSM node/4724061791",
+        "accuracy": "high"
+      },
+      "description_fa": "آتشکده زرتشتیان کرمان در محله زرتشتی‌نشین شهر قرار دارد و آتش مقدس آن بیش از هفتاد سال است که روشن نگه داشته می‌شود. در کنار آتشکده، موزه مردم‌شناسی زرتشتیان کرمان، ابزار، پوشاک، کتاب‌ها و اشیای مرتبط با فرهنگ و آیین زرتشتی را به نمایش می‌گذارد. بازدید از این مجموعه فرصتی برای آشنایی با جامعه زرتشتی کرمان، یکی از کهن‌ترین جوامع زرتشتی ایران، است.",
+      "description_word_count": 63,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5901021",
+        "museum_osm": "node/5126405967"
+      },
+      "seo": {
+        "title": "آتشکده زرتشتیان کرمان و موزه زرتشتیان | جاذبه مذهبی کرمان",
+        "meta_description": "آتشکده زرتشتیان کرمان و موزه زرتشتیان در کرمان، از جاذبه‌های مذهبی استان کرمان، دوره پهلوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | کرمان",
+        "keywords": [
+          "آتشکده زرتشتیان کرمان و موزه زرتشتیان",
+          "Atashkadeh-e Kerman",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "مذهبی"
+        ],
+        "slug": "kerman-zoroastrian-fire-temple-museum",
+        "og_title": "آتشکده زرتشتیان کرمان و موزه زرتشتیان",
+        "og_description": "آتشکده زرتشتیان کرمان و موزه زرتشتیان در کرمان، از جاذبه‌های مذهبی استان کرمان، دوره پهلوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/kerman-zoroastrian-fire-temple-museum"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/4724061791"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [
+          "era"
+        ],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-harandi-museum",
+      "category": "attraction",
+      "name_fa": "باغ‌موزه هرندی",
+      "name_en": "Harandi Garden Museum",
+      "alt_names": [
+        "Harandi Museum"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "museum",
+        "garden"
+      ],
+      "era": "قاجار–پهلوی",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.28785,
+        "lng": 57.0607,
+        "datum": "WGS84",
+        "source": "OSM way/530976035",
+        "accuracy": "high"
+      },
+      "description_fa": "باغ هرندی با عمارتی زیبا در میان باغی سرسبز در غرب مرکز شهر کرمان قرار دارد و امروز به باغ‌موزه تبدیل شده است. در این مجموعه موزه‌های باستان‌شناسی (از جمله آثار تمدن جیرفت) و موزه سازهای موسیقی سنتی ایران مستقر شده‌اند. معماری عمارت، حوض‌ها و درختان کهنسال باغ، فضایی آرام برای بازدید فراهم کرده است.",
+      "description_word_count": 55,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "باغ‌موزه هرندی | جاذبه تاریخی کرمان",
+        "meta_description": "باغ‌موزه هرندی در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار–پهلوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "باغ‌موزه هرندی",
+          "Harandi Museum",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "harandi-garden-museum",
+        "og_title": "باغ‌موزه هرندی",
+        "og_description": "باغ‌موزه هرندی در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار–پهلوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/harandi-garden-museum"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/530976035"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [
+          "description_fa (museum sections)"
+        ],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-sanati-museum",
+      "category": "attraction",
+      "name_fa": "موزه هنرهای معاصر صنعتی",
+      "name_en": "Sanati Museum of Contemporary Art",
+      "alt_names": [
+        "موزه صنعتی"
+      ],
+      "type": "museum",
+      "types": [
+        "museum",
+        "art"
+      ],
+      "era": "معاصر (دهه ۱۳۳۰ خ)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.28996,
+        "lng": 57.0666,
+        "datum": "WGS84",
+        "source": "OSM way/529437736",
+        "accuracy": "high"
+      },
+      "description_fa": "موزه هنرهای معاصر صنعتی در بنای قدیمی پرورشگاه صنعتی کرمان قرار دارد و آثار علی‌اکبر صنعتی، مجسمه‌ساز و نقاش برجسته کرمانی، و دیگر هنرمندان معاصر را به نمایش می‌گذارد. این موزه از نخستین موزه‌های هنر معاصر ایران است و حیاط با باغچه و حوض آن نیز دیدنی است. مجسمه‌ها و تابلوهای صنعتی با موضوعات انسانی و اجتماعی شهرت دارند.",
+      "description_word_count": 59,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "موزه هنرهای معاصر صنعتی | جاذبه موزه کرمان",
+        "meta_description": "موزه هنرهای معاصر صنعتی در کرمان، از جاذبه‌های موزه استان کرمان، دوره معاصر؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "موزه هنرهای معاصر صنعتی",
+          "موزه صنعتی",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "موزه"
+        ],
+        "slug": "sanati-museum-of-contemporary-art",
+        "og_title": "موزه هنرهای معاصر صنعتی",
+        "og_description": "موزه هنرهای معاصر صنعتی در کرمان، از جاذبه‌های موزه استان کرمان، دوره معاصر؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/sanati-museum-of-contemporary-art"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/529437736"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-fathabad-garden",
+      "category": "attraction",
+      "name_fa": "باغ فتح‌آباد",
+      "name_en": "Fathabad Garden",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "garden"
+      ],
+      "era": "قاجار",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.34447,
+        "lng": 56.91934,
+        "datum": "WGS84",
+        "source": "OSM node/11659359769",
+        "accuracy": "high"
+      },
+      "description_fa": "باغ فتح‌آباد در شمال غرب شهر کرمان، در دوره قاجار به دستور عبدالحمید میرزا ناصرالدوله، سازنده باغ شاهزاده ماهان، ساخته شد. عمارت مرکزی با معماری آجری، حوض‌ها و محور آب، و درختان باغ، نمونه دیگری از باغ‌سازی قاجاری کرمان است. پس از مرمت، باغ به فضای فرهنگی و گردشگری تبدیل شده و برنامه‌های شبانه و نورپردازی آن طرفدار زیادی دارد.",
+      "description_word_count": 60,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null,
+        "buildings": [
+          {
+            "name": "عمارت مرکزی",
+            "osm": "way/652250345"
+          },
+          {
+            "name": "عمارت چهارفصل",
+            "osm": "way/652250347"
+          }
+        ]
+      },
+      "seo": {
+        "title": "باغ فتح‌آباد | جاذبه تاریخی کرمان",
+        "meta_description": "باغ فتح‌آباد در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "باغ فتح‌آباد",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "fathabad-garden",
+        "og_title": "باغ فتح‌آباد",
+        "og_description": "باغ فتح‌آباد در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/fathabad-garden"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/11659359769"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-dakhmeh",
+      "category": "attraction",
+      "name_fa": "دخمه زرتشتیان کرمان",
+      "name_en": "Zoroastrian Tower of Silence (Kerman)",
+      "alt_names": [
+        "برج خاموشان"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "religious"
+      ],
+      "era": "نامشخص (کاربری تا اوایل قرن ۱۴ خ)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.3646,
+        "lng": 57.0674,
+        "datum": "WGS84",
+        "source": "OSM way/653526004",
+        "accuracy": "high"
+      },
+      "description_fa": "دخمه زرتشتیان کرمان بنایی مدور بر فراز تپه‌ای در شمال شهر است که در گذشته زرتشتیان، مطابق آیین خود، اجساد درگذشتگان را در آن قرار می‌دادند. این روش تدفین در دوره پهلوی کنار گذاشته شد و امروز دخمه به عنوان اثری تاریخی و نمادی از فرهنگ زرتشتی کرمان بازدید می‌شود. صعود به تپه کوتاه است و چشم‌انداز خوبی از دشت شمالی کرمان دارد.",
+      "description_word_count": 63,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "دخمه زرتشتیان کرمان | جاذبه تاریخی کرمان",
+        "meta_description": "دخمه زرتشتیان کرمان در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره نامشخص؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "دخمه زرتشتیان کرمان",
+          "برج خاموشان",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "zoroastrian-tower-of-silence-kerman",
+        "og_title": "دخمه زرتشتیان کرمان",
+        "og_description": "دخمه زرتشتیان کرمان در کرمان، از جاذبه‌های تاریخی استان کرمان، دوره نامشخص؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/zoroastrian-tower-of-silence-kerman"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/653526004"
+      ],
+      "data_confidence": {
+        "level": "low",
+        "estimated_fields": [
+          "era"
+        ],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-shah-nematollah",
+      "category": "attraction",
+      "name_fa": "آرامگاه شاه نعمت‌الله ولی",
+      "name_en": "Shah Nematollah Vali Shrine",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "religious",
+        "tomb"
+      ],
+      "era": "تیموری تا قاجار (هسته ۸۴۰ ق)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "ماهان"
+      },
+      "coordinates": {
+        "lat": 30.05987,
+        "lng": 57.29003,
+        "datum": "WGS84",
+        "source": "OSM way/459011369",
+        "accuracy": "high"
+      },
+      "description_fa": "آرامگاه شاه نعمت‌الله ولی، عارف و شاعر بزرگ قرن هشتم و نهم قمری و بنیانگذار سلسله نعمت‌اللهی، در شهر ماهان قرار دارد. هسته اولیه بنا در قرن نهم به دستور احمدشاه بهمنی ساخته شد و در دوره‌های صفوی و قاجار با حیاط‌ها، رواق‌ها، مناره‌های کاشی‌کاری و گنبد فیروزه‌ای گسترش یافت. درهای چوبی منبت‌کاری، کاشی‌ها و فضای آرام حیاط‌ها، آن را به یکی از زیباترین آرامگاه‌های عرفانی ایران تبدیل کرده است.",
+      "description_word_count": 70,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "تمام سال",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5853951"
+      },
+      "seo": {
+        "title": "آرامگاه شاه نعمت‌الله ولی | جاذبه تاریخی ماهان",
+        "meta_description": "آرامگاه شاه نعمت‌الله ولی در ماهان (کرمان)، از جاذبه‌های تاریخی استان کرمان، دوره تیموری تا قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "keywords": [
+          "آرامگاه شاه نعمت‌الله ولی",
+          "جاذبه‌های ماهان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "shah-nematollah-vali-shrine",
+        "og_title": "آرامگاه شاه نعمت‌الله ولی",
+        "og_description": "آرامگاه شاه نعمت‌الله ولی در ماهان (کرمان)، از جاذبه‌های تاریخی استان کرمان، دوره تیموری تا قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/shah-nematollah-vali-shrine"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/459011369"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-arg-bam",
+      "category": "attraction",
+      "name_fa": "ارگ بم",
+      "name_en": "Arg-e Bam (Bam Citadel)",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "citadel",
+        "unesco"
+      ],
+      "era": "پیش از اسلام تا قاجار (بیش از ۲۰۰۰ سال)",
+      "unesco": {
+        "inscribed": true,
+        "year": 2004,
+        "listing": "Bam and its Cultural Landscape"
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "بم",
+        "city": "بم"
+      },
+      "coordinates": {
+        "lat": 29.11571,
+        "lng": 58.36932,
+        "datum": "WGS84",
+        "source": "OSM way/400586489",
+        "accuracy": "high"
+      },
+      "description_fa": "ارگ بم بزرگ‌ترین بنای خشتی جهان و شهری کامل با برج و بارو، بازار، مسجد، خانه‌ها و قلعه حاکم‌نشین است که بر سر راه‌های تجاری جاده ابریشم در دل بیابان شکل گرفت. پیشینه آن به پیش از اسلام می‌رسد و بیشتر بناهای کنونی از دوره صفوی و قاجار است. زلزله دی‌ماه ۱۳۸۲ آسیب سنگینی به ارگ وارد کرد و در سال ۲۰۰۴ «بم و منظر فرهنگی آن» در فهرست میراث جهانی یونسکو ثبت شد. مرمت آن همچنان ادامه دارد.",
+      "description_word_count": 79,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "آبان تا اسفند",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q43277"
+      },
+      "seo": {
+        "title": "ارگ بم | جاذبه تاریخی بم",
+        "meta_description": "ارگ بم در بم، از جاذبه‌های تاریخی استان کرمان، دوره پیش از اسلام تا قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "ارگ بم",
+          "جاذبه‌های بم",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "arg-e-bam-bam-citadel",
+        "og_title": "ارگ بم",
+        "og_description": "ارگ بم در بم، از جاذبه‌های تاریخی استان کرمان، دوره پیش از اسلام تا قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/arg-e-bam-bam-citadel"
+      },
+      "sources": [
+        "https://whc.unesco.org/en/list/1208",
+        "https://www.openstreetmap.org/way/400586489"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-arg-rayen",
+      "category": "attraction",
+      "name_fa": "ارگ راین",
+      "name_en": "Arg-e Rayen (Rayen Citadel)",
+      "alt_names": [
+        "Rayen Castle"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "citadel"
+      ],
+      "era": "منسوب به ساسانی؛ بناهای کنونی صفوی و قاجار",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "راین"
+      },
+      "coordinates": {
+        "lat": 29.59322,
+        "lng": 57.43826,
+        "datum": "WGS84",
+        "source": "OSM way/430999445",
+        "accuracy": "high"
+      },
+      "description_fa": "ارگ راین پس از زلزله بم و آسیب ارگ بم، بزرگ‌ترین و سالم‌ترین بنای خشتی ایران به شمار می‌رود. این شهر حصاردار با برج‌ها، دروازه، بازار، محله حاکم‌نشین، خانه‌ها، اصطبل و آب‌انبار، در دامنه شمالی کوه هزار و در شهر راین قرار دارد. پیشینه آن را به پیش از اسلام نسبت می‌دهند و بیشتر بناهای کنونی از دوره صفوی و قاجار است. بازدید از ارگ با آبشار راین و کوه هزار ترکیب می‌شود.",
+      "description_word_count": 73,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q2631476"
+      },
+      "seo": {
+        "title": "ارگ راین | جاذبه تاریخی راین",
+        "meta_description": "ارگ راین در راین (کرمان)، از جاذبه‌های تاریخی استان کرمان، دوره منسوب به ساسانی؛ بناهای کنونی صفوی و قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "keywords": [
+          "ارگ راین",
+          "Rayen Castle",
+          "جاذبه‌های راین",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "arg-e-rayen-rayen-citadel",
+        "og_title": "ارگ راین",
+        "og_description": "ارگ راین در راین (کرمان)، از جاذبه‌های تاریخی استان کرمان، دوره منسوب به ساسانی؛ بناهای کنونی صفوی و قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/arg-e-rayen-rayen-citadel"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/430999445"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-meymand",
+      "category": "attraction",
+      "name_fa": "روستای صخره‌ای میمند",
+      "name_en": "Meymand Rock Village",
+      "alt_names": [
+        "Maymand"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "village",
+        "unesco"
+      ],
+      "era": "دست‌کم ۲۰۰۰ تا ۳۰۰۰ سال (تخمین‌ها متفاوت)",
+      "unesco": {
+        "inscribed": true,
+        "year": 2015,
+        "listing": "Cultural Landscape of Maymand"
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "شهربابک",
+        "city": "میمند"
+      },
+      "coordinates": {
+        "lat": 30.23067,
+        "lng": 55.37619,
+        "datum": "WGS84",
+        "source": "OSM (Nominatim) place=village",
+        "accuracy": "high"
+      },
+      "description_fa": "میمند روستایی صخره‌ای در شمال شرق شهربابک است که خانه‌های آن (کیچه‌ها) در دل کوه و صخره‌های نرم کنده شده‌اند و هنوز مسکونی‌اند. ساکنان آن زندگی نیمه‌کوچ‌نشینی دارند و بخشی از سال را در ییلاق و قشلاق می‌گذرانند. این منظر فرهنگی در سال ۲۰۱۵ در فهرست میراث جهانی یونسکو ثبت شد. اقامت در خانه‌های صخره‌ای مرمت‌شده، موزه مردم‌شناسی، مدرسه و مسجد صخره‌ای از تجربه‌های ویژه سفر به میمند است.",
+      "description_word_count": 69,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q1013465",
+        "camp_site": {
+          "name": "دربید میمند",
+          "lat": 30.26926,
+          "lng": 55.36772
+        }
+      },
+      "seo": {
+        "title": "روستای صخره‌ای میمند | جاذبه تاریخی میمند",
+        "meta_description": "روستای صخره‌ای میمند در میمند (شهربابک)، از جاذبه‌های تاریخی استان کرمان، دوره دست‌کم ۲۰۰۰ تا ۳۰۰۰ سال؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "keywords": [
+          "روستای صخره‌ای میمند",
+          "Maymand",
+          "جاذبه‌های میمند",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "meymand-rock-village",
+        "og_title": "روستای صخره‌ای میمند",
+        "og_description": "روستای صخره‌ای میمند در میمند (شهربابک)، از جاذبه‌های تاریخی استان کرمان، دوره دست‌کم ۲۰۰۰ تا ۳۰۰۰ سال؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/meymand-rock-village"
+      },
+      "sources": [
+        "https://whc.unesco.org/en/list/1423",
+        "https://www.openstreetmap.org/node/3804901374",
+        "https://www.openstreetmap.org/(Nominatim) place=village"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [
+          "era"
+        ],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-shafiabad-caravanserai",
+      "category": "attraction",
+      "name_fa": "کاروانسرا (قلعه) شفیع‌آباد",
+      "name_en": "Shafiabad Caravanserai",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "caravanserai",
+        "accommodation"
+      ],
+      "era": "صفوی/قاجار (نیازمند تأیید)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان (شهداد)",
+        "city": "شفیع‌آباد"
+      },
+      "coordinates": {
+        "lat": 30.54445,
+        "lng": 57.7728,
+        "datum": "WGS84",
+        "source": "OSM node/4771336767",
+        "accuracy": "high"
+      },
+      "description_fa": "کاروانسرای شفیع‌آباد در روستای شفیع‌آباد، در حاشیه دشت لوت و مسیر کلوت‌های شهداد، از کاروانسراهای تاریخی مسیر کاروان‌رو کرمان–خراسان است. این بنای خشتی و آجری با برج‌های قلعه‌مانند، پس از مرمت به اقامتگاه گردشگری تبدیل شده و پایگاهی برای بازدید از کلوت‌ها، جنگل نبکا و دشت لوت است. شب‌های آسمان پرستاره شفیع‌آباد از تجربه‌های ماندگار این سفر است.",
+      "description_word_count": 58,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "آبان تا اسفند",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5897304"
+      },
+      "seo": {
+        "title": "کاروانسرا (قلعه) شفیع‌آباد | جاذبه تاریخی شفیع‌آباد",
+        "meta_description": "کاروانسرا (قلعه) شفیع‌آباد در شفیع‌آباد (کرمان (شهداد))، از جاذبه‌های تاریخی استان کرمان، دوره صفوی/قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "keywords": [
+          "کاروانسرا (قلعه) شفیع‌آباد",
+          "جاذبه‌های شفیع‌آباد",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "shafiabad-caravanserai",
+        "og_title": "کاروانسرا (قلعه) شفیع‌آباد",
+        "og_description": "کاروانسرا (قلعه) شفیع‌آباد در شفیع‌آباد (کرمان (شهداد))، از جاذبه‌های تاریخی استان کرمان، دوره صفوی/قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/shafiabad-caravanserai"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/4771336767"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [
+          "era",
+          "types (accommodation)"
+        ],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-kotuluha",
+      "category": "attraction",
+      "name_fa": "شهر تاریخی کوتوله‌ها (شهداد)",
+      "name_en": "Shahr-e Kotuleha (Shahdad 'Dwarf City')",
+      "alt_names": [
+        "کوتوله ها",
+        "City of the little people"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "archaeological_site"
+      ],
+      "era": "عصر مفرغ (هزاره سوم پیش از میلاد) – منسوب به تمدن شهداد",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "شهداد"
+      },
+      "coordinates": {
+        "lat": 30.43083,
+        "lng": 57.7346,
+        "datum": "WGS84",
+        "source": "OSM way/597076378",
+        "accuracy": "high"
+      },
+      "description_fa": "شهرک کوتوله‌ها بقایای سکونتگاهی باستانی در نزدیکی شهداد است که به سبب کوچکی غیرعادی درها، راهروها و اتاق‌ها، در باور عامه به «شهر کوتوله‌ها» شهرت یافته است. باستان‌شناسان کوچکی ابعاد را بیشتر به کاربری خاص یا شیوه ساخت نسبت می‌دهند. منطقه شهداد از مراکز مهم تمدن عصر مفرغ در جنوب شرق ایران است و یافته‌های فلزی و سفالی ارزشمندی از آن به دست آمده است.",
+      "description_word_count": 65,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "شهر تاریخی کوتوله‌ها (شهداد) | جاذبه تاریخی شهداد",
+        "meta_description": "شهر تاریخی کوتوله‌ها (شهداد) در شهداد (کرمان)، از جاذبه‌های تاریخی استان کرمان، دوره عصر مفرغ؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | کرمان",
+        "keywords": [
+          "شهر تاریخی کوتوله‌ها (شهداد)",
+          "کوتوله ها",
+          "City of the little people",
+          "جاذبه‌های شهداد",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "shahr-e-kotuleha-shahdad-dwarf-city",
+        "og_title": "شهر تاریخی کوتوله‌ها (شهداد)",
+        "og_description": "شهر تاریخی کوتوله‌ها (شهداد) در شهداد (کرمان)، از جاذبه‌های تاریخی استان کرمان، دوره عصر مفرغ؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/shahr-e-kotuleha-shahdad-dwarf-city"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/597076378"
+      ],
+      "data_confidence": {
+        "level": "low",
+        "estimated_fields": [
+          "era"
+        ],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-keshit-castle",
+      "category": "attraction",
+      "name_fa": "قلعه کشیت",
+      "name_en": "Keshit Castle",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "castle"
+      ],
+      "era": null,
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان (گلباف)",
+        "city": "کشیت"
+      },
+      "coordinates": {
+        "lat": 29.8506,
+        "lng": 58.1356,
+        "datum": "WGS84",
+        "source": "OSM way/1531084592",
+        "accuracy": "high"
+      },
+      "description_fa": "قلعه کشیت بنایی تاریخی در روستای کشیت در بخش گلباف کرمان است که در کنار تنگه و آبشار کشیت قرار دارد. اطلاعات دقیقی درباره دوره ساخت آن در منابع باز یافت نشد. بازدید از قلعه معمولاً همراه با تنگه سرسبز و نخلستان‌های کشیت انجام می‌شود.",
+      "description_word_count": 45,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "مهر تا فروردین",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5893916"
+      },
+      "seo": {
+        "title": "قلعه کشیت | جاذبه تاریخی کشیت",
+        "meta_description": "قلعه کشیت در کشیت (کرمان (گلباف))، از جاذبه‌های تاریخی استان کرمان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "قلعه کشیت",
+          "جاذبه‌های کشیت",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "keshit-castle",
+        "og_title": "قلعه کشیت",
+        "og_description": "قلعه کشیت در کشیت (کرمان (گلباف))، از جاذبه‌های تاریخی استان کرمان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/keshit-castle"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/1531084592"
+      ],
+      "data_confidence": {
+        "level": "low",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee",
+          "era"
+        ]
+      }
+    },
+    {
+      "id": "att-ghaleh-khabr",
+      "category": "attraction",
+      "name_fa": "قلعه خبر",
+      "name_en": "Qal'eh Khabr",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "archaeological_site"
+      ],
+      "era": null,
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "بافت",
+        "city": "خبر"
+      },
+      "coordinates": {
+        "lat": 28.8205,
+        "lng": 56.3217,
+        "datum": "WGS84",
+        "source": "OSM node/3984552782",
+        "accuracy": "high"
+      },
+      "description_fa": "قلعه خبر محوطه‌ای تاریخی در روستای خبر و در ورودی پارک ملی خبر است. اطلاعات دقیقی درباره دوره و کاربری آن در منابع باز یافت نشد. بازدید از آن همراه با آبشار خبر و پارک ملی خبر توصیه می‌شود. منطقه خبر به سبب طبیعت کوهستانی و حیات وحش غنی، مقصدی مناسب برای ترکیب گردشگری تاریخی و طبیعت‌گردی است.",
+      "description_word_count": 58,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "قلعه خبر | جاذبه تاریخی خبر",
+        "meta_description": "قلعه خبر در خبر (بافت)، از جاذبه‌های تاریخی استان کرمان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "قلعه خبر",
+          "جاذبه‌های خبر",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "qaleh-khabr",
+        "og_title": "قلعه خبر",
+        "og_description": "قلعه خبر در خبر (بافت)، از جاذبه‌های تاریخی استان کرمان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/qaleh-khabr"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/3984552782"
+      ],
+      "data_confidence": {
+        "level": "low",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee",
+          "era"
+        ]
+      }
+    },
+    {
+      "id": "att-bagh-sangi",
+      "category": "attraction",
+      "name_fa": "باغ سنگی سیرجان",
+      "name_en": "Bagh-e Sangi (Stone Garden)",
+      "alt_names": [],
+      "type": "art",
+      "types": [
+        "art",
+        "recreational",
+        "folk_art"
+      ],
+      "era": "معاصر (دهه ۱۳۴۰–۱۳۷۰ خ)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "سیرجان",
+        "city": "بلورد / سیرجان"
+      },
+      "coordinates": {
+        "lat": 29.40461,
+        "lng": 56.10719,
+        "datum": "WGS84",
+        "source": "OSM way/430110451",
+        "accuracy": "high"
+      },
+      "description_fa": "باغ سنگی اثر هنری درویش‌خان اسفندیارپور، باغبانی ناشنوا و کم‌شنوا از اهالی منطقه بلورد سیرجان است که پس از از دست دادن زمین‌هایش، بر شاخه‌های درختان خشک، سنگ‌ها و اشیای فلزی آویخت و باغی خیالی و نمادین ساخت. این اثر نمونه‌ای منحصربه‌فرد از هنر خودآموخته (Outsider Art) در ایران است و توجه هنرمندان و مستندسازان بسیاری را جلب کرده است. باغ در کنار جاده سیرجان–بافت قرار دارد.",
+      "description_word_count": 67,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q42699071"
+      },
+      "seo": {
+        "title": "باغ سنگی سیرجان | جاذبه هنری بلورد / سیرجان",
+        "meta_description": "باغ سنگی سیرجان در بلورد / سیرجان (سیرجان)، از جاذبه‌های هنری استان کرمان، دوره معاصر؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | کرمان",
+        "keywords": [
+          "باغ سنگی سیرجان",
+          "جاذبه‌های بلورد / سیرجان",
+          "گردشگری کرمان",
+          "هنری"
+        ],
+        "slug": "bagh-e-sangi-stone-garden",
+        "og_title": "باغ سنگی سیرجان",
+        "og_description": "باغ سنگی سیرجان در بلورد / سیرجان (سیرجان)، از جاذبه‌های هنری استان کرمان، دوره معاصر؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/bagh-e-sangi-stone-garden"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/430110451"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [
+          "era"
+        ],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-sirjan-icehouses",
+      "category": "attraction",
+      "name_fa": "یخدان‌های دوقلوی سیرجان",
+      "name_en": "Twin Icehouses of Sirjan",
+      "alt_names": [
+        "Jachtan",
+        "یخدانهای سیرجان"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "architecture"
+      ],
+      "era": "قاجار",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "سیرجان",
+        "city": "سیرجان"
+      },
+      "coordinates": {
+        "lat": 29.4536,
+        "lng": 55.6618,
+        "datum": "WGS84",
+        "source": "OSM node/4774641728",
+        "accuracy": "high"
+      },
+      "description_fa": "یخدان‌های دوقلوی سیرجان دو بنای خشتی مخروطی کنار هم در شهر سیرجان هستند که برای نگهداری یخ زمستانی و استفاده در تابستان ساخته شده بودند. این یخدان‌ها از نمادهای معماری بومی سیرجان و نمونه‌ای از فناوری سنتی سازگار با اقلیم گرم و خشک‌اند و در نزدیکی بادگیر چپقی قرار دارند.",
+      "description_word_count": 50,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5889473",
+        "alt_osm": "node/6306907734"
+      },
+      "seo": {
+        "title": "یخدان‌های دوقلوی سیرجان | جاذبه تاریخی سیرجان",
+        "meta_description": "یخدان‌های دوقلوی سیرجان در سیرجان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "یخدان‌های دوقلوی سیرجان",
+          "Jachtan",
+          "یخدانهای سیرجان",
+          "جاذبه‌های سیرجان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "twin-icehouses-of-sirjan",
+        "og_title": "یخدان‌های دوقلوی سیرجان",
+        "og_description": "یخدان‌های دوقلوی سیرجان در سیرجان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/twin-icehouses-of-sirjan"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/4774641728"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-chopoghi-windcatcher",
+      "category": "attraction",
+      "name_fa": "بادگیر چپقی سیرجان",
+      "name_en": "Chopoghi Windcatcher (Sirjan)",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "architecture"
+      ],
+      "era": "قاجار",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "سیرجان",
+        "city": "سیرجان"
+      },
+      "coordinates": {
+        "lat": 29.44662,
+        "lng": 55.67376,
+        "datum": "WGS84",
+        "source": "OSM node/6306911416",
+        "accuracy": "high"
+      },
+      "description_fa": "بادگیر چپقی سیرجان بادگیری منحصربه‌فرد با ساختار استوانه‌ای و توخالی است که از دور به چپق شباهت دارد و از نمادهای شهر سیرجان به شمار می‌رود. این بادگیر برای خنک کردن آب‌انبار یا فضای زیرین آن ساخته شده و نمونه‌ای کم‌نظیر از معماری اقلیمی ایران است.",
+      "description_word_count": 46,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5937350"
+      },
+      "seo": {
+        "title": "بادگیر چپقی سیرجان | جاذبه تاریخی سیرجان",
+        "meta_description": "بادگیر چپقی سیرجان در سیرجان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "بادگیر چپقی سیرجان",
+          "جاذبه‌های سیرجان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "chopoghi-windcatcher-sirjan",
+        "og_title": "بادگیر چپقی سیرجان",
+        "og_description": "بادگیر چپقی سیرجان در سیرجان، از جاذبه‌های تاریخی استان کرمان، دوره قاجار؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/chopoghi-windcatcher-sirjan"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/6306911416"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-arg-anar",
+      "category": "attraction",
+      "name_fa": "ارگ و کاروانسرای انار",
+      "name_en": "Anar Citadel & Caravanserai",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "citadel",
+        "caravanserai"
+      ],
+      "era": null,
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "انار",
+        "city": "انار"
+      },
+      "coordinates": {
+        "lat": 30.87193,
+        "lng": 55.27035,
+        "datum": "WGS84",
+        "source": "OSM way/242949043",
+        "accuracy": "high"
+      },
+      "description_fa": "ارگ تاریخی انار بقایای قلعه‌ای خشتی در شهر انار است و کاروانسرای انار و یخدان انار نیز در نزدیکی آن قرار دارند. این مجموعه بر سر راه کاروان‌روی یزد–کرمان شکل گرفته و نشانه اهمیت تاریخی انار در مسیرهای تجاری است. اطلاعات دقیقی درباره دوره ساخت ارگ در منابع باز یافت نشد.",
+      "description_word_count": 51,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5954566",
+        "caravanserai": {
+          "osm": "relation/11241204",
+          "lat": 30.8794,
+          "lng": 55.272,
+          "wikidata": "Q5898174"
+        },
+        "icehouse": {
+          "osm": "node/7653245515",
+          "lat": 30.86987,
+          "lng": 55.27787
+        }
+      },
+      "seo": {
+        "title": "ارگ و کاروانسرای انار | جاذبه تاریخی انار",
+        "meta_description": "ارگ و کاروانسرای انار در انار، از جاذبه‌های تاریخی استان کرمان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "ارگ و کاروانسرای انار",
+          "جاذبه‌های انار",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "anar-citadel-caravanserai",
+        "og_title": "ارگ و کاروانسرای انار",
+        "og_description": "ارگ و کاروانسرای انار در انار، از جاذبه‌های تاریخی استان کرمان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/anar-citadel-caravanserai"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/242949043"
+      ],
+      "data_confidence": {
+        "level": "low",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee",
+          "era"
+        ]
+      }
+    },
+    {
+      "id": "att-jiroft-museum",
+      "category": "attraction",
+      "name_fa": "موزه باستان‌شناسی جیرفت",
+      "name_en": "Jiroft Archaeological Museum",
+      "alt_names": [],
+      "type": "museum",
+      "types": [
+        "museum"
+      ],
+      "era": "معاصر (آثار هزاره سوم پ.م)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "جیرفت",
+        "city": "جیرفت"
+      },
+      "coordinates": {
+        "lat": 28.6687,
+        "lng": 57.73072,
+        "datum": "WGS84",
+        "source": "OSM way/1052430567",
+        "accuracy": "high"
+      },
+      "description_fa": "موزه باستان‌شناسی جیرفت آثار به‌دست‌آمده از تمدن باستانی جیرفت (هلیل‌رود)، از جمله ظروف سنگی کلریتی منقوش با نقوش جانوری و اسطوره‌ای از هزاره سوم پیش از میلاد را به نمایش می‌گذارد. این تمدن پس از کشف‌های دهه ۱۳۸۰ در محوطه‌های کنار صندل توجه جهانی را جلب کرد. بازدید از موزه را می‌توان با محوطه کنار صندل ترکیب کرد.",
+      "description_word_count": 58,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "موزه باستان‌شناسی جیرفت | جاذبه موزه جیرفت",
+        "meta_description": "موزه باستان‌شناسی جیرفت در جیرفت، از جاذبه‌های موزه استان کرمان، دوره معاصر؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "موزه باستان‌شناسی جیرفت",
+          "جاذبه‌های جیرفت",
+          "گردشگری کرمان",
+          "موزه"
+        ],
+        "slug": "jiroft-archaeological-museum",
+        "og_title": "موزه باستان‌شناسی جیرفت",
+        "og_description": "موزه باستان‌شناسی جیرفت در جیرفت، از جاذبه‌های موزه استان کرمان، دوره معاصر؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/jiroft-archaeological-museum"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/1052430567"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-konar-sandal",
+      "category": "attraction",
+      "name_fa": "محوطه باستانی کنار صندل",
+      "name_en": "Konar Sandal Archaeological Site",
+      "alt_names": [
+        "Konar Sandal"
+      ],
+      "type": "historical",
+      "types": [
+        "historical",
+        "archaeological_site"
+      ],
+      "era": "عصر مفرغ (هزاره سوم پیش از میلاد)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "جیرفت",
+        "city": "جیرفت"
+      },
+      "coordinates": {
+        "lat": 28.4635,
+        "lng": 57.7791,
+        "datum": "WGS84",
+        "source": "OSM way/93556408",
+        "accuracy": "high"
+      },
+      "description_fa": "کنار صندل محوطه‌ای باستانی در جنوب جیرفت و کنار هلیل‌رود است که شامل دو تپه اصلی (شمالی و جنوبی) می‌شود. در تپه شمالی بقایای سازه‌ای عظیم و پلکانی شبیه زیگورات کشف شده و یافته‌های آن، از جمله کتیبه‌هایی با خط ناشناخته، از مهم‌ترین شواهد تمدن جیرفت در هزاره سوم پیش از میلاد است.",
+      "description_word_count": 53,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null,
+        "south_mound": {
+          "osm": "node/5212488922",
+          "lat": 28.4494,
+          "lng": 57.7787
+        }
+      },
+      "seo": {
+        "title": "محوطه باستانی کنار صندل | جاذبه تاریخی جیرفت",
+        "meta_description": "محوطه باستانی کنار صندل در جیرفت، از جاذبه‌های تاریخی استان کرمان، دوره عصر مفرغ؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "محوطه باستانی کنار صندل",
+          "Konar Sandal",
+          "جاذبه‌های جیرفت",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "konar-sandal-archaeological-site",
+        "og_title": "محوطه باستانی کنار صندل",
+        "og_description": "محوطه باستانی کنار صندل در جیرفت، از جاذبه‌های تاریخی استان کرمان، دوره عصر مفرغ؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/konar-sandal-archaeological-site"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/93556408"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-gisk-village",
+      "category": "attraction",
+      "name_fa": "روستای گردشگری گیسک",
+      "name_en": "Gisk Tourism Village",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "village"
+      ],
+      "era": null,
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "زرند",
+        "city": "گیسک"
+      },
+      "coordinates": {
+        "lat": 30.899,
+        "lng": 56.6014,
+        "datum": "WGS84",
+        "source": "OSM node/8024591184",
+        "accuracy": "high"
+      },
+      "description_fa": "روستای گیسک در شهرستان زرند، روستایی کوهستانی با بافت تاریخی، کوچه‌های باریک، خانه‌های خشتی و باغ‌های پلکانی است که به عنوان روستای هدف گردشگری شناخته می‌شود. چشمه‌ها و درختان کهنسال روستا در تابستان فضای خنکی فراهم می‌کنند. اطلاعات بیشتری درباره امکانات اقامتی آن یافت نشد.",
+      "description_word_count": 45,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "اردیبهشت تا مهر",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "روستای گردشگری گیسک | جاذبه تاریخی گیسک",
+        "meta_description": "روستای گردشگری گیسک در گیسک (زرند)، از جاذبه‌های تاریخی استان کرمان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "روستای گردشگری گیسک",
+          "جاذبه‌های گیسک",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "gisk-tourism-village",
+        "og_title": "روستای گردشگری گیسک",
+        "og_description": "روستای گردشگری گیسک در گیسک (زرند)، از جاذبه‌های تاریخی استان کرمان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/gisk-tourism-village"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/8024591184"
+      ],
+      "data_confidence": {
+        "level": "low",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee",
+          "era"
+        ]
+      }
+    },
+    {
+      "id": "att-saadatabad-caravanserai",
+      "category": "attraction",
+      "name_fa": "کاروانسرای سعادت‌آباد",
+      "name_en": "Saadatabad Caravanserai",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "caravanserai"
+      ],
+      "era": "صفوی (نیازمند تأیید)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "سیرجان",
+        "city": "سیرجان"
+      },
+      "coordinates": {
+        "lat": 29.6502,
+        "lng": 55.8158,
+        "datum": "WGS84",
+        "source": "OSM relation/11177827",
+        "accuracy": "high"
+      },
+      "description_fa": "کاروانسرای سعادت‌آباد در شمال شرق سیرجان و بر سر راه کاروان‌روی قدیم قرار دارد. این کاروانسرای آجری با حیاط مرکزی و حجره‌های پیرامونی، از کاروانسراهای ثبت‌شده استان کرمان است. اطلاعات دقیق‌تر درباره تاریخ ساخت آن در منابع باز یافت نشد. این کاروانسرا نشانه‌ای از اهمیت سیرجان در شبکه راه‌های تجاری جنوب ایران است.",
+      "description_word_count": 53,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q5906880"
+      },
+      "seo": {
+        "title": "کاروانسرای سعادت‌آباد | جاذبه تاریخی سیرجان",
+        "meta_description": "کاروانسرای سعادت‌آباد در سیرجان، از جاذبه‌های تاریخی استان کرمان، دوره صفوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "کاروانسرای سعادت‌آباد",
+          "جاذبه‌های سیرجان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "saadatabad-caravanserai",
+        "og_title": "کاروانسرای سعادت‌آباد",
+        "og_description": "کاروانسرای سعادت‌آباد در سیرجان، از جاذبه‌های تاریخی استان کرمان، دوره صفوی؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/saadatabad-caravanserai"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/relation/11177827"
+      ],
+      "data_confidence": {
+        "level": "low",
+        "estimated_fields": [
+          "era"
+        ],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-arg-bardsir",
+      "category": "attraction",
+      "name_fa": "ارگ بردسیر",
+      "name_en": "Arg-e Bardsir",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "citadel"
+      ],
+      "era": null,
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "بردسیر",
+        "city": "بردسیر"
+      },
+      "coordinates": {
+        "lat": 29.92733,
+        "lng": 56.56823,
+        "datum": "WGS84",
+        "source": "OSM way/903611575",
+        "accuracy": "high"
+      },
+      "description_fa": "ارگ بردسیر بقایای قلعه‌ای تاریخی در شهر بردسیر (مشیز) است. خانه‌های تاریخی بهادرالملک و داریوش خان نیز در نزدیکی آن ثبت شده‌اند. اطلاعات دقیقی درباره دوره ساخت ارگ در منابع باز یافت نشد. بردسیر دروازه دسترسی به کوه‌های لاله‌زار و بیدخوان است و بازدید از ارگ را می‌توان با این مقاصد طبیعی ترکیب کرد.",
+      "description_word_count": 54,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "ارگ بردسیر | جاذبه تاریخی بردسیر",
+        "meta_description": "ارگ بردسیر در بردسیر، از جاذبه‌های تاریخی استان کرمان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "ارگ بردسیر",
+          "جاذبه‌های بردسیر",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "arg-e-bardsir",
+        "og_title": "ارگ بردسیر",
+        "og_description": "ارگ بردسیر در بردسیر، از جاذبه‌های تاریخی استان کرمان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/arg-e-bardsir"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/903611575"
+      ],
+      "data_confidence": {
+        "level": "low",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee",
+          "era"
+        ]
+      }
+    },
+    {
+      "id": "att-khanqah-abusaeid",
+      "category": "attraction",
+      "name_fa": "خانقاه شیخ ابوسعید کوهبنان",
+      "name_en": "Khanqah of Sheikh Abu Saeed (Kuhbanan)",
+      "alt_names": [],
+      "type": "historical",
+      "types": [
+        "historical",
+        "religious"
+      ],
+      "era": null,
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کوهبنان",
+        "city": "کوهبنان"
+      },
+      "coordinates": {
+        "lat": 31.4118,
+        "lng": 56.2865,
+        "datum": "WGS84",
+        "source": "OSM way/800950399",
+        "accuracy": "high"
+      },
+      "description_fa": "خانقاه شیخ ابوسعید بنایی تاریخی و مذهبی در شهر کوهبنان است که قنات خانقاه نیز در کنار آن جاری است. این بنا از آثار تاریخی شمال استان کرمان به شمار می‌رود. اطلاعات دقیق درباره دوره ساخت آن در منابع باز یافت نشد. کوهبنان با کوه‌های حسن‌کل و داودان، مقصدی مناسب برای ترکیب گردشگری فرهنگی و کوهنوردی است.",
+      "description_word_count": 57,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": null
+      },
+      "seo": {
+        "title": "خانقاه شیخ ابوسعید کوهبنان | جاذبه تاریخی کوهبنان",
+        "meta_description": "خانقاه شیخ ابوسعید کوهبنان در کوهبنان، از جاذبه‌های تاریخی استان کرمان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "خانقاه شیخ ابوسعید کوهبنان",
+          "جاذبه‌های کوهبنان",
+          "گردشگری کرمان",
+          "تاریخی"
+        ],
+        "slug": "khanqah-of-sheikh-abu-saeed-kuhbanan",
+        "og_title": "خانقاه شیخ ابوسعید کوهبنان",
+        "og_description": "خانقاه شیخ ابوسعید کوهبنان در کوهبنان، از جاذبه‌های تاریخی استان کرمان؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/khanqah-of-sheikh-abu-saeed-kuhbanan"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/way/800950399"
+      ],
+      "data_confidence": {
+        "level": "low",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee",
+          "era"
+        ]
+      }
+    },
+    {
+      "id": "att-soleimani-tomb",
+      "category": "attraction",
+      "name_fa": "مزار سردار قاسم سلیمانی",
+      "name_en": "Tomb of Qasem Soleimani",
+      "alt_names": [],
+      "type": "religious",
+      "types": [
+        "religious",
+        "memorial"
+      ],
+      "era": "معاصر (۱۳۹۸ خ)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "کرمان",
+        "city": "کرمان"
+      },
+      "coordinates": {
+        "lat": 30.2918,
+        "lng": 57.129,
+        "datum": "WGS84",
+        "source": "OSM node/7112759374",
+        "accuracy": "high"
+      },
+      "description_fa": "مزار سردار قاسم سلیمانی در گلزار شهدای کرمان قرار دارد و از پربازدیدترین مکان‌های زیارتی معاصر شهر است. در مراسم سالگرد، جمعیت زیادی در این محل گرد می‌آیند. محل‌های انفجار حادثه تروریستی دی‌ماه ۱۴۰۲ نیز در نزدیکی آن ثبت شده است. بازدید از این مکان با رعایت آداب زیارتی امکان‌پذیر است و در ایام مراسم، تدابیر امنیتی ویژه‌ای برقرار می‌شود.",
+      "description_word_count": 60,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "تمام سال",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q892014"
+      },
+      "seo": {
+        "title": "مزار سردار قاسم سلیمانی | جاذبه مذهبی کرمان",
+        "meta_description": "مزار سردار قاسم سلیمانی در کرمان، از جاذبه‌های مذهبی استان کرمان، دوره معاصر؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "مزار سردار قاسم سلیمانی",
+          "جاذبه‌های کرمان",
+          "گردشگری کرمان",
+          "مذهبی"
+        ],
+        "slug": "tomb-of-qasem-soleimani",
+        "og_title": "مزار سردار قاسم سلیمانی",
+        "og_description": "مزار سردار قاسم سلیمانی در کرمان، از جاذبه‌های مذهبی استان کرمان، دوره معاصر؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/tomb-of-qasem-soleimani"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/7112759374"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    },
+    {
+      "id": "att-bam-quake-epicenter",
+      "category": "attraction",
+      "name_fa": "مرکز زمین‌لرزه ۱۳۸۲ بم",
+      "name_en": "Epicentre of the 2003 Bam Earthquake",
+      "alt_names": [],
+      "type": "memorial",
+      "types": [
+        "memorial",
+        "natural_history"
+      ],
+      "era": "معاصر (۵ دی ۱۳۸۲)",
+      "unesco": {
+        "inscribed": false,
+        "year": null,
+        "listing": null
+      },
+      "location": {
+        "province": "کرمان",
+        "county": "بم",
+        "city": "بم"
+      },
+      "coordinates": {
+        "lat": 29.0093,
+        "lng": 58.3183,
+        "datum": "WGS84",
+        "source": "OSM node/13359753093",
+        "accuracy": "high"
+      },
+      "description_fa": "این نقطه مرکز سطحی زمین‌لرزه ویرانگر ۵ دی ۱۳۸۲ بم را نشان می‌دهد که بیش از ۲۶ هزار نفر جان باختند و ارگ تاریخی بم به‌شدت آسیب دید. در شهر بم نماد و یادبود زلزله و محل دپوی آوارها نیز به عنوان یادمان این فاجعه ثبت شده‌اند.",
+      "description_word_count": 47,
+      "visiting": {
+        "hours": null,
+        "fee": null,
+        "best_time": "بهار و پاییز",
+        "notes": "ساعات و ورودیه متغیر است؛ پیش از بازدید از سامانه میراث فرهنگی یا تماس محلی بررسی شود"
+      },
+      "extras": {
+        "wikidata": "Q1990627"
+      },
+      "seo": {
+        "title": "مرکز زمین‌لرزه ۱۳۸۲ بم | جاذبه یادمان بم",
+        "meta_description": "مرکز زمین‌لرزه ۱۳۸۲ بم در بم، از جاذبه‌های یادمان استان کرمان، دوره معاصر؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید. | راهنمای سفر و کوهنوردی کرمان",
+        "keywords": [
+          "مرکز زمین‌لرزه ۱۳۸۲ بم",
+          "جاذبه‌های بم",
+          "گردشگری کرمان",
+          "یادمان"
+        ],
+        "slug": "epicentre-of-the-2003-bam-earthquake",
+        "og_title": "مرکز زمین‌لرزه ۱۳۸۲ بم",
+        "og_description": "مرکز زمین‌لرزه ۱۳۸۲ بم در بم، از جاذبه‌های یادمان استان کرمان، دوره معاصر؛ معرفی، موقعیت روی نقشه، بهترین زمان بازدید.",
+        "canonical_path": "/attractions/epicentre-of-the-2003-bam-earthquake"
+      },
+      "sources": [
+        "https://www.openstreetmap.org/node/13359753093"
+      ],
+      "data_confidence": {
+        "level": "medium",
+        "estimated_fields": [],
+        "empty_fields": [
+          "visiting.hours",
+          "visiting.fee"
+        ]
+      }
+    }
+  ]
+}

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\ProgramReport;
+use App\Support\CatalogCover;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +23,7 @@ class ProgramReportFactory extends Factory
             'slug' => 'report-'.fake()->unique()->numerify('####'),
             'excerpt' => fake()->sentence(18),
             'body' => fake()->paragraphs(4, true),
-            'cover_path' => 'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1200&q=80',
+            'cover_path' => CatalogCover::for('report'),
             'published_at' => now()->subDays(fake()->numberBetween(1, 90)),
             'view_count' => fake()->numberBetween(20, 2000),
         ];

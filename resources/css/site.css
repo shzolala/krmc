@@ -6,6 +6,11 @@
 @source '../views/components/badge.blade.php';
 @source '../views/components/geo-map.blade.php';
 @source '../views/home.blade.php';
+@source '../views/components/cards/**/*.blade.php';
+@source '../views/programs/**/*.blade.php';
+@source '../views/regions/**/*.blade.php';
+@source '../views/attractions/**/*.blade.php';
+@source '../views/profiles/**/*.blade.php';
 @source '../views/map/**/*.blade.php';
 @source '../views/clubs/**/*.blade.php';
 @source '../views/coaches/**/*.blade.php';

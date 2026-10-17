@@ -65,6 +65,8 @@ class EditCoachProfile extends Component
 
     public function render(): View
     {
-        return view('livewire.panel.edit-coach-profile');
+        return view('livewire.panel.edit-coach-profile', [
+            'profile' => CoachProfile::query()->find($this->profileId),
+        ]);
     }
 }

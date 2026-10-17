@@ -1,5 +1,7 @@
 export const TYPE_COLORS = {
+    region: '#0f766e',
     destination: '#d4a017',
+    attraction: '#7c3aed',
     club: '#0b1f3a',
     shop: '#1a7a4c',
     accommodation: '#2563eb',
@@ -33,6 +35,20 @@ export function escapeHtml(value) {
         .replaceAll('>', '&gt;')
         .replaceAll('"', '&quot;')
         .replaceAll("'", '&#39;');
+}
+
+export function toPersianDigits(value) {
+    return String(value ?? '').replace(/\d/g, (digit) => '۰۱۲۳۴۵۶۷۸۹'[Number(digit)]);
+}
+
+export function formatPersianNumber(value) {
+    const number = Number(value);
+
+    if (! Number.isFinite(number)) {
+        return toPersianDigits(value);
+    }
+
+    return toPersianDigits(number.toLocaleString('en-US'));
 }
 
 export function waitForLeaflet(callback) {
@@ -102,7 +118,7 @@ export function clusterIcon(L, members) {
 
     return L.divIcon({
         className: 'geo-cluster-wrap',
-        html: `<div class="geo-cluster${count > 9 ? ' geo-cluster--lg' : ''}" style="--pin-color:${color}"><span>${count.toLocaleString('fa-IR')}</span></div>`,
+        html: `<div class="geo-cluster${count > 9 ? ' geo-cluster--lg' : ''}" style="--pin-color:${color}"><span>${formatPersianNumber(count)}</span></div>`,
         iconSize: [size, size],
         iconAnchor: [size / 2, size / 2],
     });

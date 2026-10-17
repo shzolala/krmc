@@ -3,6 +3,7 @@ import {
     colorFor,
     createBaseLayers,
     escapeHtml,
+    formatPersianNumber,
     hideBrokenPopupImages,
     markerIcon,
     parseJson,
@@ -180,7 +181,7 @@ export function initExplorer(root) {
         }
 
         if (countEl) {
-            countEl.textContent = `${visible.length.toLocaleString('fa-IR')} مورد`;
+            countEl.textContent = `${formatPersianNumber(visible.length)} مورد`;
         }
 
         emptyEl?.classList.toggle('hidden', visible.length > 0);
@@ -237,7 +238,7 @@ export function initExplorer(root) {
         const cluster = L.marker([lat, lng], {
             icon: clusterIcon(L, members),
             keyboard: true,
-            title: `${members.length} مورد`,
+            title: `${formatPersianNumber(members.length)} مورد`,
         });
 
         cluster.on('click', () => focusMembers(members));

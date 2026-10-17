@@ -80,7 +80,7 @@
                         >
                             <span class="h-2.5 w-2.5 rounded-full" style="background: {{ $layer['color'] }}"></span>
                             <span>{{ $layer['label'] }}</span>
-                            <span class="map-explorer-layer__count rounded-full px-1.5 py-0.5 text-[10px]">{{ number_format($counts[$type] ?? 0) }}</span>
+                            <span class="map-explorer-layer__count rounded-full px-1.5 py-0.5 text-[10px]">{{ fa_num($counts[$type] ?? 0) }}</span>
                         </button>
                     @endforeach
                 </div>
@@ -92,7 +92,7 @@
                 <div data-map-panel-header class="mb-2 flex items-center justify-between gap-3 text-xs text-muted">
                     <span>مکان‌های داخل محدودهٔ نقشه</span>
                     <span class="rounded-full bg-white px-2.5 py-1 font-semibold text-navy-900 ring-1 ring-navy-900/10" data-map-count>
-                        {{ number_format($markerList->count()) }} مورد
+                        {{ fa_num($markerList->count()) }} مورد
                     </span>
                 </div>
 

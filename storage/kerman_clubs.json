@@ -1,0 +1,1133 @@
+{
+  "meta": {
+    "source": "https://farakouh.ir/Amar/OrganizerSearch",
+    "scraped_at": "2026-10-16T17:52:46+03:30",
+    "filter": "province = کرمان",
+    "count": 38,
+    "reference_date": "2026-10-16",
+    "notes": "courses_summary is derived from the course table on each club page; avg_rating is computed by the site from last-year evaluations. Dates are Jalali on the site; latest_date is Gregorian."
+  },
+  "clubs": [
+    {
+      "id": 377,
+      "name": "باشگاه خانه کوه نوردان کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/377",
+      "manager": "محمدحسن پورشیخعلی",
+      "education_head": "فرشته امیرتیموری",
+      "avg_rating": 0,
+      "total_courses_held": 27,
+      "members_count": 115,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 27,
+        "issued_or_approved": 26,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": "1399/08/29",
+        "latest_date": "2020-11-19",
+        "latest_title": "مبانی نجات فنی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 21,
+          "کارآموزی  برف": 2,
+          "کارآموزی سنگ نوردی": 2,
+          "مبانی نجات فنی": 1,
+          "پیشرفته سنگ نوردی": 1
+        },
+        "status_breakdown": {
+          "تایید برگزاری توسط هیات استان": 2,
+          "عدم تایید برگزاری توسط هیات استان": 1,
+          "صدور حکم": 24
+        }
+      }
+    },
+    {
+      "id": 378,
+      "name": "باشگاه کوه نوردی کهرام کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/378",
+      "manager": null,
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 20,
+      "members_count": 15,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 20,
+        "issued_or_approved": 18,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": "1399/07/09",
+        "latest_date": "2020-09-30",
+        "latest_title": "کارآموزی کوه پیمایی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 9,
+          "کارآموزی سنگ نوردی": 2,
+          "مبانی نجات فنی": 2,
+          "کارگاه آموزشی هواشناسی کوهستان": 2,
+          "غارپیمایی": 1
+        },
+        "status_breakdown": {
+          "عدم تایید برگزاری توسط هیات استان": 2,
+          "صدور حکم": 18
+        }
+      }
+    },
+    {
+      "id": 379,
+      "name": "باشگاه کوه نوردی رهنورد سیرجان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/379",
+      "manager": null,
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 14,
+      "members_count": 9,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 14,
+        "issued_or_approved": 14,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": "1398/08/28",
+        "latest_date": "2019-11-19",
+        "latest_title": "کارآموزی سنگ نوردی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 7,
+          "کارآموزی سنگ نوردی": 5,
+          "کارآموزی  برف": 1,
+          "پیشرفته سنگ نوردی": 1
+        },
+        "status_breakdown": {
+          "تایید برگزاری توسط هیات استان": 1,
+          "صدور حکم": 13
+        }
+      }
+    },
+    {
+      "id": 380,
+      "name": "باشگاه کوه نوردی اسپیکو کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/380",
+      "manager": "حامد خسروی",
+      "education_head": "سیمین افشاری پور",
+      "avg_rating": null,
+      "total_courses_held": 387,
+      "members_count": 380,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 387,
+        "issued_or_approved": 348,
+        "last_30_days": 8,
+        "last_365_days": 56,
+        "upcoming": 6,
+        "latest_date_jalali": "1405/08/30",
+        "latest_date": "2026-11-21",
+        "latest_title": "دیواره نوردی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 104,
+          "GPSکارگاه آموزشی": 32,
+          "کارآموزی سنگ نوردی": 30,
+          "پیشرفته سنگ نوردی": 29,
+          "کارگاه آموزشی نقشه خوانی و کار با قطب نما": 26
+        },
+        "status_breakdown": {
+          "درخواست شده توسط برگزار کننده": 25,
+          "انصراف داده شده": 10,
+          "تایید برگزاری توسط هیات استان": 58,
+          "ثبت ریز نمرات شده": 1,
+          "صدور حکم": 289,
+          "تکمیل مالی و ارسال به هیات استان": 1,
+          "تکمیل شرکت کنندگان و ارسال شده به مدرس": 2,
+          "عدم تایید برگزاری توسط هیات استان": 1
+        }
+      }
+    },
+    {
+      "id": 381,
+      "name": "باشگاه کوه نوردی اماوند کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/381",
+      "manager": "رضا کاظمی زاده",
+      "education_head": "حسن باغبان",
+      "avg_rating": 98,
+      "total_courses_held": 202,
+      "members_count": 347,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 202,
+        "issued_or_approved": 175,
+        "last_30_days": 0,
+        "last_365_days": 10,
+        "upcoming": 2,
+        "latest_date_jalali": "1405/08/19",
+        "latest_date": "2026-11-10",
+        "latest_title": "پیشرفته سنگ نوردی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 72,
+          "کارگاه آموزشی نقشه خوانی و کار با قطب نما": 18,
+          "کارگاه آموزشی هواشناسی کوهستان": 15,
+          "کارآموزی سنگ نوردی": 14,
+          "کارآموزی  برف": 12
+        },
+        "status_breakdown": {
+          "درخواست شده توسط برگزار کننده": 6,
+          "تایید برگزاری توسط هیات استان": 9,
+          "تکمیل شرکت کنندگان و ارسال شده به مدرس": 5,
+          "صدور حکم": 165,
+          "انصراف داده شده": 10,
+          "ثبت ریز نمرات شده": 1,
+          "تکمیل مالی و ارسال به هیات استان": 2,
+          "عدم تایید برگزاری توسط هیات استان": 3,
+          "ابطال شده توسط فدراسیون": 1
+        }
+      }
+    },
+    {
+      "id": 405,
+      "name": "باشگاه کوه نوردی افق رفسنجان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/405",
+      "manager": null,
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 2,
+      "members_count": 0,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 2,
+        "issued_or_approved": 2,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": "1397/03/02",
+        "latest_date": "2018-05-23",
+        "latest_title": "کارآموزی کوه پیمایی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 2
+        },
+        "status_breakdown": {
+          "صدور حکم": 2
+        }
+      }
+    },
+    {
+      "id": 491,
+      "name": "باشگاه کوه نوردی ساسان کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/491",
+      "manager": "امین راینی نژاد",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 8,
+      "members_count": 73,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 8,
+        "issued_or_approved": 7,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": "1400/04/31",
+        "latest_date": "2021-07-22",
+        "latest_title": "دیواره نوردی",
+        "top_course_types": {
+          "مبانی نجات فنی": 2,
+          "کارگاه آموزشی مبانی حفظ محیط کوهستان": 2,
+          "کارآموزی کوه پیمایی": 2,
+          "دیواره نوردی": 1,
+          "کارآموزی صعودهای ورزشی": 1
+        },
+        "status_breakdown": {
+          "صدور حکم": 7,
+          "تکمیل شرکت کنندگان و ارسال شده به مدرس": 1
+        }
+      }
+    },
+    {
+      "id": 810,
+      "name": "باشگاه کوه نوردی آلپ اسپورت سیرجان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/810",
+      "manager": "آقای سید مرتضی علوی",
+      "education_head": "حسام پورامینی",
+      "avg_rating": 0,
+      "total_courses_held": 1,
+      "members_count": 6,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 1,
+        "issued_or_approved": 1,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": "1399/04/25",
+        "latest_date": "2020-07-15",
+        "latest_title": "کارآموزی کوه پیمایی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 1
+        },
+        "status_breakdown": {
+          "تایید برگزاری توسط هیات استان": 1
+        }
+      }
+    },
+    {
+      "id": 830,
+      "name": "باشگاه کوه نوردی اوج رفسنجان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/830",
+      "manager": "مرتضی باقری داوران",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 13,
+      "members_count": 52,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 13,
+        "issued_or_approved": 12,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": "1403/11/22",
+        "latest_date": "2025-02-10",
+        "latest_title": "کارگاه آموزشی پزشکی کوهستان",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 10,
+          "کارگاه آموزشی پزشکی کوهستان": 2,
+          "کارآموزی سنگ نوردی": 1
+        },
+        "status_breakdown": {
+          "تایید برگزاری توسط هیات استان": 2,
+          "صدور حکم": 10,
+          "درخواست شده توسط برگزار کننده": 1
+        }
+      }
+    },
+    {
+      "id": 834,
+      "name": "باشگاه کوه نوردی ماهان کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/834",
+      "manager": "محمد جواد شیری",
+      "education_head": "الهام شهسواری",
+      "avg_rating": 16,
+      "total_courses_held": 21,
+      "members_count": 5,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 21,
+        "issued_or_approved": 20,
+        "last_30_days": 0,
+        "last_365_days": 3,
+        "upcoming": 0,
+        "latest_date_jalali": "1405/04/18",
+        "latest_date": "2026-07-09",
+        "latest_title": "کارآموزی کوه پیمایی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 10,
+          "GPSکارگاه آموزشی": 2,
+          "کارگاه آموزشی نقشه خوانی و کار با قطب نما": 2,
+          "پیشرفته برف": 1,
+          "کارگاه آموزشی مبانی حفظ محیط کوهستان": 1
+        },
+        "status_breakdown": {
+          "انصراف داده شده": 1,
+          "صدور حکم": 19,
+          "ثبت ریز نمرات شده": 1
+        }
+      }
+    },
+    {
+      "id": 880,
+      "name": "باشگاه کوه نوردی همنورد سیرجان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/880",
+      "manager": "امیر ریاحی",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 0,
+      "members_count": 0,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 0,
+        "issued_or_approved": 0,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": null,
+        "latest_date": null,
+        "latest_title": null,
+        "top_course_types": {},
+        "status_breakdown": {}
+      }
+    },
+    {
+      "id": 907,
+      "name": "باشگاه کوه نوردی برنا شهرستان سیرجان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/907",
+      "manager": null,
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 3,
+      "members_count": 15,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 3,
+        "issued_or_approved": 3,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": "1400/04/19",
+        "latest_date": "2021-07-10",
+        "latest_title": "کارآموزی سنگ نوردی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 2,
+          "کارآموزی سنگ نوردی": 1
+        },
+        "status_breakdown": {
+          "تایید برگزاری توسط هیات استان": 2,
+          "صدور حکم": 1
+        }
+      }
+    },
+    {
+      "id": 920,
+      "name": "باشگاه کوه نوردی پژواک کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/920",
+      "manager": "حسین علی رضایی",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 3,
+      "members_count": 34,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 3,
+        "issued_or_approved": 3,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": "1400/08/28",
+        "latest_date": "2021-11-19",
+        "latest_title": "کارآموزی کوه پیمایی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 3
+        },
+        "status_breakdown": {
+          "صدور حکم": 3
+        }
+      }
+    },
+    {
+      "id": 985,
+      "name": "باشگاه کوه نوردی راگه رفسنجان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/985",
+      "manager": "محمد پران نژاد",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 13,
+      "members_count": 30,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 13,
+        "issued_or_approved": 13,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": "1402/03/05",
+        "latest_date": "2023-05-26",
+        "latest_title": "GPSکارگاه آموزشی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 4,
+          "کارگاه آموزشی نقشه خوانی و کار با قطب نما": 2,
+          "کارگاه آموزشی پزشکی کوهستان": 2,
+          "GPSکارگاه آموزشی": 1,
+          "کارگاه آموزشی هواشناسی کوهستان": 1
+        },
+        "status_breakdown": {
+          "تایید برگزاری توسط هیات استان": 1,
+          "صدور حکم": 11,
+          "ثبت ریز نمرات شده": 1
+        }
+      }
+    },
+    {
+      "id": 1121,
+      "name": "باشگاه کوه نوردی همنوردان جنوب جیرفت",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/1121",
+      "manager": "عباس مولایی",
+      "education_head": "مژگان نسب پور",
+      "avg_rating": 63,
+      "total_courses_held": 52,
+      "members_count": 198,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 52,
+        "issued_or_approved": 48,
+        "last_30_days": 1,
+        "last_365_days": 4,
+        "upcoming": 1,
+        "latest_date_jalali": "1405/08/12",
+        "latest_date": "2026-11-03",
+        "latest_title": "پیشرفته سنگ نوردی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 16,
+          "پیشرفته دره نوردی": 5,
+          "دره پیمایی": 5,
+          "پیشرفته سنگ نوردی": 4,
+          "کارگاه آموزشی نقشه خوانی و کار با قطب نما": 4
+        },
+        "status_breakdown": {
+          "درخواست شده توسط برگزار کننده": 2,
+          "صدور حکم": 47,
+          "انصراف داده شده": 1,
+          "تایید برگزاری توسط هیات استان": 1,
+          "عدم تایید برگزاری توسط هیات استان": 1
+        }
+      }
+    },
+    {
+      "id": 1125,
+      "name": "باشگاه کوه نوردی آج رفسنجان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/1125",
+      "manager": "سید محمد سید یزدی",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 0,
+      "members_count": 0,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 0,
+        "issued_or_approved": 0,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": null,
+        "latest_date": null,
+        "latest_title": null,
+        "top_course_types": {},
+        "status_breakdown": {}
+      }
+    },
+    {
+      "id": 1145,
+      "name": "باشگاه کوه نوردی اردیبهشت کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/1145",
+      "manager": "عصمت گنجعلی پور",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 1,
+      "members_count": 17,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 1,
+        "issued_or_approved": 1,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": "1402/12/16",
+        "latest_date": "2024-03-06",
+        "latest_title": "دره پیمایی",
+        "top_course_types": {
+          "دره پیمایی": 1
+        },
+        "status_breakdown": {
+          "صدور حکم": 1
+        }
+      }
+    },
+    {
+      "id": 3393,
+      "name": "باشگاه کوه نوردی کاوه جیرفت",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/3393",
+      "manager": "فاطمه خداوردی",
+      "education_head": "93.7",
+      "avg_rating": null,
+      "total_courses_held": 20,
+      "members_count": 13,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 20,
+        "issued_or_approved": 13,
+        "last_30_days": 0,
+        "last_365_days": 15,
+        "upcoming": 0,
+        "latest_date_jalali": "1405/03/25",
+        "latest_date": "2026-06-15",
+        "latest_title": "کارگاه آموزشی پزشکی کوهستان",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 5,
+          "غارپیمایی": 5,
+          "دره پیمایی": 3,
+          "کارگاه آموزشی هواشناسی کوهستان": 2,
+          "کارآموزی دره نوردی": 2
+        },
+        "status_breakdown": {
+          "تکمیل مالی و ارسال به هیات استان": 2,
+          "صدور حکم": 11,
+          "انصراف داده شده": 4,
+          "درخواست شده توسط برگزار کننده": 1,
+          "تایید برگزاری توسط هیات استان": 1,
+          "ثبت ریز نمرات شده": 1
+        }
+      }
+    },
+    {
+      "id": 3426,
+      "name": "باشگاه کوه نوردی درناب کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/3426",
+      "manager": "محمدرضا ابراهیمی مجد",
+      "education_head": "مهدیه اسمعیلی",
+      "avg_rating": 89,
+      "total_courses_held": 54,
+      "members_count": 95,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 54,
+        "issued_or_approved": 48,
+        "last_30_days": 4,
+        "last_365_days": 21,
+        "upcoming": 0,
+        "latest_date_jalali": "1405/07/18",
+        "latest_date": "2026-10-10",
+        "latest_title": "دره پیمایی",
+        "top_course_types": {
+          "دره پیمایی": 12,
+          "کارآموزی کوه پیمایی": 10,
+          "پیشرفته دره نوردی": 9,
+          "کارآموزی دره نوردی": 6,
+          "کارگاه آموزشی مبانی جستجو در کوهستان": 3
+        },
+        "status_breakdown": {
+          "درخواست شده توسط برگزار کننده": 3,
+          "ثبت ریز نمرات شده": 1,
+          "تکمیل شرکت کنندگان و ارسال شده به مدرس": 1,
+          "صدور حکم": 47,
+          "انصراف داده شده": 2
+        }
+      }
+    },
+    {
+      "id": 3463,
+      "name": "باشکاه کوه نوردی ارسی کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/3463",
+      "manager": "حسام جلال کمالی",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 0,
+      "members_count": 10,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 0,
+        "issued_or_approved": 0,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": null,
+        "latest_date": null,
+        "latest_title": null,
+        "top_course_types": {},
+        "status_breakdown": {}
+      }
+    },
+    {
+      "id": 3466,
+      "name": "باشگاه کوه نوردی فراکوه سیرجان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/3466",
+      "manager": "رامین کوچکی آباده",
+      "education_head": "امین کوچکی",
+      "avg_rating": null,
+      "total_courses_held": 32,
+      "members_count": 255,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 32,
+        "issued_or_approved": 28,
+        "last_30_days": 1,
+        "last_365_days": 8,
+        "upcoming": 0,
+        "latest_date_jalali": "1405/07/22",
+        "latest_date": "2026-10-14",
+        "latest_title": "کارآموزی سنگ نوردی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 10,
+          "پیشرفته دره نوردی": 3,
+          "دره پیمایی": 3,
+          "کارآموزی سنگ نوردی": 2,
+          "کارگاه آموزشی هواشناسی کوهستان": 2
+        },
+        "status_breakdown": {
+          "درخواست شده توسط برگزار کننده": 2,
+          "تکمیل شرکت کنندگان و ارسال شده به مدرس": 1,
+          "تکمیل مالی و ارسال به هیات استان": 1,
+          "صدور حکم": 28
+        }
+      }
+    },
+    {
+      "id": 3492,
+      "name": "باشگاه کوه نوردی کارن کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/3492",
+      "manager": "بهزاد محلاتی",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 0,
+      "members_count": 3,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 0,
+        "issued_or_approved": 0,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": null,
+        "latest_date": null,
+        "latest_title": null,
+        "top_course_types": {},
+        "status_breakdown": {}
+      }
+    },
+    {
+      "id": 3502,
+      "name": "باشگاه کوه نوردی اورست سیرجان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/3502",
+      "manager": "محمد حسین مجیبیان",
+      "education_head": "مهدی آباده",
+      "avg_rating": 0,
+      "total_courses_held": 2,
+      "members_count": 5,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 2,
+        "issued_or_approved": 2,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": "1403/11/12",
+        "latest_date": "2025-01-31",
+        "latest_title": "کارگاه آموزشی مبانی حفظ محیط کوهستان",
+        "top_course_types": {
+          "کارگاه آموزشی مبانی حفظ محیط کوهستان": 1,
+          "کارگاه آموزشی پزشکی کوهستان": 1
+        },
+        "status_breakdown": {
+          "صدور حکم": 2
+        }
+      }
+    },
+    {
+      "id": 3514,
+      "name": "باشگاه کوه نوردی کرمان فراز",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/3514",
+      "manager": "سید علی حاج سید علیخانی",
+      "education_head": "فریبا جعفری",
+      "avg_rating": 0,
+      "total_courses_held": 0,
+      "members_count": 28,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 0,
+        "issued_or_approved": 0,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": null,
+        "latest_date": null,
+        "latest_title": null,
+        "top_course_types": {},
+        "status_breakdown": {}
+      }
+    },
+    {
+      "id": 3518,
+      "name": "باشگاه کوه نوردی آراد گشت رفسنجان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/3518",
+      "manager": "سمیه رنجبر",
+      "education_head": "ابوالفضل جعفری",
+      "avg_rating": 0,
+      "total_courses_held": 0,
+      "members_count": 0,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 0,
+        "issued_or_approved": 0,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": null,
+        "latest_date": null,
+        "latest_title": null,
+        "top_course_types": {},
+        "status_breakdown": {}
+      }
+    },
+    {
+      "id": 3550,
+      "name": "باشگاه کوه نوردی گل گهر",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/3550",
+      "manager": "محمد جواهری",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 0,
+      "members_count": 0,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 0,
+        "issued_or_approved": 0,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": null,
+        "latest_date": null,
+        "latest_title": null,
+        "top_course_types": {},
+        "status_breakdown": {}
+      }
+    },
+    {
+      "id": 3554,
+      "name": "باشگاه کوه نوردی سنگنوردان جمشیدی",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/3554",
+      "manager": "حمید جمشیدی",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 0,
+      "members_count": 0,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 0,
+        "issued_or_approved": 0,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": null,
+        "latest_date": null,
+        "latest_title": null,
+        "top_course_types": {},
+        "status_breakdown": {}
+      }
+    },
+    {
+      "id": 3563,
+      "name": "باشگاه کوه نوردی چکاد کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/3563",
+      "manager": "احمد پوربهاء الدینی زرندی",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 3,
+      "members_count": 1,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 3,
+        "issued_or_approved": 3,
+        "last_30_days": 0,
+        "last_365_days": 1,
+        "upcoming": 0,
+        "latest_date_jalali": "1404/10/18",
+        "latest_date": "2026-01-08",
+        "latest_title": "کارگاه آموزشی کوه پیمایی همگانی",
+        "top_course_types": {
+          "کارگاه آموزشی کوه پیمایی همگانی": 2,
+          "کارآموزی کوه پیمایی": 1
+        },
+        "status_breakdown": {
+          "تایید برگزاری توسط هیات استان": 1,
+          "صدور حکم": 1,
+          "ثبت ریز نمرات شده": 1
+        }
+      }
+    },
+    {
+      "id": 3589,
+      "name": "باشگاه کوه نوردی بحر آسمان جیرفت",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/3589",
+      "manager": "محمد علی مارزی",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 0,
+      "members_count": 6,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 0,
+        "issued_or_approved": 0,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": null,
+        "latest_date": null,
+        "latest_title": null,
+        "top_course_types": {},
+        "status_breakdown": {}
+      }
+    },
+    {
+      "id": 3596,
+      "name": "بشگاه کوه نوردی یاران کوهستان جیرفت",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/3596",
+      "manager": "محمود انصاری",
+      "education_head": null,
+      "avg_rating": 100,
+      "total_courses_held": 4,
+      "members_count": 3,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 4,
+        "issued_or_approved": 4,
+        "last_30_days": 0,
+        "last_365_days": 4,
+        "upcoming": 0,
+        "latest_date_jalali": "1404/09/12",
+        "latest_date": "2025-12-03",
+        "latest_title": "کارآموزی کوه پیمایی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 4
+        },
+        "status_breakdown": {
+          "صدور حکم": 4
+        }
+      }
+    },
+    {
+      "id": 4596,
+      "name": "باشگاه سنگنوردی مهرگان سیرجان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/4596",
+      "manager": "حمیده پور جعفر آبادی",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 0,
+      "members_count": 0,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 0,
+        "issued_or_approved": 0,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": null,
+        "latest_date": null,
+        "latest_title": null,
+        "top_course_types": {},
+        "status_breakdown": {}
+      }
+    },
+    {
+      "id": 7603,
+      "name": "باشگاه کوه نوردی آروان کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/7603",
+      "manager": "حسین ابراهیمی زرندی",
+      "education_head": "الهام شهسواری",
+      "avg_rating": null,
+      "total_courses_held": 9,
+      "members_count": 10,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 9,
+        "issued_or_approved": 4,
+        "last_30_days": 1,
+        "last_365_days": 9,
+        "upcoming": 0,
+        "latest_date_jalali": "1405/06/26",
+        "latest_date": "2026-09-17",
+        "latest_title": "غارپیمایی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 3,
+          "کارآموزی سنگ نوردی": 3,
+          "غارپیمایی": 1,
+          "پیشرفته سنگ نوردی": 1,
+          "کارآموزی صعودهای ورزشی": 1
+        },
+        "status_breakdown": {
+          "تکمیل مالی و ارسال به هیات استان": 2,
+          "صدور حکم": 4,
+          "درخواست شده توسط برگزار کننده": 1,
+          "انصراف داده شده": 2
+        }
+      }
+    },
+    {
+      "id": 7604,
+      "name": "باشگاه کوه نوردی هشت هزار سیرجان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/7604",
+      "manager": "حسام خواجوئی",
+      "education_head": "حسام خواجوئی",
+      "avg_rating": 94,
+      "total_courses_held": 1,
+      "members_count": 3,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 1,
+        "issued_or_approved": 1,
+        "last_30_days": 0,
+        "last_365_days": 1,
+        "upcoming": 0,
+        "latest_date_jalali": "1404/09/19",
+        "latest_date": "2025-12-10",
+        "latest_title": "کارآموزی کوه پیمایی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 1
+        },
+        "status_breakdown": {
+          "صدور حکم": 1
+        }
+      }
+    },
+    {
+      "id": 11607,
+      "name": "باشگاه کوه نوردی کارای کرمان",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/11607",
+      "manager": "اعظم کرمی",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 0,
+      "members_count": 0,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 0,
+        "issued_or_approved": 0,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": null,
+        "latest_date": null,
+        "latest_title": null,
+        "top_course_types": {},
+        "status_breakdown": {}
+      }
+    },
+    {
+      "id": 12606,
+      "name": "باشگاه کوه نوردی همنورد بم",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/12606",
+      "manager": "علی رشیدی",
+      "education_head": null,
+      "avg_rating": 98,
+      "total_courses_held": 6,
+      "members_count": 44,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 6,
+        "issued_or_approved": 6,
+        "last_30_days": 0,
+        "last_365_days": 6,
+        "upcoming": 0,
+        "latest_date_jalali": "1405/05/07",
+        "latest_date": "2026-07-29",
+        "latest_title": "دره پیمایی",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 5,
+          "دره پیمایی": 1
+        },
+        "status_breakdown": {
+          "صدور حکم": 6
+        }
+      }
+    },
+    {
+      "id": 13652,
+      "name": "باشگاه کوه نوردی کوهزاد بم",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/13652",
+      "manager": "مجتبی بی غم",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 0,
+      "members_count": 0,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 0,
+        "issued_or_approved": 0,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": null,
+        "latest_date": null,
+        "latest_title": null,
+        "top_course_types": {},
+        "status_breakdown": {}
+      }
+    },
+    {
+      "id": 13656,
+      "name": "باشگاه کوه نوردی مکران کهنوج",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/13656",
+      "manager": "احسان شیفی",
+      "education_head": null,
+      "avg_rating": 100,
+      "total_courses_held": 5,
+      "members_count": 2,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 5,
+        "issued_or_approved": 4,
+        "last_30_days": 0,
+        "last_365_days": 5,
+        "upcoming": 0,
+        "latest_date_jalali": "1404/10/26",
+        "latest_date": "2026-01-16",
+        "latest_title": "کارگاه آموزشی مبانی حفظ محیط کوهستان",
+        "top_course_types": {
+          "کارآموزی کوه پیمایی": 3,
+          "کارگاه آموزشی مبانی حفظ محیط کوهستان": 1,
+          "کارگاه آموزشی هواشناسی کوهستان": 1
+        },
+        "status_breakdown": {
+          "تایید برگزاری توسط هیات استان": 1,
+          "صدور حکم": 3,
+          "انصراف داده شده": 1
+        }
+      }
+    },
+    {
+      "id": 13666,
+      "name": "باشگاه کوه نوردی طبیعت دوست جیرفت",
+      "province": "کرمان",
+      "url": "https://farakouh.ir/Person/Org/13666",
+      "manager": "محمد علی پور کریمی",
+      "education_head": null,
+      "avg_rating": 0,
+      "total_courses_held": 0,
+      "members_count": 10,
+      "contact": null,
+      "courses_summary": {
+        "total_listed": 0,
+        "issued_or_approved": 0,
+        "last_30_days": 0,
+        "last_365_days": 0,
+        "upcoming": 0,
+        "latest_date_jalali": null,
+        "latest_date": null,
+        "latest_title": null,
+        "top_course_types": {},
+        "status_breakdown": {}
+      }
+    }
+  ]
+}

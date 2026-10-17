@@ -26,6 +26,32 @@ class ReviewModuleTest extends TestCase
             ->assertSee('نظرات و امتیازها', false);
     }
 
+    public function test_show_page_header_displays_gallery_and_approved_rating_summary(): void
+    {
+        $club = Club::factory()->create();
+        Review::factory()->forReviewable($club)->approved()->create(['rating' => 5]);
+        Review::factory()->forReviewable($club)->approved()->create(['rating' => 4]);
+        Review::factory()->forReviewable($club)->create(['rating' => 1]);
+
+        $this->assertSame(['average' => 4.5, 'count' => 2], $club->reviewSummary());
+
+        $this->get(route('clubs.show', $club))
+            ->assertOk()
+            ->assertSee('(۲ نظر)', false)
+            ->assertSee('همه عکس‌ها', false)
+            ->assertSee('id="reviews"', false);
+    }
+
+    public function test_index_listing_eager_loads_review_stats(): void
+    {
+        $club = Club::factory()->create();
+        Review::factory()->forReviewable($club)->approved()->create(['rating' => 3]);
+
+        $this->get(route('clubs.index'))
+            ->assertOk()
+            ->assertSee('(۱ نظر)', false);
+    }
+
     public function test_authenticated_user_can_submit_pending_review(): void
     {
         $user = User::factory()->create();
@@ -84,7 +110,7 @@ class ReviewModuleTest extends TestCase
         Livewire::test(ReviewSection::class, ['reviewable' => $destination])
             ->assertSee('مقصد عالی برای برنامه زمستانه بود.', false)
             ->assertSee('کوهنورد تأییدشده', false)
-            ->assertSee('5.0', false);
+            ->assertSee(fa_num(5.0, 1), false);
     }
 
     public function test_user_cannot_submit_more_than_one_review_per_entity(): void
@@ -122,6 +148,32 @@ class ReviewModuleTest extends TestCase
 
         $this->assertTrue($review->fresh()->isApproved());
         $this->assertSame($admin->id, $review->fresh()->moderated_by);
+    }
+
+    public function test_admin_can_reopen_and_delete_reviews(): void
+    {
+        $admin = User::factory()->admin()->create();
+        $review = Review::factory()
+            ->forReviewable(Club::factory()->create())
+            ->pending()
+            ->create();
+
+        Livewire::actingAs($admin)
+            ->test(ModerateReviews::class)
+            ->call('reject', $review->id)
+            ->assertHasNoErrors();
+        $this->assertSame('rejected', $review->fresh()->status->value);
+
+        Livewire::actingAs($admin)
+            ->test(ModerateReviews::class)
+            ->call('reopen', $review->id);
+        $this->assertTrue($review->fresh()->isPending());
+        $this->assertNull($review->fresh()->moderated_by);
+
+        Livewire::actingAs($admin)
+            ->test(ModerateReviews::class)
+            ->call('delete', $review->id);
+        $this->assertModelMissing($review);
     }
 
     public function test_non_admin_cannot_access_moderation(): void

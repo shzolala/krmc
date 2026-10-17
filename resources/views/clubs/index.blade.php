@@ -1,34 +1,34 @@
-<x-layouts.site title="باشگاه‌ها">
-    <section class="bg-navy-900 text-white">
-        <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-            <p class="text-sm text-white/60">خانه / باشگاه‌ها</p>
-            <h1 class="mt-3 text-4xl font-extrabold">باشگاه‌های کوهنوردی کرمان</h1>
-            <p class="mt-3 max-w-2xl text-sm leading-8 text-white/75">{{ $clubs->total() }} باشگاه در دایرکتوری — با پروفایل، اعضا و برنامه‌ها.</p>
-        </div>
-    </section>
+<x-layouts.site title="باشگاه‌ها" meta-description="دایرکتوری باشگاه‌های رسمی کوهنوردی کرمان با اعضا، مربیان و برنامه‌ها.">
+    <x-site.page-hero
+        section="clubs"
+        overlap
+        :crumbs="['باشگاه‌ها' => null]"
+        eyebrow="باشگاه‌های رسمی"
+        title="باشگاه‌های کوهنوردی کرمان"
+        :description="fa_num($clubs->total()).' باشگاه در دایرکتوری — با پروفایل، اعضا و برنامه‌ها.'"
+    />
 
-    <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div class="space-y-4">
-            @foreach ($clubs as $club)
-                <article class="rounded-2xl border border-navy-900/8 bg-white p-5">
-                    <div class="flex flex-wrap items-start justify-between gap-3">
-                        <div>
-                            <h2 class="text-xl font-bold text-navy-900">
-                                <a href="{{ route('clubs.show', $club) }}" class="hover:text-accent">{{ $club->name }}</a>
-                            </h2>
-                            <p class="mt-1 text-xs text-muted">{{ $club->city }} · {{ number_format($club->member_count) }} عضو</p>
-                        </div>
-                        <div class="flex flex-wrap gap-1.5">
-                            @if ($club->is_premium)<x-badge tone="premium">همکار ویژه</x-badge>@endif
-                            @if ($club->is_verified)<x-badge tone="verified">تأییدشده</x-badge>@endif
-                        </div>
-                    </div>
-                    <p class="mt-3 text-sm leading-7 text-muted">{{ $club->summary }}</p>
-                    <a href="{{ route('clubs.show', $club) }}" class="mt-4 inline-flex rounded-full bg-accent px-4 py-2 text-xs font-bold text-navy-950">مشاهده پروفایل</a>
-                </article>
-            @endforeach
+    <x-site.toolbar
+        :action="route('clubs.index')"
+        placeholder="نام باشگاه، شهر یا مدیر..."
+        :query="$search"
+        :hidden="['verified' => $onlyVerified ? 1 : null]"
+        :total="$clubs->total()"
+        :filters="[
+            ['label' => 'همه', 'href' => route('clubs.index', array_filter(['q' => $search])), 'active' => ! $onlyVerified],
+            ['label' => 'تأییدشده فدراسیون', 'href' => route('clubs.index', array_filter(['q' => $search, 'verified' => 1])), 'active' => $onlyVerified],
+        ]"
+    />
+
+    <x-site.section spacing="pt-10">
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            @forelse ($clubs as $club)
+                <x-cards.club :club="$club" />
+            @empty
+                <x-site.empty class="col-span-full" message="باشگاهی با این مشخصات پیدا نشد." :href="route('clubs.index')" />
+            @endforelse
         </div>
 
-        <div class="mt-8">{{ $clubs->links() }}</div>
-    </section>
+        <div class="mt-10">{{ $clubs->links() }}</div>
+    </x-site.section>
 </x-layouts.site>

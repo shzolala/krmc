@@ -3,7 +3,6 @@
 
     $user = auth()->user();
     $panel = $user ? PanelRegistry::forRole($user->role) : null;
-    $demoAccounts = PanelRegistry::switcherEnabled() ? PanelRegistry::demoAccounts() : collect();
 @endphp
 
 <!DOCTYPE html>
@@ -12,6 +11,8 @@
         @include('partials.head')
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
+        <x-admin.impersonation-banner />
+
         <flux:sidebar sticky collapsible="mobile" class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.header>
                 <x-app-logo :sidebar="true" href="{{ $user ? route($user->panelHomeRoute()) : route('home') }}" wire:navigate />
@@ -90,31 +91,6 @@
                         تنظیمات حساب
                     </flux:sidebar.item>
                 </flux:sidebar.group>
-
-                @if ($demoAccounts->isNotEmpty())
-                    <flux:sidebar.group heading="تست سریع نقش‌ها" class="grid">
-                        <form method="POST" action="{{ route('dev.switch-demo-account') }}" class="px-2 pb-2">
-                            @csrf
-                            <flux:select name="mobile" onchange="this.form.submit()">
-                                @foreach ($demoAccounts as $account)
-                                    <option value="{{ $account['mobile'] }}" @selected($user->mobile === $account['mobile'])>
-                                        {{ $account['label'] }}
-                                    </option>
-                                @endforeach
-                            </flux:select>
-                        </form>
-                        @foreach (PanelRegistry::all() as $item)
-                            <flux:sidebar.item
-                                icon="{{ $user->role === $item['role'] ? 'check-circle' : 'squares-2x2' }}"
-                                :href="$item['path']"
-                                :current="$user->role === $item['role']"
-                                wire:navigate
-                            >
-                                {{ $item['label'] }}
-                            </flux:sidebar.item>
-                        @endforeach
-                    </flux:sidebar.group>
-                @endif
 
                 <flux:sidebar.group heading="سایت عمومی" class="grid">
                     <flux:sidebar.item icon="globe-alt" :href="route('home')" wire:navigate>

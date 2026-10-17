@@ -11,12 +11,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Modules\Review\Models\Concerns\HasReviews;
 
 #[Fillable([
+    'farakouh_id',
+    'farakouh_url',
     'user_id',
     'club_id',
     'slug',
     'headline',
     'bio',
     'specialty',
+    'province',
+    'avg_rating',
+    'total_courses_taught',
+    'certificates',
+    'contact',
+    'courses_summary',
     'avatar_path',
     'experience_years',
     'is_verified',
@@ -37,6 +45,12 @@ class CoachProfile extends Model
     protected function casts(): array
     {
         return [
+            'farakouh_id' => 'integer',
+            'avg_rating' => 'integer',
+            'total_courses_taught' => 'integer',
+            'certificates' => 'array',
+            'contact' => 'array',
+            'courses_summary' => 'array',
             'is_verified' => 'boolean',
             'is_featured' => 'boolean',
             'is_premium' => 'boolean',
@@ -57,6 +71,11 @@ class CoachProfile extends Model
     public function destinationGuides(): HasMany
     {
         return $this->hasMany(DestinationGuide::class);
+    }
+
+    public function ledPrograms(): HasMany
+    {
+        return $this->hasMany(Program::class, 'leader_id');
     }
 
     public function getRouteKeyName(): string

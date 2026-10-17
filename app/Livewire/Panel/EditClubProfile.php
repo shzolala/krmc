@@ -27,6 +27,14 @@ class EditClubProfile extends Component
 
     public string $address = '';
 
+    public string $province = '';
+
+    public string $manager = '';
+
+    public string $education_head = '';
+
+    public ?int $founded_year = null;
+
     public function mount(): void
     {
         /** @var User $user */
@@ -42,6 +50,10 @@ class EditClubProfile extends Component
         $this->description = (string) $club->description;
         $this->city = (string) $club->city;
         $this->address = (string) $club->address;
+        $this->province = (string) $club->province;
+        $this->manager = (string) $club->manager;
+        $this->education_head = (string) $club->education_head;
+        $this->founded_year = $club->founded_year;
     }
 
     public function save(): void
@@ -60,6 +72,10 @@ class EditClubProfile extends Component
             'description' => ['required', 'string', 'max:5000'],
             'city' => ['required', 'string', 'max:120'],
             'address' => ['nullable', 'string', 'max:255'],
+            'province' => ['nullable', 'string', 'max:120'],
+            'manager' => ['nullable', 'string', 'max:160'],
+            'education_head' => ['nullable', 'string', 'max:160'],
+            'founded_year' => ['nullable', 'integer', 'min:1300', 'max:1500'],
         ]);
 
         $club->update($validated);
@@ -69,6 +85,8 @@ class EditClubProfile extends Component
 
     public function render(): View
     {
-        return view('livewire.panel.edit-club-profile');
+        return view('livewire.panel.edit-club-profile', [
+            'club' => Club::query()->find($this->clubId),
+        ]);
     }
 }
