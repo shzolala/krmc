@@ -15,6 +15,7 @@
         <x-slot:badges>
             @if ($coach->is_verified)<x-badge tone="verified">تأییدشده</x-badge>@endif
             @if ($coach->is_premium)<x-badge tone="premium">ویژه</x-badge>@endif
+            <x-membership-badge :user="$coach->user" on-dark />
         </x-slot:badges>
         <x-slot:meta>
             @if ($coach->club)

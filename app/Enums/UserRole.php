@@ -10,7 +10,6 @@ enum UserRole: string
     case Coach = 'coach';
     case Leader = 'leader';
     case Shop = 'shop';
-    case Organization = 'organization';
 
     public function label(): string
     {
@@ -21,7 +20,6 @@ enum UserRole: string
             self::Coach => 'مربی',
             self::Leader => 'سرپرست',
             self::Shop => 'فروشگاه',
-            self::Organization => 'ارگان',
         };
     }
 
@@ -29,12 +27,11 @@ enum UserRole: string
     {
         return match ($this) {
             self::Admin => 'مدیریت کامل سایت: کاربران، محتوا، دایرکتوری و تعدیل نظرات.',
-            self::Climber => 'کاربر عادی؛ مشاهده سایت، ثبت نظر و امتیاز.',
+            self::Climber => 'عضو عادی؛ پایه‌ی حساب همه‌ی کاربران (ثبت نظر، صعودها، عضویت و حمایت).',
             self::Club => 'مالک باشگاه؛ ویرایش اطلاعات و پروفایل عمومی باشگاه.',
             self::Coach => 'مربی؛ ویرایش پروفایل تخصصی و نمایش در دایرکتوری مربیان.',
             self::Leader => 'سرپرست برنامه؛ ویرایش پروفایل و نمایش در دایرکتوری سرپرستان.',
             self::Shop => 'مالک فروشگاه؛ ویرایش اطلاعات فروشگاه در دایرکتوری.',
-            self::Organization => 'ارگان یا نهاد؛ پنل اختصاصی و پروفایل عمومی.',
         };
     }
 
@@ -47,7 +44,6 @@ enum UserRole: string
             self::Coach => 'green',
             self::Leader => 'amber',
             self::Shop => 'purple',
-            self::Organization => 'teal',
         };
     }
 
@@ -60,7 +56,6 @@ enum UserRole: string
             self::Coach => 'academic-cap',
             self::Leader => 'flag',
             self::Shop => 'shopping-bag',
-            self::Organization => 'building-library',
         };
     }
 
@@ -71,7 +66,22 @@ enum UserRole: string
             self::Coach,
             self::Leader,
             self::Shop,
-            self::Organization,
         ], true);
+    }
+
+    /**
+     * The route name of this role's own dashboard section in the user panel.
+     */
+    public function dashboardRoute(): string
+    {
+        return 'panel.'.$this->value.'.dashboard';
+    }
+
+    /**
+     * The route name of this role's profile editor, when the role owns an editable profile.
+     */
+    public function profileRoute(): ?string
+    {
+        return $this->hasPublicDirectoryProfile() ? 'panel.'.$this->value.'.profile' : null;
     }
 }

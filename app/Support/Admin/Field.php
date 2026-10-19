@@ -25,6 +25,10 @@ class Field
 
     protected mixed $default = null;
 
+    protected ?string $rangeGroup = null;
+
+    protected ?string $rangeRole = null;
+
     /**
      * @param  array<string, string>  $options
      * @param  class-string<Model>|null  $relatedModel
@@ -64,6 +68,11 @@ class Field
         return new static($name, $label, 'toggle');
     }
 
+    public static function date(string $name, string $label): static
+    {
+        return new static($name, $label, 'date');
+    }
+
     public static function datetime(string $name, string $label): static
     {
         return new static($name, $label, 'datetime');
@@ -83,6 +92,16 @@ class Field
     public static function relation(string $name, string $label, string $model, string $labelColumn = 'name'): static
     {
         return new static($name, $label, 'relation', relatedModel: $model, relatedLabel: $labelColumn);
+    }
+
+    /**
+     * Uploaded image stored on the public disk; the column keeps the stored path.
+     */
+    public static function image(string $name, string $label, string $directory = 'uploads'): static
+    {
+        return (new static($name, $label, 'image', options: ['directory' => $directory]))
+            ->wide()
+            ->hint('JPG، PNG یا WebP، حداکثر ۵ مگابایت. برای اسلایدر تصویر افقی (حداقل ۱۶۰۰ پیکسل عرض) مناسب‌تر است.');
     }
 
     public static function tags(string $name, string $label): static
@@ -155,9 +174,48 @@ class Field
         return $this;
     }
 
+    /**
+     * Links this date field with a partner field so their pickers show one shared range.
+     */
+    public function rangeStart(string $group): static
+    {
+        $this->rangeGroup = $group;
+        $this->rangeRole = 'start';
+
+        return $this;
+    }
+
+    public function rangeEnd(string $group): static
+    {
+        $this->rangeGroup = $group;
+        $this->rangeRole = 'end';
+
+        return $this;
+    }
+
+    public function getRangeGroup(): ?string
+    {
+        return $this->rangeGroup;
+    }
+
+    public function getRangeRole(): ?string
+    {
+        return $this->rangeRole;
+    }
+
     public function isRequired(): bool
     {
         return $this->required;
+    }
+
+    public function isImage(): bool
+    {
+        return $this->type === 'image';
+    }
+
+    public function imageDirectory(): string
+    {
+        return $this->options['directory'] ?? 'uploads';
     }
 
     public function isWide(): bool
@@ -207,7 +265,8 @@ class Field
      */
     public function validationRules(string $table, ?Model $record): array
     {
-        $rules = [$this->required ? 'required' : 'nullable'];
+        $hasStoredFile = $this->type === 'image' && filled($record?->getAttribute($this->name));
+        $rules = [$this->required && ! $hasStoredFile ? 'required' : 'nullable'];
 
         $rules = [...$rules, ...match ($this->type) {
             'text' => ['string', 'max:'.$this->max],
@@ -215,11 +274,12 @@ class Field
             'number' => ['integer', 'min:0'],
             'decimal' => ['numeric'],
             'toggle' => ['boolean'],
-            'datetime' => ['date'],
+            'datetime', 'date' => ['date'],
             'select' => [Rule::in(array_keys($this->options))],
             'relation' => ['integer', Rule::exists((new $this->relatedModel)->getTable(), 'id')],
             'tags' => ['string', 'max:5000'],
             'json' => ['json'],
+            'image' => ['image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             default => [],
         }];
 
@@ -242,6 +302,7 @@ class Field
             'tags' => is_array($value) ? implode("\n", $value) : '',
             'json' => $value === null ? '' : json_encode($value, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT),
             'datetime' => $value?->format('Y-m-d\TH:i'),
+            'date' => $value?->format('Y-m-d'),
             'toggle' => (bool) $value,
             default => $value,
         };

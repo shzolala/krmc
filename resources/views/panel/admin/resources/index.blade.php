@@ -111,6 +111,10 @@
                                             <span class="tabular-nums">{{ $value === null ? '—' : fa_num($value) }}</span>
                                             @break
 
+                                        @case('money')
+                                            <span class="whitespace-nowrap tabular-nums">{{ fa_money($value) }}</span>
+                                            @break
+
                                         @case('date')
                                             <span class="whitespace-nowrap text-xs">{{ fa_date($value) }}</span>
                                             @break

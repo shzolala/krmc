@@ -18,11 +18,11 @@
             <flux:sidebar.header>
                 <a href="{{ route($user->panelHomeRoute()) }}" wire:navigate class="flex items-center gap-2.5">
                     <span class="flex size-9 items-center justify-center rounded-lg bg-navy-900 text-brand">
-                        <flux:icon :name="$user->role->icon()" class="size-5" />
+                        <flux:icon :name="$user->mainRoles()->count() === 1 ? $user->mainRoles()->first()->icon() : 'squares-2x2'" class="size-5" />
                     </span>
                     <span class="grid leading-tight">
                         <span class="text-sm font-bold">{{ config('app.name') }}</span>
-                        <span class="text-xs text-zinc-500">پنل {{ $user->roleLabel() }}</span>
+                        <span class="text-xs text-zinc-500">{{ $user->panelTitle() }}</span>
                     </span>
                 </a>
                 <flux:sidebar.collapse class="lg:hidden" />
@@ -53,7 +53,7 @@
 
         <flux:header class="border-b border-zinc-200 bg-white lg:hidden dark:border-zinc-800 dark:bg-zinc-900">
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
-            <span class="text-sm font-bold">پنل {{ $user->roleLabel() }}</span>
+            <span class="text-sm font-bold">{{ $user->panelTitle() }}</span>
             <flux:spacer />
             <flux:dropdown position="top" align="end">
                 <flux:profile :initials="$user->initials()" icon-trailing="chevron-down" />

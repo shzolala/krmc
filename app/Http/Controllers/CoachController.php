@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Club;
 use App\Models\CoachProfile;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -23,6 +24,8 @@ class CoachController extends Controller
             }))
             ->when($role === 'leader', fn ($query) => $query->where('is_leader', true))
             ->when($role === 'coach', fn ($query) => $query->where('is_leader', false))
+            ->when($request->filled('club'), fn ($query) => $query->whereHas('club', fn ($club) => $club->where('slug', $request->string('club')->toString())))
+            ->when($request->boolean('verified'), fn ($query) => $query->where('is_verified', true))
             ->orderByDesc('is_premium')
             ->orderByDesc('is_featured')
             ->orderBy('slug')
@@ -31,8 +34,7 @@ class CoachController extends Controller
 
         return view('coaches.index', [
             'coaches' => $coaches,
-            'search' => $search,
-            'activeRole' => $role,
+            'clubs' => Club::query()->whereHas('coachProfiles')->orderBy('name')->pluck('name', 'slug'),
         ]);
     }
 

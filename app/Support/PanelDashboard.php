@@ -17,9 +17,10 @@ use Modules\Review\Models\Review;
 class PanelDashboard
 {
     /**
-     * Builds the role-specific dashboard payload shared by all non-admin panels.
+     * Builds the dashboard payload of one panel section: a role together with the club, shop or profile it manages.
      *
      * @return array{
+     *     role: UserRole,
      *     entity: ?Model,
      *     entityLabel: ?string,
      *     publicUrl: ?string,
@@ -34,19 +35,20 @@ class PanelDashboard
      *     pendingReviews: int,
      *     suggestions: Collection<int, Destination>,
      *     actions: list<array{label: string, icon: string, href: string, external: bool}>,
-     *     emptyMessage: ?string
+     *     siblings: list<array{label: string, href: string, current: bool}>
      * }
      */
-    public static function for(User $user): array
+    public static function for(User $user, UserRole $role, ?Model $entity = null): array
     {
-        $entity = match ($user->role) {
-            UserRole::Club => $user->ownedClubs()->first() ?? $user->primaryClub,
+        $entity ??= match ($role) {
+            UserRole::Club => $user->ownedClubs->first(),
             UserRole::Coach, UserRole::Leader => $user->coachProfile,
-            UserRole::Shop => $user->shop,
+            UserRole::Shop => $user->shops->first(),
             default => null,
         };
 
         $base = [
+            'role' => $role,
             'entity' => $entity,
             'entityLabel' => null,
             'publicUrl' => null,
@@ -61,19 +63,44 @@ class PanelDashboard
             'pendingReviews' => 0,
             'suggestions' => collect(),
             'actions' => [],
-            'emptyMessage' => null,
+            'siblings' => self::siblings($user, $role, $entity),
         ];
 
         $payload = match (true) {
             $entity instanceof Club => self::club($user, $entity),
             $entity instanceof CoachProfile => self::coach($user, $entity),
             $entity instanceof Shop => self::shop($user, $entity),
-            in_array($user->role, [UserRole::Club, UserRole::Coach, UserRole::Leader, UserRole::Shop], true) => self::missingEntity($user),
-            $user->role === UserRole::Organization => self::organization($user),
             default => self::climber($user),
         };
 
         return [...$base, ...$payload];
+    }
+
+    /**
+     * Quick links between the other clubs (or shops) the same account owns.
+     *
+     * @return list<array{label: string, href: string, current: bool}>
+     */
+    private static function siblings(User $user, UserRole $role, ?Model $entity): array
+    {
+        $owned = match ($role) {
+            UserRole::Club => $user->ownedClubs,
+            UserRole::Shop => $user->shops,
+            default => collect(),
+        };
+
+        if ($owned->count() < 2) {
+            return [];
+        }
+
+        return $owned
+            ->map(fn (Model $item): array => [
+                'label' => $item->name,
+                'href' => route($role->dashboardRoute(), $item),
+                'current' => $item->is($entity),
+            ])
+            ->values()
+            ->all();
     }
 
     /**
@@ -86,7 +113,7 @@ class PanelDashboard
         return [
             'entityLabel' => 'باشگاه '.$club->name,
             'publicUrl' => route('clubs.show', $club),
-            'editRoute' => route('panel.club.profile'),
+            'editRoute' => route('panel.club.profile', $club),
             'badges' => self::badges($club),
             'stats' => [
                 self::stat('اعضای باشگاه', fa_num($club->member_count), 'users', 'blue'),
@@ -104,13 +131,13 @@ class PanelDashboard
                 'موقعیت روی نقشه' => $club->hasCoordinates(),
                 'نام مدیر باشگاه' => filled($club->manager),
                 'لوگوی باشگاه' => filled($club->logo_path),
-            ], route('panel.club.profile')),
+            ], route('panel.club.profile', $club)),
             'programsTitle' => 'برنامه‌های باشگاه',
             'programs' => $club->programs()->with('destination:id,name')->orderByDesc('starts_at')->limit(5)->get(),
             'reviewsTitle' => 'نظرات کاربران درباره باشگاه',
             ...self::entityReviews($club),
             'actions' => [
-                self::action('ویرایش اطلاعات باشگاه', 'pencil-square', route('panel.club.profile')),
+                self::action('ویرایش اطلاعات باشگاه', 'pencil-square', route('panel.club.profile', $club)),
                 self::action('مشاهده صفحه عمومی', 'arrow-top-right-on-square', route('clubs.show', $club), true),
                 self::action('کاوش مقاصد', 'flag', route('destinations.index'), true),
             ],
@@ -123,7 +150,7 @@ class PanelDashboard
     private static function coach(User $user, CoachProfile $profile): array
     {
         $summary = $profile->reviewSummary();
-        $editRoute = route('panel.'.$user->role->value.'.profile');
+        $editRoute = route(($profile->is_leader ? UserRole::Leader : UserRole::Coach)->profileRoute());
 
         return [
             'entityLabel' => $profile->headline ?: $profile->roleLabel(),
@@ -167,7 +194,7 @@ class PanelDashboard
         return [
             'entityLabel' => 'فروشگاه '.$shop->name,
             'publicUrl' => route('shops.show', $shop),
-            'editRoute' => route('panel.shop.profile'),
+            'editRoute' => route('panel.shop.profile', $shop),
             'badges' => self::badges($shop),
             'stats' => [
                 self::stat('امتیاز مشتریان', $summary['average'] ? fa_num($summary['average'], 1) : '—', 'star', 'amber', fa_num($summary['count']).' نظر تأییدشده'),
@@ -181,11 +208,11 @@ class PanelDashboard
                 'نشانی' => filled($shop->address),
                 'موقعیت روی نقشه' => $shop->hasCoordinates(),
                 'لوگوی فروشگاه' => filled($shop->logo_path),
-            ], route('panel.shop.profile')),
+            ], route('panel.shop.profile', $shop)),
             'reviewsTitle' => 'نظرات مشتریان',
             ...self::entityReviews($shop),
             'actions' => [
-                self::action('ویرایش اطلاعات فروشگاه', 'pencil-square', route('panel.shop.profile')),
+                self::action('ویرایش اطلاعات فروشگاه', 'pencil-square', route('panel.shop.profile', $shop)),
                 self::action('مشاهده صفحه عمومی', 'arrow-top-right-on-square', route('shops.show', $shop), true),
                 self::action('نقشه کوهنوردی', 'map', route('map'), true),
             ],
@@ -221,50 +248,6 @@ class PanelDashboard
                 self::action('باشگاه‌های کرمان', 'building-office-2', route('clubs.index'), true),
                 self::action('نقشه کوهنوردی', 'map', route('map'), true),
                 self::action('تنظیمات حساب', 'cog-6-tooth', route('profile.edit')),
-            ],
-        ];
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    private static function organization(User $user): array
-    {
-        return [
-            'entityLabel' => 'ارگان',
-            'stats' => [
-                self::stat('باشگاه‌های فعال', fa_num(Club::query()->count()), 'building-office-2', 'blue', null, route('clubs.index')),
-                self::stat('مربیان و سرپرستان', fa_num(CoachProfile::query()->count()), 'academic-cap', 'green', null, route('coaches.index')),
-                self::stat('مقاصد ثبت‌شده', fa_num(Destination::query()->count()), 'flag', 'teal', null, route('destinations.index')),
-                self::stat('برنامه‌های فعال', fa_num(Program::query()->active()->count()), 'calendar-days', 'purple', null, route('programs.index')),
-            ],
-            'completeness' => self::completeness([
-                'نام و موبایل' => true,
-                'ایمیل' => filled($user->email),
-                'نام کاربری عمومی' => filled($user->username),
-            ], route('profile.edit')),
-            'suggestions' => self::suggestions(),
-            'publicUrl' => route('profiles.show', $user),
-            'actions' => [
-                self::action('پروفایل عمومی ارگان', 'arrow-top-right-on-square', route('profiles.show', $user), true),
-                self::action('نقشه کوهنوردی', 'map', route('map'), true),
-                self::action('باشگاه‌ها', 'building-office-2', route('clubs.index'), true),
-                self::action('تنظیمات حساب', 'cog-6-tooth', route('profile.edit')),
-            ],
-        ];
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    private static function missingEntity(User $user): array
-    {
-        return [
-            'entityLabel' => $user->roleLabel(),
-            'emptyMessage' => 'هنوز پروفایل '.$user->roleLabel().' به حساب شما متصل نشده است. لطفاً با مدیریت سایت تماس بگیرید تا پروفایل شما ایجاد شود.',
-            'actions' => [
-                self::action('تنظیمات حساب', 'cog-6-tooth', route('profile.edit')),
-                self::action('صفحه اصلی سایت', 'globe-alt', route('home'), true),
             ],
         ];
     }

@@ -1,34 +1,18 @@
 <x-layouts.site title="باشگاه‌ها" meta-description="دایرکتوری باشگاه‌های رسمی کوهنوردی کرمان با اعضا، مربیان و برنامه‌ها.">
-    <x-site.page-hero
-        section="clubs"
-        overlap
-        :crumbs="['باشگاه‌ها' => null]"
-        eyebrow="باشگاه‌های رسمی"
+    <x-site.listing
         title="باشگاه‌های کوهنوردی کرمان"
-        :description="fa_num($clubs->total()).' باشگاه در دایرکتوری — با پروفایل، اعضا و برنامه‌ها.'"
-    />
-
-    <x-site.toolbar
         :action="route('clubs.index')"
-        placeholder="نام باشگاه، شهر یا مدیر..."
-        :query="$search"
-        :hidden="['verified' => $onlyVerified ? 1 : null]"
-        :total="$clubs->total()"
+        :paginator="$clubs"
+        empty-message="باشگاهی با این مشخصات پیدا نشد."
         :filters="[
-            ['label' => 'همه', 'href' => route('clubs.index', array_filter(['q' => $search])), 'active' => ! $onlyVerified],
-            ['label' => 'تأییدشده فدراسیون', 'href' => route('clubs.index', array_filter(['q' => $search, 'verified' => 1])), 'active' => $onlyVerified],
+            ['type' => 'search', 'name' => 'q', 'label' => 'نام باشگاه، شهر یا مدیر', 'placeholder' => 'مثلاً اماوند...'],
+            ['type' => 'select', 'name' => 'city', 'label' => 'شهر', 'all' => 'همه شهرها', 'options' => $cities->all()],
+            ['type' => 'toggle', 'name' => 'verified', 'label' => 'فقط تأییدشده فدراسیون'],
+            ['type' => 'toggle', 'name' => 'has_programs', 'label' => 'فقط باشگاه‌های دارای برنامه فعال'],
         ]"
-    />
-
-    <x-site.section spacing="pt-10">
-        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            @forelse ($clubs as $club)
-                <x-cards.club :club="$club" />
-            @empty
-                <x-site.empty class="col-span-full" message="باشگاهی با این مشخصات پیدا نشد." :href="route('clubs.index')" />
-            @endforelse
-        </div>
-
-        <div class="mt-10">{{ $clubs->links() }}</div>
-    </x-site.section>
+    >
+        @foreach ($clubs as $club)
+            <x-cards.club :club="$club" />
+        @endforeach
+    </x-site.listing>
 </x-layouts.site>

@@ -31,6 +31,7 @@
         <x-site.footer />
     @endunless
 
+    @livewireScripts
     @stack('scripts')
 </body>
 </html>

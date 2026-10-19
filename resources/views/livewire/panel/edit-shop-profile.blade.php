@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-6">
-    <x-admin.page-header title="ویرایش فروشگاه" subtitle="اطلاعاتی که در دایرکتوری فروشگاه‌ها نمایش داده می‌شود" icon="shopping-bag" :back="route('panel.shop.dashboard')" back-label="داشبورد" />
+    <x-admin.page-header title="ویرایش فروشگاه" subtitle="اطلاعاتی که در دایرکتوری فروشگاه‌ها نمایش داده می‌شود" icon="shopping-bag" :back="route('panel.shop.dashboard', $shop)" back-label="داشبورد" />
 
     <form wire:submit="save" class="grid gap-6 lg:grid-cols-3">
         <div class="flex flex-col gap-6 lg:col-span-2">

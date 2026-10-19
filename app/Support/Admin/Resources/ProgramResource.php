@@ -106,8 +106,8 @@ class ProgramResource extends AdminResource
                 Field::relation('leader_id', 'سرپرست برنامه', CoachProfile::class, 'slug'),
             ],
             'زمان‌بندی و ظرفیت' => [
-                Field::datetime('starts_at', 'شروع'),
-                Field::datetime('ends_at', 'پایان')->rules(['after_or_equal:starts_at']),
+                Field::datetime('starts_at', 'شروع')->rangeStart('schedule'),
+                Field::datetime('ends_at', 'پایان')->rangeEnd('schedule')->rules(['after_or_equal:starts_at']),
                 Field::number('capacity', 'ظرفیت'),
                 Field::number('registered_count', 'ثبت‌نام‌شده')->default(0),
             ],

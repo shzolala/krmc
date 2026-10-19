@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Destination;
 use App\Models\Shelter;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -16,6 +17,7 @@ class ShelterController extends Controller
             ->with('destination')
             ->withReviewStats()
             ->when($search !== '', fn ($query) => $query->where('name', 'like', "%{$search}%"))
+            ->when($request->filled('destination'), fn ($query) => $query->whereHas('destination', fn ($destination) => $destination->where('slug', $request->string('destination')->toString())))
             ->orderByDesc('is_featured')
             ->orderByDesc('elevation')
             ->paginate(12)
@@ -23,7 +25,7 @@ class ShelterController extends Controller
 
         return view('shelters.index', [
             'shelters' => $shelters,
-            'search' => $search,
+            'destinations' => Destination::query()->whereHas('shelters')->orderBy('name')->pluck('name', 'slug'),
             'mapMarkers' => Shelter::query()
                 ->withCoordinates()
                 ->get()

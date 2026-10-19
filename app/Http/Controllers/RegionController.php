@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\DestinationCategory;
+use App\Enums\MountainRegionType;
 use App\Models\MountainRegion;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -16,6 +17,7 @@ class RegionController extends Controller
         $regions = MountainRegion::query()
             ->withCount(['destinations', 'attractions'])
             ->when($search !== '', fn ($query) => $query->where('name', 'like', "%{$search}%"))
+            ->when(MountainRegionType::tryFrom($request->string('type')->toString()), fn ($query, MountainRegionType $type) => $query->where('type', $type->value))
             ->orderByDesc('is_featured')
             ->orderByDesc('highest_elevation')
             ->orderBy('name')
@@ -24,7 +26,6 @@ class RegionController extends Controller
 
         return view('regions.index', [
             'regions' => $regions,
-            'search' => $search,
             'mapMarkers' => MountainRegion::query()
                 ->withCoordinates()
                 ->get()

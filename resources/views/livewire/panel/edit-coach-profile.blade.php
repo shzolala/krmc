@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-6">
-    <x-admin.page-header title="ویرایش پروفایل تخصصی" subtitle="اطلاعات مربی یا سرپرست برای نمایش عمومی" icon="academic-cap" :back="route('panel.'.auth()->user()->role->value.'.dashboard')" back-label="داشبورد" />
+    <x-admin.page-header title="ویرایش پروفایل تخصصی" subtitle="اطلاعات مربی یا سرپرست برای نمایش عمومی" icon="academic-cap" :back="route(($profile->is_leader ? 'panel.leader.dashboard' : 'panel.coach.dashboard'))" back-label="داشبورد" />
 
     <form wire:submit="save" class="grid gap-6 lg:grid-cols-3">
         <div class="flex flex-col gap-6 lg:col-span-2">

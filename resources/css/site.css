@@ -64,3 +64,77 @@
         font-size: 0.7rem;
     }
 }
+
+@layer utilities {
+    .topo-lines {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' fill='none' stroke='%23ffffff' stroke-opacity='.07' stroke-width='1'%3E%3Cpath d='M-20 480c90-60 150 20 250-30s130-120 230-90 150 60 160 20'/%3E%3Cpath d='M-20 440c90-60 150 20 250-30s130-120 230-90 150 60 160 20'/%3E%3Cpath d='M-20 400c90-60 150 20 250-30s130-120 230-90 150 60 160 20'/%3E%3Cpath d='M-20 360c90-60 150 20 250-30s130-120 230-90 150 60 160 20'/%3E%3Cpath d='M-20 320c90-60 150 20 250-30s130-120 230-90 150 60 160 20'/%3E%3Cpath d='M-20 280c90-60 150 20 250-30s130-120 230-90 150 60 160 20'/%3E%3Cpath d='M-20 240c90-60 150 20 250-30s130-120 230-90 150 60 160 20'/%3E%3Cpath d='M-20 200c90-60 150 20 250-30s130-120 230-90 150 60 160 20'/%3E%3C/svg%3E");
+        background-size: 600px 600px;
+    }
+
+    .ladder-bar {
+        transform-origin: right;
+        animation: ladder-grow 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+
+    @keyframes ladder-grow {
+        from {
+            transform: scaleX(0);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .ladder-bar {
+            animation: none;
+        }
+    }
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+@layer utilities {
+    .logo-marquee {
+        overflow: hidden;
+        mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+    }
+
+    .logo-marquee__track {
+        display: flex;
+        width: max-content;
+        animation: logo-marquee var(--marquee-duration, 48s) linear infinite;
+        will-change: transform;
+    }
+
+    .logo-marquee--reverse .logo-marquee__track {
+        animation-direction: reverse;
+    }
+
+    .logo-marquee:hover .logo-marquee__track,
+    .logo-marquee:focus-within .logo-marquee__track {
+        animation-play-state: paused;
+    }
+
+    @keyframes logo-marquee {
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .logo-marquee {
+            mask-image: none;
+        }
+
+        .logo-marquee__track {
+            width: auto;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: none;
+        }
+
+        .logo-marquee__track [aria-hidden='true'] {
+            display: none;
+        }
+    }
+}

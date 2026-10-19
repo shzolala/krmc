@@ -26,6 +26,11 @@ class Column
         return new static($name, $label, 'number', $sortable);
     }
 
+    public static function money(string $name, string $label, bool $sortable = true): static
+    {
+        return new static($name, $label, 'money', $sortable);
+    }
+
     public static function badge(string $name, string $label): static
     {
         return new static($name, $label, 'badge');

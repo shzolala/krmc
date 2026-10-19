@@ -7,6 +7,7 @@ use App\Models\User;
 use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -43,13 +44,9 @@ class EditCoachProfile extends Component
 
     public function save(): void
     {
-        /** @var User $user */
-        $user = Auth::user();
+        $profile = CoachProfile::query()->findOrFail($this->profileId);
 
-        $profile = CoachProfile::query()
-            ->whereKey($this->profileId)
-            ->where('user_id', $user->id)
-            ->firstOrFail();
+        Gate::authorize('update', $profile);
 
         $validated = $this->validate([
             'headline' => ['required', 'string', 'max:200'],

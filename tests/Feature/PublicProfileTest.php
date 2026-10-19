@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Enums\UserRole;
 use App\Models\Club;
 use App\Models\CoachProfile;
 use App\Models\User;
@@ -18,7 +17,6 @@ class PublicProfileTest extends TestCase
         $user = User::factory()->create([
             'name' => 'کوهنورد نمونه',
             'username' => 'climber',
-            'role' => UserRole::Climber,
         ]);
 
         $this->get(route('profiles.show', $user))
@@ -32,7 +30,6 @@ class PublicProfileTest extends TestCase
     {
         $user = User::factory()->create([
             'username' => 'sara-mohammadi',
-            'role' => UserRole::Coach,
         ]);
         $profile = CoachProfile::factory()->create([
             'user_id' => $user->id,
@@ -50,7 +47,6 @@ class PublicProfileTest extends TestCase
     {
         $owner = User::factory()->create([
             'username' => 'club-kerman',
-            'role' => UserRole::Club,
         ]);
         $club = Club::factory()->create([
             'owner_id' => $owner->id,

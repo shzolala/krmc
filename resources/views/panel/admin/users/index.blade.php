@@ -68,7 +68,7 @@
                                 </div>
                             </td>
                             <td class="px-4 py-3 tabular-nums" dir="ltr">{{ $user->mobile }}</td>
-                            <td class="px-4 py-3"><flux:badge size="sm" :color="$user->role->badgeColor()">{{ $user->roleLabel() }}</flux:badge></td>
+                            <td class="px-4 py-3"><x-role-badges :user="$user" /></td>
                             <td class="px-4 py-3 text-zinc-600 dark:text-zinc-400">{{ $user->primaryClub?->name ?? '—' }}</td>
                             <td class="whitespace-nowrap px-4 py-3 text-xs text-zinc-500">{{ fa_date($user->created_at) }}</td>
                             <td class="whitespace-nowrap px-4 py-3 text-end">

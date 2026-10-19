@@ -9,19 +9,28 @@ use App\Http\Controllers\Dev\SwitchDemoAccountController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\Panel\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Panel\Admin\FinanceController as AdminFinanceController;
 use App\Http\Controllers\Panel\Admin\ImpersonationController;
 use App\Http\Controllers\Panel\Admin\ResourceController as AdminResourceController;
 use App\Http\Controllers\Panel\Admin\RoleController as AdminRoleController;
 use App\Http\Controllers\Panel\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Panel\FinanceController;
+use App\Http\Controllers\Panel\HomeController as PanelHomeController;
+use App\Http\Controllers\Panel\MembershipController;
 use App\Http\Controllers\Panel\RoleDashboardController;
+use App\Http\Controllers\PeakController;
+use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\ShelterController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\SponsorController;
 use App\Livewire\Panel\EditClubProfile;
 use App\Livewire\Panel\EditCoachProfile;
 use App\Livewire\Panel\EditShopProfile;
+use App\Livewire\Panel\EditSponsorProfile;
 use App\Support\Admin\AdminResources;
 use App\Support\PanelRegistry;
 use App\Support\Username;
@@ -30,6 +39,12 @@ use Modules\Review\Livewire\ModerateReviews;
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('/map', MapController::class)->name('map');
+Route::get('/peaks', [PeakController::class, 'index'])->name('peaks.index');
+Route::get('/membership-plans', PricingController::class)->name('pricing');
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
+Route::get('/sponsors', [SponsorController::class, 'index'])->name('sponsors.index');
+Route::get('/sponsors/{sponsor}', [SponsorController::class, 'show'])->name('sponsors.show');
 
 Route::get('/clubs', [ClubController::class, 'index'])->name('clubs.index');
 Route::get('/clubs/{club}', [ClubController::class, 'show'])->name('clubs.show');
@@ -74,12 +89,18 @@ Route::middleware('auth')->group(function (): void {
 });
 
 Route::middleware('auth')->prefix('panel')->name('panel.')->group(function (): void {
+    Route::get('/', PanelHomeController::class)->name('home');
+    Route::get('/finance', FinanceController::class)->name('finance');
+    Route::livewire('/sponsorship', EditSponsorProfile::class)->name('sponsorship');
+    Route::get('/membership', [MembershipController::class, 'index'])->name('membership');
+    Route::post('/membership/{plan}', [MembershipController::class, 'choose'])->name('membership.choose');
     Route::post('/impersonation/switch', [ImpersonationController::class, 'switchDemo'])->name('impersonation.switch');
     Route::post('/impersonation/stop', [ImpersonationController::class, 'stop'])->name('impersonation.stop');
 
     Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function (): void {
         Route::get('/', AdminDashboardController::class)->name('dashboard');
         Route::get('/roles', AdminRoleController::class)->name('roles');
+        Route::get('/finance', AdminFinanceController::class)->name('finance');
 
         Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
         Route::get('/users/create', [AdminUserController::class, 'create'])->name('users.create');
@@ -107,32 +128,29 @@ Route::middleware('auth')->prefix('panel')->name('panel.')->group(function (): v
     });
 
     Route::middleware('role:climber')->prefix('climber')->name('climber.')->group(function (): void {
-        Route::get('/', RoleDashboardController::class)->name('dashboard');
+        Route::get('/', RoleDashboardController::class)->defaults('section', 'climber')->name('dashboard');
     });
 
     Route::middleware('role:club')->prefix('club')->name('club.')->group(function (): void {
-        Route::get('/', RoleDashboardController::class)->name('dashboard');
-        Route::livewire('/profile', EditClubProfile::class)->name('profile');
+        Route::get('/{club?}', RoleDashboardController::class)->defaults('section', 'club')->name('dashboard');
+        Route::livewire('/{club}/profile', EditClubProfile::class)->name('profile');
     });
 
     Route::middleware('role:coach')->prefix('coach')->name('coach.')->group(function (): void {
-        Route::get('/', RoleDashboardController::class)->name('dashboard');
+        Route::get('/', RoleDashboardController::class)->defaults('section', 'coach')->name('dashboard');
         Route::livewire('/profile', EditCoachProfile::class)->name('profile');
     });
 
     Route::middleware('role:leader')->prefix('leader')->name('leader.')->group(function (): void {
-        Route::get('/', RoleDashboardController::class)->name('dashboard');
+        Route::get('/', RoleDashboardController::class)->defaults('section', 'leader')->name('dashboard');
         Route::livewire('/profile', EditCoachProfile::class)->name('profile');
     });
 
     Route::middleware('role:shop')->prefix('shop')->name('shop.')->group(function (): void {
-        Route::get('/', RoleDashboardController::class)->name('dashboard');
-        Route::livewire('/profile', EditShopProfile::class)->name('profile');
+        Route::get('/{shop?}', RoleDashboardController::class)->defaults('section', 'shop')->name('dashboard');
+        Route::livewire('/{shop}/profile', EditShopProfile::class)->name('profile');
     });
 
-    Route::middleware('role:organization')->prefix('organization')->name('organization.')->group(function (): void {
-        Route::get('/', RoleDashboardController::class)->name('dashboard');
-    });
 });
 
 require __DIR__.'/settings.php';

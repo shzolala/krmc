@@ -18,6 +18,8 @@ class ShopController extends Controller
                 $searchQuery->where('name', 'like', "%{$search}%")
                     ->orWhere('city', 'like', "%{$search}%");
             }))
+            ->when($request->filled('city'), fn ($query) => $query->where('city', $request->string('city')->toString()))
+            ->when($request->boolean('verified'), fn ($query) => $query->where('is_verified', true))
             ->orderByDesc('is_premium')
             ->orderByDesc('is_featured')
             ->orderBy('name')
@@ -26,7 +28,7 @@ class ShopController extends Controller
 
         return view('shops.index', [
             'shops' => $shops,
-            'search' => $search,
+            'cities' => Shop::query()->whereNotNull('city')->distinct()->orderBy('city')->pluck('city', 'city'),
         ]);
     }
 

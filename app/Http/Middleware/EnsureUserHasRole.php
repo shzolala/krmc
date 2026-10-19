@@ -25,10 +25,10 @@ class EnsureUserHasRole
             ->map(fn (string $role): UserRole => UserRole::from($role))
             ->all();
 
-        if (! in_array($user->role, $allowed, true)) {
+        if (! $user->hasRole(...$allowed)) {
             return redirect()
                 ->route(PanelRegistry::homeRouteFor($user))
-                ->with('status', 'به پنل مربوط به نقش خودتان هدایت شدید.');
+                ->with('status', 'به پنل مربوط به نقش‌های خودتان هدایت شدید.');
         }
 
         return $next($request);

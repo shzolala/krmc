@@ -10,6 +10,7 @@
         <x-slot:badges>
             @if ($shop->is_premium)<x-badge tone="premium">ویژه</x-badge>@endif
             @if ($shop->is_verified)<x-badge tone="verified">تأییدشده</x-badge>@endif
+            <x-membership-badge :user="$shop->user" on-dark />
         </x-slot:badges>
         <x-slot:meta>
             @if ($shop->city)

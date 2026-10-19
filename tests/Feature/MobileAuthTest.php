@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Enums\UserRole;
 use App\Models\User;
 use App\Support\MobileNumber;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -26,7 +25,7 @@ class MobileAuthTest extends TestCase
         $this->assertDatabaseHas('users', [
             'mobile' => '09121112233',
             'username' => 'new-climber',
-            'role' => UserRole::Climber->value,
+            'is_admin' => false,
         ]);
     }
 

@@ -1,35 +1,20 @@
 <x-layouts.site title="برنامه‌ها" meta-description="برنامه‌های کوهنوردی و طبیعت‌گردی باشگاه‌های کرمان.">
-    <x-site.page-hero
-        section="programs"
-        overlap
-        :crumbs="['برنامه‌ها' => null]"
-        eyebrow="صعودها و تورها"
+    <x-site.listing
         title="برنامه‌های باشگاهی"
-        :description="fa_num($programs->total()).' برنامه — هر برنامه به یک قله یا نقطه طبیعی وصل است و باشگاه برگزارکننده مشخص دارد.'"
-    />
-
-    <x-site.toolbar
         :action="route('programs.index')"
-        placeholder="عنوان برنامه..."
-        :query="$search"
-        :hidden="['status' => $activeStatus]"
-        :total="$programs->total()"
-        :filters="collect(['' => 'همه فعال', 'ongoing' => 'در حال برگزاری', 'upcoming' => 'پیش‌رو'])->map(fn ($label, $status) => [
-            'label' => $label,
-            'href' => route('programs.index', array_filter(['q' => $search, 'status' => $status])),
-            'active' => (string) $activeStatus === (string) $status,
-        ])->values()->all()"
-    />
-
-    <x-site.section spacing="pt-10">
-        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            @forelse ($programs as $program)
-                <x-cards.program :program="$program" />
-            @empty
-                <x-site.empty class="col-span-full" message="برنامه‌ای با این مشخصات ثبت نشده است." :href="route('programs.index')" />
-            @endforelse
-        </div>
-
-        <div class="mt-10">{{ $programs->links() }}</div>
-    </x-site.section>
+        :paginator="$programs"
+        empty-message="برنامه‌ای با این مشخصات ثبت نشده است."
+        :filters="[
+            ['type' => 'search', 'name' => 'q', 'label' => 'عنوان برنامه', 'placeholder' => 'مثلاً هزار...'],
+            ['type' => 'options', 'name' => 'status', 'label' => 'وضعیت', 'all' => 'همه فعال', 'options' => ['ongoing' => 'در حال برگزاری', 'upcoming' => 'پیش‌رو', 'completed' => 'برگزارشده']],
+            ['type' => 'options', 'name' => 'difficulty', 'label' => 'سطح سختی مقصد', 'options' => collect(\App\Enums\DifficultyLevel::cases())->mapWithKeys(fn ($level) => [$level->value => $level->label()])->all()],
+            ['type' => 'select', 'name' => 'region', 'label' => 'منطقه', 'all' => 'همه مناطق', 'options' => $regions->pluck('name', 'slug')->all()],
+            ['type' => 'select', 'name' => 'club', 'label' => 'باشگاه برگزارکننده', 'all' => 'همه باشگاه‌ها', 'options' => $clubs->pluck('name', 'slug')->all()],
+            ['type' => 'toggle', 'name' => 'available', 'label' => 'فقط برنامه‌های دارای ظرفیت خالی'],
+        ]"
+    >
+        @foreach ($programs as $program)
+            <x-cards.program :program="$program" />
+        @endforeach
+    </x-site.listing>
 </x-layouts.site>

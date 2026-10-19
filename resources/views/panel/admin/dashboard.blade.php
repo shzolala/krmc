@@ -156,7 +156,7 @@
                                     <span class="block truncate text-sm font-medium">{{ $user->name }}</span>
                                     <span class="block text-xs text-zinc-500">{{ fa_date($user->created_at) }}</span>
                                 </span>
-                                <flux:badge size="sm" :color="$user->role->badgeColor()">{{ $user->roleLabel() }}</flux:badge>
+                                <x-role-badges :user="$user" />
                             </a>
                         </li>
                     @endforeach

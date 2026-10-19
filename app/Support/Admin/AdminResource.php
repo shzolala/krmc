@@ -3,7 +3,9 @@
 namespace App\Support\Admin;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 abstract class AdminResource
@@ -126,6 +128,12 @@ abstract class AdminResource
         $data = [];
 
         foreach ($this->flatFields() as $field) {
+            if ($field->isImage()) {
+                $data[$field->name] = $this->storeImage($field, $validated[$field->name] ?? null, $record);
+
+                continue;
+            }
+
             $data[$field->name] = $field->castInput($validated[$field->name] ?? null);
         }
 
@@ -139,6 +147,24 @@ abstract class AdminResource
         }
 
         return $data;
+    }
+
+    /**
+     * Stores a newly uploaded image (removing the replaced one); without an upload the current path is kept.
+     */
+    protected function storeImage(Field $field, mixed $upload, ?Model $record): ?string
+    {
+        $current = $record?->getAttribute($field->name);
+
+        if (! $upload instanceof UploadedFile) {
+            return $current;
+        }
+
+        if (filled($current) && ! str_starts_with($current, 'images/') && ! str_starts_with($current, 'http') && ! str_starts_with($current, '/')) {
+            Storage::disk('public')->delete($current);
+        }
+
+        return $upload->store($field->imageDirectory(), 'public');
     }
 
     /**

@@ -10,7 +10,7 @@ use App\Support\MobileNumber;
 use App\Support\Username;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
@@ -23,7 +23,7 @@ class UserController extends Controller
         $role = UserRole::tryFrom((string) $request->query('role', ''));
 
         $users = User::query()
-            ->with('primaryClub:id,name')
+            ->with(['primaryClub:id,name', 'ownedClubs:id,owner_id', 'shops:id,user_id', 'coachProfile:id,user_id,is_leader'])
             ->when($search !== '', function ($query) use ($search): void {
                 $query->where(function ($where) use ($search): void {
                     $where->where('name', 'like', '%'.$search.'%')
@@ -32,21 +32,18 @@ class UserController extends Controller
                         ->orWhere('email', 'like', '%'.$search.'%');
                 });
             })
-            ->when($role !== null, fn ($query) => $query->where('role', $role))
+            ->when($role !== null, fn ($query) => $query->withRole($role))
             ->latest('id')
             ->paginate(20)
             ->withQueryString();
 
-        $counts = User::query()
-            ->select('role', DB::raw('count(*) as total'))
-            ->groupBy('role')
-            ->pluck('total', 'role');
+        $counts = User::countsByRole();
 
         return view('panel.admin.users.index', [
             'users' => $users,
             'roles' => UserRole::cases(),
             'counts' => $counts,
-            'totalUsers' => $counts->sum(),
+            'totalUsers' => User::query()->count(),
             'search' => $search,
             'activeRole' => $role,
         ]);
@@ -54,9 +51,11 @@ class UserController extends Controller
 
     public function create(Request $request): View
     {
+        $user = new User;
+        $user->is_admin = $request->boolean('admin');
+
         return view('panel.admin.users.form', [
-            'user' => new User(['role' => UserRole::tryFrom((string) $request->query('role', '')) ?? UserRole::Climber]),
-            'roles' => UserRole::cases(),
+            'user' => $user,
             'clubs' => Club::query()->orderBy('name')->pluck('name', 'id'),
         ]);
     }
@@ -70,7 +69,9 @@ class UserController extends Controller
             'password' => ['required', 'string', Password::default()],
         ]);
 
-        $user = User::query()->create($validated);
+        $user = new User(Arr::except($validated, 'is_admin'));
+        $user->is_admin = (bool) ($validated['is_admin'] ?? false);
+        $user->save();
 
         return redirect()
             ->route('panel.admin.users.edit', $user)
@@ -79,11 +80,10 @@ class UserController extends Controller
 
     public function edit(User $user): View
     {
-        $user->load(['primaryClub', 'coachProfile.club', 'shop', 'ownedClubs']);
+        $user->load(['primaryClub', 'coachProfile.club', 'shops', 'ownedClubs']);
 
         return view('panel.admin.users.form', [
             'user' => $user,
-            'roles' => UserRole::cases(),
             'clubs' => Club::query()->orderBy('name')->pluck('name', 'id'),
         ]);
     }
@@ -97,17 +97,23 @@ class UserController extends Controller
             'password' => ['nullable', 'string', Password::default()],
         ]);
 
-        if ($user->is($request->user()) && $validated['role'] !== $user->role->value) {
+        if ($user->is($request->user()) && array_key_exists('is_admin', $validated) && ! $validated['is_admin']) {
             return back()
                 ->withInput()
-                ->withErrors(['role' => 'نقش حساب خودتان را نمی‌توانید تغییر دهید.']);
+                ->withErrors(['is_admin' => 'دسترسی مدیریت حساب خودتان را نمی‌توانید بردارید.']);
         }
 
         if (blank($validated['password'] ?? null)) {
             unset($validated['password']);
         }
 
-        $user->update($validated);
+        $user->fill(Arr::except($validated, 'is_admin'));
+
+        if (array_key_exists('is_admin', $validated)) {
+            $user->is_admin = (bool) $validated['is_admin'];
+        }
+
+        $user->save();
 
         return redirect()
             ->route('panel.admin.users.index')
@@ -146,7 +152,7 @@ class UserController extends Controller
             'mobile' => ['required', 'string', MobileNumber::rule(), Rule::unique('users', 'mobile')->ignore($user?->id)],
             'username' => ['required', 'string', 'min:3', 'max:30', Username::rule(), Rule::unique('users', 'username')->ignore($user?->id)],
             'email' => ['nullable', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user?->id)],
-            'role' => ['required', Rule::enum(UserRole::class)],
+            'is_admin' => ['sometimes', 'boolean'],
             'primary_club_id' => ['nullable', 'integer', Rule::exists('clubs', 'id')],
         ];
     }

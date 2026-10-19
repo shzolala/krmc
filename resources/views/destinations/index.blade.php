@@ -1,42 +1,20 @@
-@php
-    $categories = collect(\App\Enums\DestinationCategory::cases())->mapWithKeys(fn ($case) => [$case->value => $case->label()]);
-    $baseQuery = array_filter(['q' => $search, 'region' => $activeRegion]);
-@endphp
-
 <x-layouts.site title="مقاصد" meta-description="قله‌ها و نقاط طبیعی استان کرمان با منطقه، ارتفاع و جاذبه‌های نزدیک.">
-    <x-site.page-hero
-        section="destinations"
-        overlap
-        :crumbs="['مقاصد' => null]"
-        eyebrow="قله‌ها و نقاط طبیعی"
-        title="مقصد بعدی‌تان را پیدا کنید"
-        :description="fa_num($destinations->total()).' مقصد — هر کدام به منطقه کوهستانی خودش وصل است و جاذبه‌های نزدیک را هم نشان می‌دهد.'"
-    />
-
-    <x-site.toolbar
+    <x-site.listing
+        title="مقاصد کوهنوردی"
         :action="route('destinations.index')"
-        placeholder="نام قله یا نقطه طبیعی..."
-        :query="$search"
-        :hidden="['category' => $activeCategory, 'region' => $activeRegion]"
-        :total="$destinations->total()"
-        :filters="collect(['' => 'همه'])->union($categories)->map(fn ($label, $value) => [
-            'label' => $label,
-            'href' => route('destinations.index', array_filter([...$baseQuery, 'category' => $value])),
-            'active' => (string) $activeCategory === (string) $value,
-        ])->values()->push(['label' => 'مناطق کوهستانی', 'href' => route('regions.index'), 'active' => false])->all()"
-    />
-
-    <x-site.section spacing="pt-10">
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            @forelse ($destinations as $destination)
-                <x-cards.destination :destination="$destination" />
-            @empty
-                <x-site.empty class="col-span-full" message="مقصدی با این مشخصات پیدا نشد." :href="route('destinations.index')" />
-            @endforelse
-        </div>
-
-        <div class="mt-10">{{ $destinations->links() }}</div>
-    </x-site.section>
+        :paginator="$destinations"
+        empty-message="مقصدی با این مشخصات پیدا نشد."
+        :filters="[
+            ['type' => 'search', 'name' => 'q', 'label' => 'نام قله یا نقطه طبیعی', 'placeholder' => 'مثلاً هزار...'],
+            ['type' => 'options', 'name' => 'category', 'label' => 'نوع مقصد', 'options' => collect(\App\Enums\DestinationCategory::cases())->mapWithKeys(fn ($case) => [$case->value => $case->label()])->all()],
+            ['type' => 'options', 'name' => 'difficulty', 'label' => 'سطح سختی', 'options' => collect(\App\Enums\DifficultyLevel::cases())->mapWithKeys(fn ($level) => [$level->value => $level->label()])->all()],
+            ['type' => 'select', 'name' => 'region', 'label' => 'منطقه', 'all' => 'همه مناطق', 'options' => $regions->pluck('name', 'slug')->all()],
+        ]"
+    >
+        @foreach ($destinations as $destination)
+            <x-cards.destination :destination="$destination" />
+        @endforeach
+    </x-site.listing>
 
     @if (($mapMarkers ?? collect())->isNotEmpty())
         <x-site.section eyebrow="موقعیت جغرافیایی" title="مقاصد روی نقشه" :href="route('map')" link-label="نقشه کامل">

@@ -39,13 +39,16 @@
                 </div>
             </x-admin.card>
 
-            <x-admin.card title="نقش و دسترسی">
+            <x-admin.card title="دسترسی و باشگاه اصلی">
                 <div class="grid gap-5 md:grid-cols-2">
-                    <flux:select name="role" label="نقش / سطح دسترسی *" :disabled="$isSelf">
-                        @foreach ($roles as $role)
-                            <option value="{{ $role->value }}" @selected(old('role', $user->role?->value) === $role->value)>{{ $role->label() }}</option>
-                        @endforeach
-                    </flux:select>
+                    <div class="flex flex-col justify-center gap-2">
+                        <input type="hidden" name="is_admin" value="{{ $isSelf ? 1 : 0 }}">
+                        <flux:checkbox name="is_admin" value="1" label="دسترسی مدیریت کل سایت" :checked="(bool) old('is_admin', $user->is_admin)" :disabled="$isSelf" />
+                        <p class="text-xs leading-6 text-zinc-500">
+                            حساب مدیر جدا از نقش‌های دیگر است و فقط پنل مدیریت را باز می‌کند.
+                            نقش‌های باشگاه، مربی، سرپرست و فروشگاه از روی پروفایل‌هایی که به این حساب وصل است تعیین می‌شود؛ یک نفر می‌تواند همه را با هم داشته باشد.
+                        </p>
+                    </div>
                     <flux:select name="primary_club_id" label="باشگاه اصلی">
                         <option value="">— بدون باشگاه —</option>
                         @foreach ($clubs as $id => $name)
@@ -54,10 +57,7 @@
                     </flux:select>
                 </div>
                 @if ($isSelf)
-                    <input type="hidden" name="role" value="{{ $user->role->value }}">
-                    <p class="mt-3 text-xs text-zinc-500">نقش حساب خودتان قابل تغییر نیست.</p>
-                @else
-                    <p class="mt-3 text-xs text-zinc-500">نقش‌ها و جزئیات دسترسی هر کدام را در صفحه «نقش‌ها و دسترسی‌ها» ببینید.</p>
+                    <p class="mt-3 text-xs text-zinc-500">دسترسی مدیریت حساب خودتان قابل تغییر نیست.</p>
                 @endif
             </x-admin.card>
 
@@ -73,24 +73,37 @@
 
         <div class="flex flex-col gap-6">
             @if ($isEdit)
-                <x-admin.card title="موجودیت‌های مرتبط" :padded="false">
+                <x-admin.card title="نقش‌ها و پروفایل‌ها" :padded="false">
+                    <div class="border-b border-zinc-100 px-5 py-3 dark:border-zinc-800">
+                        <x-role-badges :user="$user" />
+                    </div>
+                    @php
+                        $linkClass = 'flex items-center gap-2 px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50';
+                        $addClass = 'flex items-center gap-2 px-5 py-3 text-zinc-500 hover:bg-zinc-50 hover:text-brand dark:hover:bg-zinc-800/50';
+                    @endphp
                     <ul class="divide-y divide-zinc-100 text-sm dark:divide-zinc-800">
-                        @forelse ($user->ownedClubs as $club)
-                            <li><a class="flex items-center gap-2 px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50" href="{{ route('panel.admin.resources.edit', ['resource' => 'clubs', 'id' => $club->id]) }}" wire:navigate>
+                        @foreach ($user->ownedClubs as $club)
+                            <li><a class="{{ $linkClass }}" href="{{ route('panel.admin.resources.edit', ['resource' => 'clubs', 'id' => $club->id]) }}" wire:navigate>
                                 <flux:icon.building-office-2 class="size-4 text-zinc-400" /> باشگاه: {{ $club->name }}</a></li>
-                        @empty
-                        @endforelse
+                        @endforeach
                         @if ($user->coachProfile)
-                            <li><a class="flex items-center gap-2 px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50" href="{{ route('panel.admin.resources.edit', ['resource' => 'coaches', 'id' => $user->coachProfile->id]) }}" wire:navigate>
+                            <li><a class="{{ $linkClass }}" href="{{ route('panel.admin.resources.edit', ['resource' => 'coaches', 'id' => $user->coachProfile->id]) }}" wire:navigate>
                                 <flux:icon.academic-cap class="size-4 text-zinc-400" /> پروفایل {{ $user->coachProfile->roleLabel() }}</a></li>
                         @endif
-                        @if ($user->shop)
-                            <li><a class="flex items-center gap-2 px-5 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800/50" href="{{ route('panel.admin.resources.edit', ['resource' => 'shops', 'id' => $user->shop->id]) }}" wire:navigate>
-                                <flux:icon.shopping-bag class="size-4 text-zinc-400" /> فروشگاه: {{ $user->shop->name }}</a></li>
-                        @endif
-                        @if ($user->ownedClubs->isEmpty() && ! $user->coachProfile && ! $user->shop)
-                            <li class="px-5 py-5 text-center text-xs text-zinc-500">این کاربر هنوز پروفایل یا کسب‌وکاری ندارد.</li>
-                        @endif
+                        @foreach ($user->shops as $shop)
+                            <li><a class="{{ $linkClass }}" href="{{ route('panel.admin.resources.edit', ['resource' => 'shops', 'id' => $shop->id]) }}" wire:navigate>
+                                <flux:icon.shopping-bag class="size-4 text-zinc-400" /> فروشگاه: {{ $shop->name }}</a></li>
+                        @endforeach
+                        @unless ($user->isAdmin())
+                            <li><a class="{{ $addClass }}" href="{{ route('panel.admin.resources.create', ['resource' => 'clubs', 'owner_id' => $user->id]) }}" wire:navigate>
+                                <flux:icon.plus class="size-4" /> ثبت باشگاه برای این کاربر</a></li>
+                            @unless ($user->coachProfile)
+                                <li><a class="{{ $addClass }}" href="{{ route('panel.admin.resources.create', ['resource' => 'coaches', 'user_id' => $user->id]) }}" wire:navigate>
+                                    <flux:icon.plus class="size-4" /> ثبت پروفایل مربی / سرپرست</a></li>
+                            @endunless
+                            <li><a class="{{ $addClass }}" href="{{ route('panel.admin.resources.create', ['resource' => 'shops', 'user_id' => $user->id]) }}" wire:navigate>
+                                <flux:icon.plus class="size-4" /> ثبت فروشگاه برای این کاربر</a></li>
+                        @endunless
                     </ul>
                 </x-admin.card>
 
@@ -107,7 +120,7 @@
             @else
                 <x-admin.card title="راهنما">
                     <p class="text-sm leading-7 text-zinc-600 dark:text-zinc-400">
-                        پس از ایجاد کاربر می‌توانید برای نقش‌های باشگاه، مربی، سرپرست و فروشگاه، پروفایل مربوطه را از بخش دایرکتوری ایجاد و به این کاربر متصل کنید.
+                        پس از ایجاد کاربر می‌توانید باشگاه، پروفایل مربی/سرپرست و فروشگاه را به او وصل کنید. هر پروفایل یک نقش می‌دهد و یک نفر می‌تواند چند نقش را با همان شماره موبایل داشته باشد.
                     </p>
                 </x-admin.card>
             @endif

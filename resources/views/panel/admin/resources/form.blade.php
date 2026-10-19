@@ -20,6 +20,7 @@
 
     <form method="POST"
         action="{{ $isEdit ? route('panel.admin.resources.update', ['resource' => $key, 'id' => $record->id]) : route('panel.admin.resources.store', $key) }}"
+        enctype="multipart/form-data"
         class="flex flex-col gap-6">
         @csrf
         @if ($isEdit)

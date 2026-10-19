@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\DestinationCategory;
+use App\Enums\DifficultyLevel;
 use App\Models\Destination;
 use App\Models\MountainRegion;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ class DestinationController extends Controller
     {
         $category = $request->string('category')->toString();
         $search = $request->string('q')->trim()->toString();
+        $difficulty = DifficultyLevel::tryFrom($request->string('difficulty')->toString());
 
         $destinations = Destination::query()
             ->with('mountainRegion')
@@ -38,6 +40,7 @@ class DestinationController extends Controller
                     fn ($regionQuery) => $regionQuery->where('slug', $request->string('region')->toString()),
                 ),
             )
+            ->when($difficulty, fn ($query) => $difficulty->applyTo($query))
             ->orderByDesc('is_featured')
             ->orderByDesc('elevation')
             ->orderBy('name')
@@ -48,6 +51,7 @@ class DestinationController extends Controller
             'destinations' => $destinations,
             'activeCategory' => $category,
             'activeRegion' => $request->string('region')->toString(),
+            'activeDifficulty' => $difficulty,
             'search' => $search,
             'regions' => MountainRegion::query()->orderBy('name')->get(['name', 'slug']),
             'mapMarkers' => Destination::query()

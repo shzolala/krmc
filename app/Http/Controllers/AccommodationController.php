@@ -22,6 +22,8 @@ class AccommodationController extends Controller
                     ->orWhere('city', 'like', "%{$search}%");
             }))
             ->when($validType, fn ($query) => $query->where('type', $validType->value))
+            ->when($request->filled('city'), fn ($query) => $query->where('city', $request->string('city')->toString()))
+            ->when($request->boolean('verified'), fn ($query) => $query->where('is_verified', true))
             ->orderByDesc('is_premium')
             ->orderByDesc('is_featured')
             ->orderBy('name')
@@ -30,8 +32,7 @@ class AccommodationController extends Controller
 
         return view('accommodations.index', [
             'accommodations' => $accommodations,
-            'search' => $search,
-            'activeType' => $validType?->value,
+            'cities' => Accommodation::query()->whereNotNull('city')->distinct()->orderBy('city')->pluck('city', 'city'),
             'mapMarkers' => Accommodation::query()
                 ->withCoordinates()
                 ->get()

@@ -84,6 +84,11 @@ class Destination extends Model
         return $this->hasMany(DestinationGuide::class);
     }
 
+    public function ascents(): HasMany
+    {
+        return $this->hasMany(PeakAscent::class);
+    }
+
     public function programs(): HasMany
     {
         return $this->hasMany(Program::class);

@@ -2,7 +2,8 @@
     $remaining = $program->capacity ? max($program->capacity - $program->registered_count, 0) : null;
     $fill = $program->capacity ? min(100, round($program->registered_count / $program->capacity * 100)) : 0;
     $isOngoing = $program->status === \App\Enums\ProgramStatus::Ongoing;
-    $duration = $program->starts_at && $program->ends_at ? (int) ceil($program->starts_at->diffInDays($program->ends_at, true)) + 1 : null;
+    $duration = $program->starts_at && $program->ends_at ? \App\Support\JalaliDate::days($program->starts_at, $program->ends_at) : null;
+    $mapMarkers = array_values(array_filter([$program->destination?->toMapMarker('destination', route('destinations.show', $program->destination))]));
 @endphp
 
 <x-layouts.site :title="$program->title" :meta-description="$program->summary">
@@ -13,7 +14,7 @@
         :cover="$program->cover_path ?? $program->destination?->cover_path ?? \App\Support\CatalogCover::for('program-'.$program->slug)"
         :seed="'program-'.$program->slug"
         :facts="[
-            ['value' => $program->starts_at ? fa_digits($program->starts_at->format('Y/m/d')) : null, 'label' => 'شروع'],
+            ['value' => $program->starts_at ? fa_date($program->starts_at, monthName: true) : null, 'label' => 'شروع'],
             ['value' => $duration ? fa_num($duration).' روز' : null, 'label' => 'مدت'],
             ['value' => $program->capacity ? fa_num($program->capacity).' نفر' : null, 'label' => 'ظرفیت'],
             ['value' => $remaining !== null ? fa_num($remaining) : null, 'label' => 'جای خالی'],
@@ -47,7 +48,15 @@
         @endif
 
         <x-slot:aside>
-            <x-site.panel title="جزئیات برنامه" icon="calendar">
+            @if ($program->starts_at)
+                <x-site.panel title="زمان برگزاری" icon="calendar">
+                    <x-site.date-range :start="$program->starts_at" :end="$program->ends_at" />
+                </x-site.panel>
+            @endif
+
+            <x-site.map-panel :markers="$mapMarkers" :zoom="11" title="مقصد روی نقشه" />
+
+            <x-site.panel title="جزئیات برنامه" icon="flag">
                 @if ($program->capacity)
                     <div class="mb-4">
                         <div class="flex items-center justify-between text-xs">
@@ -61,7 +70,7 @@
                 @endif
 
                 <x-site.facts :columns="1" :items="[
-                    ['label' => 'زمان', 'value' => $program->starts_at ? fa_digits($program->starts_at->format('Y/m/d')).($program->ends_at ? ' — '.fa_digits($program->ends_at->format('Y/m/d')) : '') : null, 'icon' => 'calendar'],
+                    ['label' => 'زمان', 'value' => $program->starts_at ? fa_date_range($program->starts_at, $program->ends_at) : null, 'icon' => 'calendar'],
                     ['label' => 'مقصد', 'value' => $program->destination?->name, 'icon' => 'mountain'],
                     ['label' => 'باشگاه برگزارکننده', 'value' => $program->club?->name, 'icon' => 'users'],
                     ['label' => 'سرپرست', 'value' => $program->leader?->user?->name, 'icon' => 'user'],

@@ -7,10 +7,13 @@ use App\Models\Attraction;
 use App\Models\Club;
 use App\Models\CoachProfile;
 use App\Models\Destination;
+use App\Models\HeroSlide;
 use App\Models\MountainRegion;
 use App\Models\Program;
 use App\Models\ProgramReport;
 use App\Models\Shelter;
+use App\Models\Sponsor;
+use App\Models\SupportProject;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -29,16 +32,6 @@ class HomeController extends Controller
             ->orderByDesc('is_featured')
             ->orderByDesc('member_count')
             ->limit(4)
-            ->get();
-
-        $popularDestinations = Destination::query()
-            ->with('mountainRegion')
-            ->withCount('guides')
-            ->withReviewStats()
-            ->orderByDesc('is_featured')
-            ->orderByDesc('elevation')
-            ->orderByDesc('view_count')
-            ->limit(8)
             ->get();
 
         $featuredRegions = MountainRegion::query()
@@ -70,8 +63,14 @@ class HomeController extends Controller
         $upcomingPrograms = Program::query()
             ->with(['destination', 'club'])
             ->active()
+            ->orderByRaw("case status when 'ongoing' then 0 else 1 end")
             ->orderBy('starts_at')
-            ->limit(3)
+            ->limit(4)
+            ->get();
+
+        $heroSlides = HeroSlide::query()
+            ->active()
+            ->with(['program', 'destination', 'mountainRegion'])
             ->get();
 
         $latestReports = ProgramReport::query()
@@ -100,17 +99,40 @@ class HomeController extends Controller
             ->limit(6)
             ->get();
 
+        $sponsors = Sponsor::query()
+            ->visible()
+            ->orderByDesc('is_featured')
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
+
+        $sponsorProjects = SupportProject::query()
+            ->withFunding()
+            ->with(['incomes' => fn ($incomes) => $incomes->whereNotNull('sponsor_id')->with('sponsor:id,name,slug,logo_path,status')])
+            ->orderByRaw("status = 'active' desc")
+            ->orderByDesc('is_featured')
+            ->latest('id')
+            ->limit(6)
+            ->get();
+
+        $mapMarkers = Destination::query()
+            ->withCoordinates()
+            ->get()
+            ->map(fn (Destination $destination) => $destination->toMapMarker('destination', route('destinations.show', $destination)))
+            ->merge(
+                Shelter::query()
+                    ->withCoordinates()
+                    ->get()
+                    ->map(fn (Shelter $shelter) => $shelter->toMapMarker('shelter', route('shelters.show', $shelter))),
+            )
+            ->filter()
+            ->values();
+
         return view('home', [
-            'regionOptions' => MountainRegion::query()->orderBy('name')->get(['name', 'slug']),
-            'stats' => [
-                'clubs' => Club::query()->whereNotNull('farakouh_id')->count(),
-                'coaches' => CoachProfile::query()->whereNotNull('farakouh_id')->count(),
-                'programs' => Program::query()->ongoing()->count(),
-                'attractions' => Attraction::query()->count(),
-                'shelters' => Shelter::query()->count(),
-            ],
+            'mapMarkers' => $mapMarkers,
+            'heroSlides' => $heroSlides,
+            'ongoingProgramsCount' => Program::query()->ongoing()->count(),
             'featuredClubs' => $featuredClubs,
-            'popularDestinations' => $popularDestinations,
             'featuredRegions' => $featuredRegions,
             'featuredAttractions' => $featuredAttractions,
             'featuredCoaches' => $featuredCoaches,
@@ -118,6 +140,8 @@ class HomeController extends Controller
             'latestReports' => $latestReports,
             'featuredAccommodations' => $featuredAccommodations,
             'shelters' => $shelters,
+            'sponsors' => $sponsors,
+            'sponsorProjects' => $sponsorProjects,
         ]);
     }
 }

@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-6">
-    <x-admin.page-header title="ویرایش باشگاه" subtitle="اطلاعاتی که در صفحه عمومی باشگاه نمایش داده می‌شود" icon="building-office-2" :back="route('panel.club.dashboard')" back-label="داشبورد" />
+    <x-admin.page-header title="ویرایش باشگاه" subtitle="اطلاعاتی که در صفحه عمومی باشگاه نمایش داده می‌شود" icon="building-office-2" :back="route('panel.club.dashboard', $club)" back-label="داشبورد" />
 
     <form wire:submit="save" class="grid gap-6 lg:grid-cols-3">
         <div class="flex flex-col gap-6 lg:col-span-2">

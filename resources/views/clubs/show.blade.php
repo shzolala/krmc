@@ -16,6 +16,7 @@
             @if ($club->is_premium)<x-badge tone="premium">همکار ویژه</x-badge>@endif
             @if ($club->is_featured)<x-badge tone="featured">ویژه</x-badge>@endif
             @if ($club->is_verified)<x-badge tone="verified">تأییدشده فدراسیون</x-badge>@endif
+            <x-membership-badge :user="$club->owner" on-dark />
         </x-slot:badges>
         <x-slot:meta>
             @if ($club->city)

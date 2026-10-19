@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Enums\ProgramStatus;
 use App\Models\Accommodation;
 use App\Models\Club;
-use App\Models\CoachProfile;
 use App\Models\Destination;
 use App\Models\Program;
 use App\Models\Shelter;
@@ -28,15 +28,39 @@ class HomePageTest extends TestCase
         $response->assertSee('باشگاه کوه نوردی اماوند کرمان', false);
         $response->assertSee('هزار', false);
         $response->assertDontSee('باشگاه فعال', false);
-        $response->assertSee(fa_num(Club::query()->whereNotNull('farakouh_id')->count()), false);
-        $response->assertSee(fa_num(CoachProfile::query()->whereNotNull('farakouh_id')->count()), false);
         $response->assertSee(fa_num(Program::query()->ongoing()->count()), false);
         $response->assertSee('برنامه در حال برگزاری', false);
         $response->assertSee('پناهگاه‌های کرمان', false);
         $response->assertSee('اقامتگاه‌ها', false);
         $response->assertSee('مربیان و سرپرستان', false);
-        $response->assertSee('انتخاب باشگاه‌های برجسته کوهنوردی', false);
-        $response->assertSee('مشاهده همه باشگاه‌ها', false);
+        $response->assertSee('باشگاه‌ها و سرپرستان تأییدشده', false);
+        $response->assertSee('همه باشگاه‌ها', false);
+        $response->assertDontSee('نردبان ارتفاع قله‌ها', false);
+        $response->assertDontSee('سطح شما کدام است؟', false);
+        $response->assertDontSee('مقصدتان را فیلتر کنید', false);
+        $response->assertDontSee('جاذبه گردشگری', false);
+    }
+
+    public function test_destinations_can_be_filtered_by_difficulty_level(): void
+    {
+        $this->seed(PlatformDemoSeeder::class);
+
+        $response = $this->get(route('destinations.index', ['difficulty' => 'hard']));
+
+        $response->assertOk();
+        $response->assertViewHas('destinations', function ($destinations): bool {
+            return $destinations->count() > 0
+                && $destinations->every(fn (Destination $destination): bool => in_array($destination->difficultyGrade(), [4, 5], true));
+        });
+    }
+
+    public function test_unknown_difficulty_level_is_ignored(): void
+    {
+        $this->seed(PlatformDemoSeeder::class);
+
+        $this->get(route('destinations.index', ['difficulty' => 'impossible']))
+            ->assertOk()
+            ->assertViewHas('activeDifficulty', null);
     }
 
     public function test_directory_pages_are_reachable(): void
@@ -79,5 +103,35 @@ class HomePageTest extends TestCase
         $this->assertNotNull(Shop::query()->where('slug', 'kouhestan-kerman')->value('latitude'));
         $this->assertNotNull(Accommodation::query()->where('slug', 'eco-hezar')->value('longitude'));
         $this->assertNotNull(Shelter::query()->where('slug', 'shelter-joopar')->value('latitude'));
+    }
+
+    public function test_home_page_lists_ongoing_then_soonest_upcoming_programs_with_capacity(): void
+    {
+        Program::factory()->create(['title' => 'برنامه دیرتر', 'starts_at' => now()->addDays(20), 'capacity' => 20, 'registered_count' => 3, 'status' => ProgramStatus::Upcoming]);
+        Program::factory()->create(['title' => 'برنامه زودتر', 'starts_at' => now()->addDays(4), 'capacity' => 20, 'registered_count' => 18, 'status' => ProgramStatus::Upcoming]);
+        Program::factory()->ongoing()->create(['title' => 'برنامه در جریان']);
+        Program::factory()->create(['title' => 'برنامه برگزارشده', 'status' => ProgramStatus::Completed]);
+
+        $html = $this->get(route('home'))->assertOk()->getContent();
+
+        $this->assertStringContainsString('برنامه‌های پیش‌رو', $html);
+        $this->assertStringContainsString('۲ جای خالی', $html);
+        $this->assertStringNotContainsString('برنامه برگزارشده', $html);
+        $this->assertLessThan(strpos($html, 'برنامه زودتر'), strpos($html, 'برنامه در جریان'));
+        $this->assertLessThan(strpos($html, 'برنامه دیرتر'), strpos($html, 'برنامه زودتر'));
+    }
+
+    public function test_home_page_groups_regions_attractions_and_accommodations_in_tabs_below_the_map(): void
+    {
+        $this->seed(PlatformDemoSeeder::class);
+
+        $html = $this->get(route('home'))->assertOk()->getContent();
+
+        $this->assertStringContainsString('مناطق، جاذبه‌ها و اقامتگاه‌ها', $html);
+        $this->assertStringContainsString('tab-explore-regions', $html);
+        $this->assertStringContainsString('tab-explore-attractions', $html);
+        $this->assertStringContainsString('tab-explore-accommodations', $html);
+        $this->assertGreaterThan(strpos($html, 'مسیرتان را قبل از حرکت ببینید'), strpos($html, 'tab-explore-regions'));
+        $this->assertStringNotContainsString('باشگاه، مربی یا عضو پنل هستید', $html);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Enums\UserRole;
 use App\Livewire\Panel\EditClubProfile;
 use App\Livewire\Panel\EditCoachProfile;
 use App\Livewire\Panel\EditShopProfile;
@@ -24,7 +23,6 @@ class PanelProfileUpdateTest extends TestCase
             'name' => 'نام قبلی',
             'mobile' => '09120000011',
             'username' => 'old-user',
-            'role' => UserRole::Climber,
         ]);
 
         $this->actingAs($user)
@@ -46,14 +44,14 @@ class PanelProfileUpdateTest extends TestCase
 
     public function test_club_owner_can_update_club_profile(): void
     {
-        $owner = User::factory()->create(['role' => UserRole::Club]);
+        $owner = User::factory()->create();
         $club = Club::factory()->create([
             'owner_id' => $owner->id,
             'name' => 'باشگاه قدیم',
         ]);
 
         Livewire::actingAs($owner)
-            ->test(EditClubProfile::class)
+            ->test(EditClubProfile::class, ['club' => $club])
             ->set('name', 'باشگاه جدید')
             ->set('summary', 'خلاصه به‌روز')
             ->set('description', 'توضیحات کامل باشگاه برای به‌روزرسانی تست.')
@@ -68,7 +66,7 @@ class PanelProfileUpdateTest extends TestCase
 
     public function test_coach_can_update_coach_profile(): void
     {
-        $user = User::factory()->create(['role' => UserRole::Coach]);
+        $user = User::factory()->create();
         $profile = CoachProfile::factory()->create([
             'user_id' => $user->id,
             'specialty' => 'قدیمی',
@@ -89,14 +87,14 @@ class PanelProfileUpdateTest extends TestCase
 
     public function test_shop_owner_can_update_shop_profile(): void
     {
-        $user = User::factory()->create(['role' => UserRole::Shop]);
+        $user = User::factory()->create();
         $shop = Shop::factory()->create([
             'user_id' => $user->id,
             'name' => 'فروشگاه قدیم',
         ]);
 
         Livewire::actingAs($user)
-            ->test(EditShopProfile::class)
+            ->test(EditShopProfile::class, ['shop' => $shop])
             ->set('name', 'فروشگاه جدید')
             ->set('summary', 'خلاصه فروشگاه جدید')
             ->set('city', 'کرمان')

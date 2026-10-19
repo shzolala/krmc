@@ -3,10 +3,9 @@
 namespace App\Livewire\Panel;
 
 use App\Models\Club;
-use App\Models\User;
 use Flux\Flux;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -35,14 +34,9 @@ class EditClubProfile extends Component
 
     public ?int $founded_year = null;
 
-    public function mount(): void
+    public function mount(Club $club): void
     {
-        /** @var User $user */
-        $user = Auth::user();
-
-        $club = Club::query()->where('owner_id', $user->id)->first();
-
-        abort_unless($club !== null, 404);
+        Gate::authorize('update', $club);
 
         $this->clubId = $club->id;
         $this->name = $club->name;
@@ -58,13 +52,9 @@ class EditClubProfile extends Component
 
     public function save(): void
     {
-        /** @var User $user */
-        $user = Auth::user();
+        $club = Club::query()->findOrFail($this->clubId);
 
-        $club = Club::query()
-            ->whereKey($this->clubId)
-            ->where('owner_id', $user->id)
-            ->firstOrFail();
+        Gate::authorize('update', $club);
 
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:160'],

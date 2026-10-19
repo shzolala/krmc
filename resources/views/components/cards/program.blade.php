@@ -1,5 +1,6 @@
 @props([
     'program',
+    'showCapacity' => true,
 ])
 
 @php
@@ -30,7 +31,17 @@
     </x-slot:badges>
 
     <div class="mt-auto pt-5">
-        @if ($program->capacity)
+        @if ($grade = $program->destination?->difficultyGrade())
+            <x-site.difficulty-meter :grade="$grade" class="mb-3" />
+        @endif
+        @if (! $showCapacity)
+            @if ($program->registered_count > 0)
+                <p class="flex items-center gap-1.5 text-xs font-semibold text-navy-900">
+                    <x-site.icon name="users" class="h-4 w-4 text-accent" />
+                    {{ fa_num($program->registered_count) }} نفر ثبت‌نام کرده‌اند
+                </p>
+            @endif
+        @elseif ($program->capacity)
             <div class="flex items-center justify-between text-xs">
                 <span class="font-semibold text-navy-900">{{ fa_num($remaining) }} جای خالی</span>
                 <span class="text-muted">از {{ fa_num($program->capacity) }} نفر</span>
@@ -46,7 +57,7 @@
                 @else
                     در جریان از {{ fa_num((int) ceil($program->starts_at->diffInDays(now(), true))) }} روز پیش
                 @endif
-                · {{ fa_digits($program->starts_at->format('Y/m/d')) }}
+                · {{ fa_date_range($program->starts_at, $program->ends_at) }}
             </p>
         @endif
     </div>

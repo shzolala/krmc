@@ -16,7 +16,6 @@ use App\Models\Shop;
 use App\Models\User;
 use App\Support\Admin\AdminResources;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Modules\Review\Enums\ReviewStatus;
 use Modules\Review\Models\Review;
@@ -27,10 +26,7 @@ class DashboardController extends Controller
     {
         $pendingReviews = Review::query()->where('status', ReviewStatus::Pending)->count();
 
-        $roleCounts = User::query()
-            ->select('role', DB::raw('count(*) as total'))
-            ->groupBy('role')
-            ->pluck('total', 'role');
+        $roleCounts = User::countsByRole();
 
         $inventory = collect(AdminResources::all())->map(fn ($resource): array => [
             'resource' => $resource,
@@ -58,7 +54,7 @@ class DashboardController extends Controller
             ]),
             'signups' => $this->signupsByDay(14),
             'inventory' => $inventory,
-            'recentUsers' => User::query()->latest()->limit(6)->get(),
+            'recentUsers' => User::query()->with(['ownedClubs:id,owner_id', 'shops:id,user_id', 'coachProfile:id,user_id,is_leader'])->latest()->limit(6)->get(),
             'pendingReviewList' => Review::query()
                 ->with(['user:id,name', 'reviewable'])
                 ->where('status', ReviewStatus::Pending)

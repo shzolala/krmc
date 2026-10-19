@@ -1,6 +1,6 @@
 <x-layouts::auth title="ورود">
     <div class="flex flex-col gap-6">
-        <x-auth-header title="ورود به پنل" description="با شماره موبایل و رمز عبور وارد شوید. به‌زودی ورود با OTP پیامکی هم فعال می‌شود." />
+        <x-auth-header title="ورود به حساب کاربری" description="برای دسترسی به پنل، شماره موبایل و رمز عبور خود را وارد نمایید." />
 
         <x-auth-session-status class="text-center" :status="session('status')" />
 
@@ -31,32 +31,14 @@
 
             <flux:checkbox name="remember" label="مرا به خاطر بسپار" :checked="old('remember')" />
 
-            <flux:button variant="primary" type="submit" class="w-full" data-test="login-button">
+            <flux:button variant="primary" type="submit" class="w-full !bg-navy-900 !text-white hover:!bg-navy-700" data-test="login-button">
                 ورود
             </flux:button>
         </form>
 
-        @if (($demoAccounts ?? collect())->isNotEmpty())
-            <div class="space-y-3 border-t border-zinc-200 pt-6 dark:border-zinc-700">
-                <flux:heading size="sm">ورود سریع تست</flux:heading>
-                <flux:text class="text-sm">رمز همه اکانت‌ها: <span dir="ltr" class="font-mono">password</span></flux:text>
-                <form method="POST" action="{{ route('dev.switch-demo-account') }}">
-                    @csrf
-                    <flux:select name="mobile" label="انتخاب نقش / پنل" onchange="this.form.submit()">
-                        <option value="" selected disabled>انتخاب کنید…</option>
-                        @foreach ($demoAccounts as $account)
-                            <option value="{{ $account['mobile'] }}">
-                                {{ $account['label'] }} — {{ $account['mobile'] }} ({{ '@'.$account['username'] }})
-                            </option>
-                        @endforeach
-                    </flux:select>
-                </form>
-            </div>
-        @endif
-
-        <div class="space-x-1 text-center text-sm text-zinc-600 rtl:space-x-reverse dark:text-zinc-400">
-            <span>حساب ندارید؟</span>
-            <flux:link :href="route('register')" wire:navigate>ثبت‌نام</flux:link>
+        <div class="space-x-1 text-center text-sm text-muted rtl:space-x-reverse">
+            <span>هنوز عضو نیستید؟</span>
+            <a href="{{ route('register') }}" class="font-bold text-navy-900 underline decoration-brand decoration-2 underline-offset-4 hover:text-navy-700" wire:navigate>ساخت حساب</a>
         </div>
     </div>
 </x-layouts::auth>

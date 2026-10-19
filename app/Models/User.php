@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\UserRole;
+use App\Models\Concerns\HasRoles;
 use App\Support\PanelRegistry;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -16,12 +16,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 
-#[Fillable(['name', 'mobile', 'username', 'email', 'password', 'role', 'primary_club_id'])]
+#[Fillable(['name', 'mobile', 'username', 'email', 'password', 'primary_club_id'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, HasRoles, Notifiable;
 
     /**
      * @return array<string, string>
@@ -31,7 +31,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'role' => UserRole::class,
+            'is_admin' => 'boolean',
         ];
     }
 
@@ -50,24 +50,40 @@ class User extends Authenticatable
         return $this->hasOne(CoachProfile::class);
     }
 
-    public function shop(): HasOne
+    public function shops(): HasMany
     {
-        return $this->hasOne(Shop::class);
+        return $this->hasMany(Shop::class);
+    }
+
+    public function peakAscents(): HasMany
+    {
+        return $this->hasMany(PeakAscent::class);
+    }
+
+    public function membershipDues(): HasMany
+    {
+        return $this->hasMany(MembershipDue::class);
+    }
+
+    /**
+     * The highest-level plan among the member's fully paid, unexpired memberships; it drives the level badge.
+     */
+    public function currentMembershipPlan(): ?MembershipPlan
+    {
+        $dues = $this->relationLoaded('membershipDues')
+            ? $this->membershipDues
+            : $this->membershipDues()->with('plan')->withSum('payments', 'amount')->get();
+
+        return $dues
+            ->filter(fn (MembershipDue $due): bool => $due->plan !== null && $due->isActive())
+            ->sortByDesc(fn (MembershipDue $due): int => $due->plan->level)
+            ->first()
+            ?->plan;
     }
 
     public function ownedClubs(): HasMany
     {
         return $this->hasMany(Club::class, 'owner_id');
-    }
-
-    public function isAdmin(): bool
-    {
-        return $this->role === UserRole::Admin;
-    }
-
-    public function hasRole(UserRole ...$roles): bool
-    {
-        return in_array($this->role, $roles, true);
     }
 
     public function panelHomeRoute(): string
@@ -78,11 +94,6 @@ class User extends Authenticatable
     public function panelPath(): string
     {
         return PanelRegistry::pathFor($this);
-    }
-
-    public function roleLabel(): string
-    {
-        return $this->role->label();
     }
 
     public function publicProfileUrl(): string

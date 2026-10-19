@@ -11,7 +11,7 @@
         default => 'شب بخیر',
     };
     $hasPrograms = $d['programs']->isNotEmpty();
-    $showProgramsCard = ! $d['emptyMessage'] && ! in_array($role, [UserRole::Shop], true);
+    $showProgramsCard = ! in_array($role, [UserRole::Shop], true);
     $reviewsAreOwn = $role === UserRole::Climber;
 @endphp
 
@@ -36,6 +36,7 @@
                         @if ($d['entityLabel'] && $d['entityLabel'] !== $role->label())
                             <span class="text-white/80">{{ $d['entityLabel'] }}</span>
                         @endif
+                        <x-membership-badge :user="$user" on-dark class="!px-3 !py-1 !text-xs" />
                         @foreach ($d['badges'] as $badge)
                             <flux:badge size="sm" :color="$badge['color']">{{ $badge['label'] }}</flux:badge>
                         @endforeach
@@ -58,18 +59,23 @@
         </div>
     </section>
 
-    @if ($d['emptyMessage'])
-        <x-admin.card>
-            <div class="flex items-start gap-4">
-                <span class="flex size-11 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300">
-                    <flux:icon.exclamation-triangle class="size-6" />
-                </span>
-                <div>
-                    <h2 class="font-bold">پروفایل شما هنوز ساخته نشده است</h2>
-                    <p class="mt-1 text-sm leading-7 text-zinc-600 dark:text-zinc-400">{{ $d['emptyMessage'] }}</p>
-                </div>
-            </div>
-        </x-admin.card>
+    @if ($d['siblings'] || $user->roles()->count() > 1)
+        <nav class="-mt-2 flex flex-wrap items-center gap-2 text-xs" aria-label="جابه‌جایی بین بخش‌ها">
+            @if ($user->roles()->count() > 1)
+                <a href="{{ route('panel.home') }}" wire:navigate class="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5 font-medium text-zinc-600 transition hover:border-brand hover:text-brand dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300">
+                    <flux:icon.squares-2x2 class="size-3.5" /> همه بخش‌های من
+                </a>
+            @endif
+            @foreach ($d['siblings'] as $sibling)
+                <a href="{{ $sibling['href'] }}" wire:navigate @class([
+                    'inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 font-medium transition',
+                    'border-navy-900 bg-navy-900 text-white dark:border-brand dark:bg-brand dark:text-zinc-900' => $sibling['current'],
+                    'border-zinc-200 bg-white text-zinc-600 hover:border-brand hover:text-brand dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300' => ! $sibling['current'],
+                ])>
+                    <flux:icon :name="$role->icon()" class="size-3.5" /> {{ $sibling['label'] }}
+                </a>
+            @endforeach
+        </nav>
     @endif
 
     {{-- Stats --}}

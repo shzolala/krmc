@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Enums\UserRole;
 use App\Models\Club;
 use App\Models\CoachProfile;
 use App\Models\User;
@@ -76,7 +75,6 @@ class KermanFarakouhSeeder extends Seeder
                 [
                     'name' => $managerName,
                     'mobile' => $this->mobileFromId(200000000 + $farakouhId),
-                    'role' => UserRole::Club,
                     'password' => 'password',
                 ]
             );
@@ -145,7 +143,6 @@ class KermanFarakouhSeeder extends Seeder
             [
                 'name' => $name,
                 'mobile' => $this->mobileFromId(300000000 + $farakouhId),
-                'role' => UserRole::Coach,
                 'primary_club_id' => $club?->id,
                 'password' => 'password',
             ]

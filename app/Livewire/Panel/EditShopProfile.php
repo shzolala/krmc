@@ -3,10 +3,9 @@
 namespace App\Livewire\Panel;
 
 use App\Models\Shop;
-use App\Models\User;
 use Flux\Flux;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -25,14 +24,9 @@ class EditShopProfile extends Component
 
     public string $address = '';
 
-    public function mount(): void
+    public function mount(Shop $shop): void
     {
-        /** @var User $user */
-        $user = Auth::user();
-
-        $shop = Shop::query()->where('user_id', $user->id)->first();
-
-        abort_unless($shop !== null, 404);
+        Gate::authorize('update', $shop);
 
         $this->shopId = $shop->id;
         $this->name = $shop->name;
@@ -43,13 +37,9 @@ class EditShopProfile extends Component
 
     public function save(): void
     {
-        /** @var User $user */
-        $user = Auth::user();
+        $shop = Shop::query()->findOrFail($this->shopId);
 
-        $shop = Shop::query()
-            ->whereKey($this->shopId)
-            ->where('user_id', $user->id)
-            ->firstOrFail();
+        Gate::authorize('update', $shop);
 
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:160'],

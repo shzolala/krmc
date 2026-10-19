@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\FundExpenseCategory;
+use App\Enums\FundIncomeSource;
 use App\Enums\LodgingType;
 use App\Enums\ProgramStatus;
 use App\Enums\UserRole;
@@ -10,12 +12,20 @@ use App\Models\Club;
 use App\Models\CoachProfile;
 use App\Models\Destination;
 use App\Models\DestinationGuide;
+use App\Models\FinanceLedgerAccess;
+use App\Models\FundCampaign;
+use App\Models\FundExpense;
+use App\Models\FundIncome;
+use App\Models\MembershipDue;
+use App\Models\MembershipPlan;
 use App\Models\Program;
 use App\Models\ProgramReport;
 use App\Models\Shelter;
 use App\Models\Shop;
 use App\Models\User;
 use App\Support\CatalogCover;
+use App\Support\JalaliDate;
+use App\Support\PanelRegistry;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -26,32 +36,22 @@ class PlatformDemoSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::factory()->create([
+        $admin = User::factory()->admin()->create([
             'name' => 'مدیر سامانه',
             'mobile' => '09120000001',
             'username' => 'admin',
-            'role' => UserRole::Admin,
         ]);
 
         $clubOwner = User::factory()->create([
             'name' => 'مدیر باشگاه نمونه',
             'mobile' => '09120000002',
             'username' => 'club-kerman',
-            'role' => UserRole::Club,
         ]);
 
         $shopOwner = User::factory()->create([
             'name' => 'مدیر فروشگاه نمونه',
             'mobile' => '09120000003',
             'username' => 'shop-kouhestan',
-            'role' => UserRole::Shop,
-        ]);
-
-        User::factory()->create([
-            'name' => 'نماینده ارگان',
-            'mobile' => '09120000004',
-            'username' => 'organization',
-            'role' => UserRole::Organization,
         ]);
 
         $this->call([
@@ -101,7 +101,6 @@ class PlatformDemoSeeder extends Seeder
                 'name' => $person['name'],
                 'mobile' => $person['mobile'],
                 'username' => $person['slug'],
-                'role' => $person['leader'] ? UserRole::Leader : UserRole::Coach,
                 'primary_club_id' => $club->id,
             ]);
 
@@ -360,8 +359,98 @@ class PlatformDemoSeeder extends Seeder
             'name' => 'کوهنورد نمونه',
             'mobile' => '09120000010',
             'username' => 'climber',
-            'role' => UserRole::Climber,
             'primary_club_id' => $primaryClub?->id ?? $clubs->first()?->id,
         ]);
+
+        $this->seedMultiRoleMember($primaryClub);
+
+        $this->seedFund($clubOwner, $shopOwner);
+        $this->call(ClimbBadgeSeeder::class);
+    }
+
+    /**
+     * One person who runs a club, a shop and teaches as a coach, all behind a single mobile number.
+     */
+    private function seedMultiRoleMember(?Club $primaryClub): void
+    {
+        $member = User::factory()->create([
+            'name' => 'رضا کرمانی (باشگاه، فروشگاه و مربی)',
+            'mobile' => PanelRegistry::MULTI_ROLE_DEMO_MOBILE,
+            'username' => 'multi-role',
+            'primary_club_id' => $primaryClub?->id,
+        ]);
+
+        Club::factory()->create([
+            'owner_id' => $member->id,
+            'name' => 'باشگاه کوهنوردی رضا',
+            'slug' => 'reza-mountaineering-club',
+            'is_verified' => true,
+        ]);
+
+        Shop::query()->create([
+            'user_id' => $member->id,
+            'name' => 'فروشگاه تجهیزات رضا',
+            'slug' => 'reza-gear',
+            'summary' => 'تجهیزات کوهنوردی و لوازم اردو.',
+            'city' => 'کرمان',
+            'address' => 'کرمان، خیابان مطهری',
+            'is_verified' => true,
+        ]);
+
+        CoachProfile::query()->create([
+            'user_id' => $member->id,
+            'club_id' => $primaryClub?->id,
+            'slug' => 'reza-kermani',
+            'headline' => 'مربی کوهنوردی · مدیر باشگاه و فروشگاه',
+            'bio' => 'نمونه‌ای از یک حساب با چند نقش: مدیر باشگاه، صاحب فروشگاه و مربی در یک پنل.',
+            'specialty' => 'کوهنوردی فنی',
+            'experience_years' => 12,
+            'is_verified' => true,
+            'is_leader' => false,
+        ]);
+    }
+
+    private function seedFund(User $clubOwner, User $shopOwner): void
+    {
+        $campaign = FundCampaign::factory()->create([
+            'title' => 'کمپین مربی‌پروری کرمان',
+            'description' => 'تأمین هزینه دوره‌های مربیگری و ارتقای مربیان جوان استان.',
+            'goal_amount' => 100_000_000,
+        ]);
+
+        $this->call([MembershipPlanSeeder::class, ProjectSeeder::class, HeroSlideSeeder::class]);
+
+        $period = (string) JalaliDate::currentYear();
+
+        foreach ([[$clubOwner, 'باشگاه حامی', 1.0], [$shopOwner, 'فروشگاه همکار', 0.4]] as [$member, $planName, $share]) {
+            $plan = MembershipPlan::query()->where('name', $planName)->firstOrFail();
+            $paid = (int) round($plan->termPrice(12)['final'] * $share);
+            $term = $plan->termPrice(12);
+            $due = MembershipDue::factory()->for($member)->create([
+                'term_months' => 12,
+                'discount_percent' => $term['discount'],
+                'starts_on' => now()->subDays(20)->toDateString(),
+                'ends_on' => now()->addDays(345)->toDateString(),
+                'period' => $period,
+                'title' => 'حق عضویت '.$period.' — '.$member->name,
+                'membership_plan_id' => $plan->id,
+                'amount' => $term['final'],
+            ]);
+
+            FundIncome::factory()->create([
+                'source' => FundIncomeSource::Membership,
+                'amount' => $paid,
+                'user_id' => $member->id,
+                'membership_due_id' => $due->id,
+                'payer_name' => null,
+            ]);
+        }
+
+        FundIncome::factory()->create(['source' => FundIncomeSource::Sponsorship, 'amount' => 20_000_000, 'payer_name' => 'اسپانسر نمونه', 'fund_campaign_id' => $campaign->id]);
+
+        FundExpense::factory()->create(['title' => 'کارگاه مربیگری درجه ۳', 'category' => FundExpenseCategory::CoachTraining, 'amount' => 8_000_000, 'fund_campaign_id' => $campaign->id]);
+        FundExpense::factory()->create(['title' => 'نقشه و تابلوهای مسیر جوپار', 'category' => FundExpenseCategory::TourismDevelopment, 'amount' => 4_000_000]);
+
+        FinanceLedgerAccess::factory()->create(['role' => UserRole::Club, 'note' => 'باشگاه‌ها ریز مالی را می‌بینند']);
     }
 }

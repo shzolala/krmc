@@ -4,7 +4,6 @@ namespace App\Actions\Fortify;
 
 use App\Concerns\PasswordValidationRules;
 use App\Concerns\ProfileValidationRules;
-use App\Enums\UserRole;
 use App\Models\User;
 use App\Support\MobileNumber;
 use App\Support\Username;
@@ -33,7 +32,6 @@ class CreateNewUser implements CreatesNewUsers
             'mobile' => $input['mobile'],
             'username' => $input['username'],
             'password' => $input['password'],
-            'role' => UserRole::Climber,
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\AttractionType;
 use App\Models\Attraction;
+use App\Models\MountainRegion;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -22,6 +23,7 @@ class AttractionController extends Controller
                     ->orWhere('city', 'like', "%{$search}%");
             }))
             ->when($validType, fn ($query) => $query->where('type', $validType->value))
+            ->when($request->filled('region'), fn ($query) => $query->whereHas('mountainRegion', fn ($region) => $region->where('slug', $request->string('region')->toString())))
             ->withCount('destinations')
             ->withReviewStats()
             ->orderByDesc('is_featured')
@@ -31,8 +33,7 @@ class AttractionController extends Controller
 
         return view('attractions.index', [
             'attractions' => $attractions,
-            'search' => $search,
-            'activeType' => $validType?->value,
+            'regions' => MountainRegion::query()->whereHas('attractions')->orderBy('name')->pluck('name', 'slug'),
             'mapMarkers' => Attraction::query()
                 ->withCoordinates()
                 ->get()

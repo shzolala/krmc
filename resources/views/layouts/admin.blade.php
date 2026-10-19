@@ -1,12 +1,13 @@
 @props(['title' => null])
 
 @php
-    use App\Support\Admin\AdminResources;
-    use Modules\Review\Models\Review;
+    use App\Support\Admin\AdminNavigation;
 
     $user = auth()->user();
-    $pendingReviews = Review::query()->pending()->count();
-    $current = request()->route('resource');
+    $navGroups = AdminNavigation::groups();
+    $searchIndex = collect($navGroups)
+        ->flatMap(fn (array $group) => collect($group['items'])->map(fn (array $item): array => [...$item, 'group' => $group['heading']]))
+        ->values();
 @endphp
 
 <!DOCTYPE html>
@@ -15,6 +16,9 @@
         @include('partials.head', ['title' => $title])
     </head>
     <body class="min-h-screen bg-zinc-100 dark:bg-zinc-950">
+        <a href="#main-content" class="sr-only z-50 rounded-md bg-white px-4 py-2 text-sm font-medium shadow focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:outline-2 focus:outline-brand">
+            پرش به محتوای اصلی
+        </a>
         <x-admin.impersonation-banner />
 
         <flux:sidebar sticky collapsible="mobile" class="border-e border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
@@ -31,56 +35,62 @@
                 <flux:sidebar.collapse class="lg:hidden" />
             </flux:sidebar.header>
 
-            <flux:sidebar.nav>
-                <flux:sidebar.item icon="squares-2x2" :href="route('panel.admin.dashboard')" :current="request()->routeIs('panel.admin.dashboard')" wire:navigate>
-                    داشبورد
-                </flux:sidebar.item>
-
-                <flux:sidebar.group heading="کاربران و دسترسی" class="grid">
-                    <flux:sidebar.item icon="users" :href="route('panel.admin.users.index')" :current="request()->routeIs('panel.admin.users.*')" wire:navigate>
-                        کاربران
-                    </flux:sidebar.item>
-                    <flux:sidebar.item icon="key" :href="route('panel.admin.roles')" :current="request()->routeIs('panel.admin.roles')" wire:navigate>
-                        نقش‌ها و دسترسی‌ها
-                    </flux:sidebar.item>
-                    <flux:sidebar.item
-                        icon="chat-bubble-left-right"
-                        :href="route('panel.admin.reviews')"
-                        :current="request()->routeIs('panel.admin.reviews')"
-                        :badge="$pendingReviews > 0 ? fa_num($pendingReviews) : null"
-                        badge-color="amber"
-                        wire:navigate
+            <div
+                x-data="{ query: '', items: @js($searchIndex), get results() { const q = this.query.trim().toLowerCase(); return q ? this.items.filter(i => (i.label + ' ' + i.group).toLowerCase().includes(q)) : []; } }"
+                x-on:keydown.window.slash="if (! ['INPUT', 'TEXTAREA', 'SELECT'].includes($event.target.tagName) && ! $event.target.isContentEditable) { $event.preventDefault(); $refs.search.focus(); }"
+                class="flex min-h-0 flex-1 flex-col gap-2"
+            >
+                <div class="relative">
+                    <label for="admin-nav-search" class="sr-only">جستجو در منوی مدیریت</label>
+                    <flux:icon.magnifying-glass class="pointer-events-none absolute start-2.5 top-1/2 size-4 -translate-y-1/2 text-zinc-400" />
+                    <input
+                        id="admin-nav-search" x-ref="search" x-model="query" type="search" autocomplete="off"
+                        placeholder="جستجو در منو ( / )"
+                        x-on:keydown.escape="query = ''; $el.blur()"
+                        class="h-9 w-full rounded-lg border border-zinc-200 bg-zinc-50 ps-9 pe-3 text-sm placeholder:text-zinc-400 focus:border-navy-700 focus:bg-white focus:outline-2 focus:outline-offset-1 focus:outline-brand dark:border-zinc-700 dark:bg-zinc-800"
                     >
-                        نظرات کاربران
-                    </flux:sidebar.item>
-                </flux:sidebar.group>
+                </div>
 
-                @foreach (AdminResources::grouped() as $group => $resources)
-                    <flux:sidebar.group :heading="AdminResources::GROUPS[$group]" class="grid">
-                        @foreach ($resources as $resource)
-                            <flux:sidebar.item
-                                :icon="$resource->icon()"
-                                :href="route('panel.admin.resources.index', $resource->key())"
-                                :current="$current === $resource->key()"
-                                wire:navigate
-                            >
-                                {{ $resource->plural() }}
-                            </flux:sidebar.item>
-                        @endforeach
-                    </flux:sidebar.group>
-                @endforeach
+                <div x-show="query.trim() !== ''" style="display: none" role="region" aria-live="polite" aria-label="نتایج جستجو در منو" class="flex flex-col gap-0.5 overflow-y-auto">
+                    <template x-for="item in results" :key="item.href">
+                        <a :href="item.href" wire:navigate class="flex flex-col rounded-lg px-3 py-2 text-sm hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-brand dark:hover:bg-zinc-800">
+                            <span class="font-medium" x-text="item.label"></span>
+                            <span class="text-xs text-zinc-500" x-text="item.group"></span>
+                        </a>
+                    </template>
+                    <p x-show="results.length === 0" class="px-3 py-4 text-center text-sm text-zinc-500">موردی پیدا نشد.</p>
+                </div>
 
-                <flux:sidebar.group heading="سایت" class="grid">
-                    <flux:sidebar.item icon="globe-alt" :href="route('home')" target="_blank">
-                        مشاهده سایت
+                <flux:sidebar.nav x-show="query.trim() === ''" aria-label="منوی مدیریت" class="overflow-y-auto">
+                    <flux:sidebar.item icon="squares-2x2" :href="route('panel.admin.dashboard')" :current="request()->routeIs('panel.admin.dashboard')" wire:navigate>
+                        داشبورد
                     </flux:sidebar.item>
-                    <flux:sidebar.item icon="cog-6-tooth" :href="route('profile.edit')" :current="request()->routeIs('profile.edit') || request()->routeIs('security.edit') || request()->routeIs('appearance.edit')" wire:navigate>
-                        تنظیمات حساب
-                    </flux:sidebar.item>
-                </flux:sidebar.group>
-            </flux:sidebar.nav>
 
-            <flux:spacer />
+                    @foreach ($navGroups as $group)
+                        <flux:sidebar.group expandable :expanded="$group['expanded']" :heading="$group['heading']" :icon="$group['icon']" class="grid">
+                            @foreach ($group['items'] as $item)
+                                <flux:sidebar.item
+                                    :icon="$item['icon']"
+                                    :href="$item['href']"
+                                    :current="$item['current']"
+                                    :badge="$item['badge']"
+                                    badge-color="amber"
+                                    wire:navigate
+                                >
+                                    {{ $item['label'] }}
+                                </flux:sidebar.item>
+                            @endforeach
+                        </flux:sidebar.group>
+                    @endforeach
+                </flux:sidebar.nav>
+            </div>
+
+            <nav aria-label="پیوندهای سایت" class="flex flex-col border-t border-zinc-200 pt-2 dark:border-zinc-800">
+                <flux:sidebar.item icon="globe-alt" :href="route('home')" target="_blank">مشاهده سایت</flux:sidebar.item>
+                <flux:sidebar.item icon="cog-6-tooth" :href="route('profile.edit')" :current="request()->routeIs('profile.edit') || request()->routeIs('security.edit') || request()->routeIs('appearance.edit')" wire:navigate>
+                    تنظیمات حساب
+                </flux:sidebar.item>
+            </nav>
 
             <x-desktop-user-menu class="hidden lg:block" :name="$user->name" />
         </flux:sidebar>
@@ -104,7 +114,7 @@
             </flux:dropdown>
         </flux:header>
 
-        <flux:main>
+        <flux:main id="main-content" tabindex="-1">
             <div class="mx-auto flex w-full max-w-7xl flex-col gap-6">
                 <x-admin.flash />
                 {{ $slot }}

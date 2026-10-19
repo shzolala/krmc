@@ -12,7 +12,7 @@ class ProfileController extends Controller
         $user->loadMissing([
             'primaryClub:id,name,slug',
             'coachProfile.club:id,name,slug',
-            'shop:id,name,slug,summary,city',
+            'shops:id,user_id,name,slug,summary,city',
             'ownedClubs:id,name,slug,summary,city,owner_id',
         ]);
 

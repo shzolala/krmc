@@ -62,14 +62,6 @@ class PanelRegistry
                 'demo_mobile' => '09120000003',
                 'demo_username' => 'shop-kouhestan',
             ],
-            'organization' => [
-                'role' => UserRole::Organization,
-                'label' => 'پنل ارگان',
-                'home' => 'panel.organization.dashboard',
-                'path' => '/panel/organization',
-                'demo_mobile' => '09120000004',
-                'demo_username' => 'organization',
-            ],
         ];
     }
 
@@ -87,22 +79,39 @@ class PanelRegistry
         return null;
     }
 
+    /**
+     * Admins land on their own panel; a plain climber on their personal dashboard; everyone else on the
+     * hub that gathers all of their sections.
+     */
     public static function homeRouteFor(User $user): string
     {
-        return self::forRole($user->role)['home'] ?? 'home';
+        return match (true) {
+            $user->isAdmin() => 'panel.admin.dashboard',
+            $user->roles()->count() === 1 => UserRole::Climber->dashboardRoute(),
+            default => 'panel.home',
+        };
     }
 
     public static function pathFor(User $user): string
     {
-        return self::forRole($user->role)['path'] ?? '/';
+        return match (true) {
+            $user->isAdmin() => self::forRole(UserRole::Admin)['path'],
+            $user->roles()->count() === 1 => self::forRole(UserRole::Climber)['path'],
+            default => '/panel',
+        };
     }
 
     /**
-     * @return Collection<int, array{mobile: string, username: string, name: string, role: UserRole, label: string, path: string, home: string}>
+     * Mobile of the seeded demo account that holds several roles at once (club, coach and shop).
+     */
+    public const MULTI_ROLE_DEMO_MOBILE = '09120000004';
+
+    /**
+     * @return Collection<int, array{mobile: string, username: string, name: string, role: ?UserRole, label: string, path: string, home: string}>
      */
     public static function demoAccounts(): Collection
     {
-        return collect(self::all())
+        $accounts = collect(self::all())
             ->map(function (array $panel): array {
                 $user = User::query()->where('mobile', $panel['demo_mobile'])->first();
 
@@ -115,7 +124,20 @@ class PanelRegistry
                     'path' => $panel['path'],
                     'home' => $panel['home'],
                 ];
-            })
+            });
+
+        $multi = User::query()->where('mobile', self::MULTI_ROLE_DEMO_MOBILE)->first();
+
+        return $accounts
+            ->push([
+                'mobile' => self::MULTI_ROLE_DEMO_MOBILE,
+                'username' => 'multi-role',
+                'name' => $multi?->name ?? 'کاربر چندنقشه',
+                'role' => null,
+                'label' => 'پنل چندنقشه',
+                'path' => '/panel',
+                'home' => 'panel.home',
+            ])
             ->values();
     }
 

@@ -1,41 +1,20 @@
-@php
-    $types = collect(\App\Enums\LodgingType::cases())->mapWithKeys(fn ($case) => [$case->value => $case->label()]);
-@endphp
-
 <x-layouts.site title="اقامتگاه‌ها" meta-description="بوم‌گردی، هتل و مهمان‌سرا در مسیرها و مقاصد کوهستانی کرمان.">
-    <x-site.page-hero
-        section="accommodations"
-        overlap
-        :crumbs="['اقامتگاه‌ها' => null]"
-        eyebrow="اقامت"
+    <x-site.listing
         title="اقامتگاه‌ها"
-        description="خانه‌های بوم‌گردی، هتل‌ها و سایر اقامتگاه‌ها — هر کدام با موقعیت جغرافیایی روی نقشه."
-    />
-
-    <x-site.toolbar
         :action="route('accommodations.index')"
-        placeholder="نام اقامتگاه یا شهر..."
-        :query="$search"
-        :hidden="['type' => $activeType]"
-        :total="$accommodations->total()"
-        :filters="collect(['' => 'همه'])->union($types)->map(fn ($label, $type) => [
-            'label' => $label,
-            'href' => route('accommodations.index', array_filter(['q' => $search, 'type' => $type])),
-            'active' => (string) $activeType === (string) $type,
-        ])->values()->all()"
-    />
-
-    <x-site.section spacing="pt-10">
-        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            @forelse ($accommodations as $accommodation)
-                <x-cards.accommodation :accommodation="$accommodation" />
-            @empty
-                <x-site.empty class="col-span-full" message="اقامتگاهی با این مشخصات پیدا نشد." :href="route('accommodations.index')" />
-            @endforelse
-        </div>
-
-        <div class="mt-10">{{ $accommodations->links() }}</div>
-    </x-site.section>
+        :paginator="$accommodations"
+        empty-message="اقامتگاهی با این مشخصات پیدا نشد."
+        :filters="[
+            ['type' => 'search', 'name' => 'q', 'label' => 'نام اقامتگاه یا شهر', 'placeholder' => 'مثلاً بوم‌گردی...'],
+            ['type' => 'options', 'name' => 'type', 'label' => 'نوع اقامتگاه', 'options' => collect(\App\Enums\LodgingType::cases())->mapWithKeys(fn ($case) => [$case->value => $case->label()])->all()],
+            ['type' => 'select', 'name' => 'city', 'label' => 'شهر', 'all' => 'همه شهرها', 'options' => $cities->all()],
+            ['type' => 'toggle', 'name' => 'verified', 'label' => 'فقط تأییدشده'],
+        ]"
+    >
+        @foreach ($accommodations as $accommodation)
+            <x-cards.accommodation :accommodation="$accommodation" />
+        @endforeach
+    </x-site.listing>
 
     @if ($mapMarkers->isNotEmpty())
         <x-site.section eyebrow="موقعیت جغرافیایی" title="اقامتگاه‌ها روی نقشه" :href="route('map')" link-label="نقشه کامل">

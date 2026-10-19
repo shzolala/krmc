@@ -27,6 +27,10 @@ class RoleCapabilities
             ['label' => 'مدیریت مقاصد، جاذبه‌ها، اقامتگاه‌ها و پناهگاه‌ها', 'roles' => [UserRole::Admin]],
             ['label' => 'مدیریت برنامه‌ها و گزارش‌ها', 'roles' => [UserRole::Admin]],
             ['label' => 'تأیید یا رد نظرات کاربران', 'roles' => [UserRole::Admin]],
+            ['label' => 'مشاهده سهم پرداختی و خلاصه وضعیت مالی صندوق', 'roles' => $everyone],
+            ['label' => 'مشاهده ریز مالی (فقط گروه‌ها و افراد مجاز)', 'roles' => [UserRole::Admin]],
+            ['label' => 'ثبت حمایت و معرفی به‌عنوان حامی کوهستان', 'roles' => $everyone],
+            ['label' => 'ثبت دریافتی، هزینه، کمپین و تعیین دسترسی مالی', 'roles' => [UserRole::Admin]],
             ['label' => 'مدیریت کاربران و تغییر نقش‌ها', 'roles' => [UserRole::Admin]],
         ];
     }

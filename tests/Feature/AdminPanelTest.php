@@ -6,6 +6,7 @@ use App\Enums\UserRole;
 use App\Models\Club;
 use App\Models\Destination;
 use App\Models\User;
+use App\Support\Admin\AdminNavigation;
 use App\Support\Admin\AdminResources;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Review\Models\Review;
@@ -17,7 +18,7 @@ class AdminPanelTest extends TestCase
 
     public function test_non_admin_cannot_open_content_management(): void
     {
-        $climber = User::factory()->create(['role' => UserRole::Climber]);
+        $climber = User::factory()->create();
 
         $this->actingAs($climber)
             ->get(route('panel.admin.resources.index', 'clubs'))
@@ -151,13 +152,13 @@ class AdminPanelTest extends TestCase
                 'name' => 'مربی تازه',
                 'mobile' => '09121112233',
                 'username' => 'new-coach',
-                'role' => UserRole::Coach->value,
                 'password' => 'Str0ng-Passw0rd!',
             ])
             ->assertRedirect();
 
         $user = User::query()->where('username', 'new-coach')->firstOrFail();
-        $this->assertSame(UserRole::Coach, $user->role);
+        $this->assertFalse($user->isAdmin());
+        $this->assertTrue($user->hasRole(UserRole::Climber));
 
         $this->actingAs($admin)
             ->delete(route('panel.admin.users.destroy', $user))
@@ -179,20 +180,20 @@ class AdminPanelTest extends TestCase
                 'name' => $admin->name,
                 'mobile' => $admin->mobile,
                 'username' => $admin->username,
-                'role' => UserRole::Climber->value,
+                'is_admin' => 0,
             ])
-            ->assertSessionHasErrors('role');
-        $this->assertSame(UserRole::Admin, $admin->fresh()->role);
+            ->assertSessionHasErrors('is_admin');
+        $this->assertTrue($admin->fresh()->isAdmin());
     }
 
     public function test_admin_can_impersonate_and_return(): void
     {
         $admin = User::factory()->admin()->create();
-        $club = User::factory()->create(['role' => UserRole::Club]);
+        $club = User::factory()->club()->create();
 
         $this->actingAs($admin)
             ->post(route('panel.admin.users.impersonate', $club))
-            ->assertRedirect(route('panel.club.dashboard'));
+            ->assertRedirect(route('panel.home'));
         $this->assertAuthenticatedAs($club);
 
         $this->post(route('panel.impersonation.stop'))
@@ -220,8 +221,8 @@ class AdminPanelTest extends TestCase
     public function test_admin_can_switch_between_demo_roles_and_return(): void
     {
         $admin = User::factory()->admin()->create(['mobile' => '09120000001', 'username' => 'admin']);
-        $coach = User::factory()->create(['mobile' => '09120000006', 'username' => 'sara-mohammadi', 'role' => UserRole::Coach]);
-        $shop = User::factory()->create(['mobile' => '09120000003', 'username' => 'shop-kouhestan', 'role' => UserRole::Shop]);
+        $coach = User::factory()->coach()->create(['mobile' => '09120000006', 'username' => 'sara-mohammadi']);
+        $shop = User::factory()->shop()->create(['mobile' => '09120000003', 'username' => 'shop-kouhestan']);
 
         $this->actingAs($admin)
             ->get(route('panel.admin.dashboard'))
@@ -229,11 +230,11 @@ class AdminPanelTest extends TestCase
 
         $this->actingAs($admin)
             ->post(route('panel.impersonation.switch'), ['mobile' => $coach->mobile])
-            ->assertRedirect(route('panel.coach.dashboard'));
+            ->assertRedirect(route('panel.home'));
         $this->assertAuthenticatedAs($coach);
 
         $this->post(route('panel.impersonation.switch'), ['mobile' => $shop->mobile])
-            ->assertRedirect(route('panel.shop.dashboard'));
+            ->assertRedirect(route('panel.home'));
         $this->assertAuthenticatedAs($shop);
 
         $this->post(route('panel.impersonation.switch'), ['mobile' => $admin->mobile])
@@ -254,5 +255,21 @@ class AdminPanelTest extends TestCase
         $this->post(route('panel.impersonation.switch'), ['mobile' => '09120000001'])
             ->assertForbidden();
         $this->assertAuthenticatedAs($climber);
+    }
+
+    public function test_sidebar_groups_pages_and_expands_the_active_group(): void
+    {
+        $admin = User::factory()->admin()->create();
+
+        $this->actingAs($admin)
+            ->get(route('panel.admin.resources.index', 'incomes'))
+            ->assertOk()
+            ->assertSee('پرش به محتوای اصلی', false)
+            ->assertSee('aria-label="منوی مدیریت"', false)
+            ->assertSee('صندوق و امور مالی', false)
+            ->assertSee('کاربران و نظرات', false);
+
+        $groups = AdminNavigation::groups();
+        $this->assertCount(8, $groups);
     }
 }

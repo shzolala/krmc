@@ -20,6 +20,8 @@ class ClubController extends Controller
                     ->orWhere('manager', 'like', "%{$search}%");
             }))
             ->when($request->boolean('verified'), fn ($query) => $query->where('is_verified', true))
+            ->when($request->filled('city'), fn ($query) => $query->where('city', $request->string('city')->toString()))
+            ->when($request->boolean('has_programs'), fn ($query) => $query->whereHas('programs', fn ($programs) => $programs->active()))
             ->orderByDesc('is_premium')
             ->orderByDesc('is_featured')
             ->orderByDesc('member_count')
@@ -28,8 +30,7 @@ class ClubController extends Controller
 
         return view('clubs.index', [
             'clubs' => $clubs,
-            'search' => $search,
-            'onlyVerified' => $request->boolean('verified'),
+            'cities' => Club::query()->whereNotNull('city')->distinct()->orderBy('city')->pluck('city', 'city'),
         ]);
     }
 

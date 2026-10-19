@@ -1,7 +1,7 @@
 <x-layouts::admin title="نقش‌ها و دسترسی‌ها">
     <x-admin.page-header
         title="نقش‌ها و سطوح دسترسی"
-        subtitle="هر نقش به چه بخش‌هایی دسترسی دارد و چند کاربر دارد."
+        subtitle="هر نقش به چه بخش‌هایی دسترسی دارد. یک حساب می‌تواند چند نقش را هم‌زمان داشته باشد (با داشتن باشگاه، فروشگاه یا پروفایل مربی)، پس مجموع شمارش‌ها از تعداد کاربران بیشتر است."
         icon="key"
         :back="route('panel.admin.dashboard')"
         back-label="داشبورد"
@@ -39,7 +39,7 @@
 
                 <div class="mt-5 flex flex-wrap gap-2 border-t border-zinc-100 pt-4 dark:border-zinc-800">
                     <flux:button size="sm" :href="route('panel.admin.users.index', ['role' => $role->value])" icon="users" wire:navigate>کاربران</flux:button>
-                    <flux:button size="sm" variant="ghost" :href="route('panel.admin.users.create', ['role' => $role->value])" icon="user-plus" wire:navigate>افزودن</flux:button>
+                    <flux:button size="sm" variant="ghost" :href="$item['addUrl']" icon="user-plus" wire:navigate>{{ $item['addLabel'] }}</flux:button>
                     @if ($item['sample'] && $role !== \App\Enums\UserRole::Admin)
                         <form method="POST" action="{{ route('panel.admin.users.impersonate', $item['sample']) }}" class="ms-auto">
                             @csrf

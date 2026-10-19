@@ -36,7 +36,7 @@ class PanelAccessTest extends TestCase
 
     public function test_climber_cannot_open_admin_panel(): void
     {
-        $climber = User::factory()->create(['role' => UserRole::Climber]);
+        $climber = User::factory()->create();
 
         $this->actingAs($climber)
             ->get(route('panel.admin.dashboard'))
@@ -45,12 +45,23 @@ class PanelAccessTest extends TestCase
 
     public function test_each_role_reaches_its_dedicated_panel_path(): void
     {
-        foreach (PanelRegistry::all() as $panel) {
-            $user = User::factory()->create(['role' => $panel['role']]);
+        $users = [
+            UserRole::Admin->value => User::factory()->admin()->create(),
+            UserRole::Climber->value => User::factory()->create(),
+            UserRole::Club->value => User::factory()->club()->create(),
+            UserRole::Coach->value => User::factory()->coach()->create(),
+            UserRole::Leader->value => User::factory()->leader()->create(),
+            UserRole::Shop->value => User::factory()->shop()->create(),
+        ];
 
-            $this->actingAs($user)
-                ->get($panel['path'])
-                ->assertOk();
+        foreach (PanelRegistry::all() as $key => $panel) {
+            $response = $this->actingAs($users[$key])->get($panel['path']);
+
+            if ($response->isRedirection()) {
+                $response = $this->actingAs($users[$key])->get($response->headers->get('Location'));
+            }
+
+            $response->assertOk();
         }
     }
 
@@ -63,7 +74,6 @@ class PanelAccessTest extends TestCase
         User::factory()->create([
             'mobile' => '09120000010',
             'username' => 'climber',
-            'role' => UserRole::Climber,
         ]);
 
         $this->post(route('dev.switch-demo-account'), [
@@ -74,26 +84,32 @@ class PanelAccessTest extends TestCase
         $this->assertAuthenticatedAs($admin);
     }
 
-    public function test_admin_can_update_user_role(): void
+    public function test_admin_can_grant_and_revoke_admin_access(): void
     {
         $admin = User::factory()->admin()->create();
         $user = User::factory()->create([
             'mobile' => '09123334455',
             'username' => 'sample-user',
-            'role' => UserRole::Climber,
         ]);
 
+        $payload = [
+            'name' => 'کاربر ویرایش‌شده',
+            'mobile' => $user->mobile,
+            'username' => $user->username,
+        ];
+
         $this->actingAs($admin)
-            ->put(route('panel.admin.users.update', $user), [
-                'name' => 'کاربر ویرایش‌شده',
-                'mobile' => $user->mobile,
-                'username' => $user->username,
-                'role' => UserRole::Coach->value,
-            ])
+            ->put(route('panel.admin.users.update', $user), [...$payload, 'is_admin' => 1])
             ->assertRedirect(route('panel.admin.users.index'));
 
-        $this->assertSame(UserRole::Coach, $user->fresh()->role);
+        $this->assertTrue($user->fresh()->isAdmin());
         $this->assertSame('کاربر ویرایش‌شده', $user->fresh()->name);
+
+        $this->actingAs($admin)
+            ->put(route('panel.admin.users.update', $user), [...$payload, 'is_admin' => 0])
+            ->assertRedirect(route('panel.admin.users.index'));
+
+        $this->assertFalse($user->fresh()->isAdmin());
     }
 
     public function test_legacy_admin_reviews_path_redirects_to_panel(): void
@@ -104,11 +120,11 @@ class PanelAccessTest extends TestCase
 
     public function test_club_owner_can_open_club_panel(): void
     {
-        $owner = User::factory()->create(['role' => UserRole::Club]);
-        Club::factory()->create(['owner_id' => $owner->id]);
+        $owner = User::factory()->create();
+        $club = Club::factory()->create(['owner_id' => $owner->id]);
 
         $this->actingAs($owner)
-            ->get(route('panel.club.dashboard'))
+            ->get(route('panel.club.dashboard', $club))
             ->assertOk()
             ->assertSee('پنل باشگاه', false);
     }

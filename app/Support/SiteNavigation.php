@@ -84,6 +84,14 @@ class SiteNavigation
                 'primary' => false,
                 'description' => 'تجهیزات کوهنوردی',
             ],
+            'peaks' => [
+                'label' => 'نردبان قله‌ها',
+                'route' => 'peaks.index',
+                'icon' => 'trend',
+                'image' => 'cover-01.jpg',
+                'primary' => false,
+                'description' => 'صعودها، نشان‌ها و بلندترین‌ها',
+            ],
             'map' => [
                 'label' => 'نقشه',
                 'route' => 'map',

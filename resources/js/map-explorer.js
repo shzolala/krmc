@@ -65,6 +65,7 @@ export function initExplorer(root) {
     const searchInput = root.querySelector('[data-map-search]');
     const sortSelect = root.querySelector('[data-map-sort]');
     const layerButtons = [...root.querySelectorAll('[data-map-layer]')];
+    const layerSummary = root.querySelector('[data-map-layer-summary]');
     const locateBtn = root.querySelector('[data-map-locate]');
     const fitBtn = root.querySelector('[data-map-fit]');
     const baseButtons = [...root.querySelectorAll('[data-map-base]')];
@@ -352,6 +353,11 @@ export function initExplorer(root) {
             const isActive = activeTypes.has(type);
             button.classList.toggle('is-active', isActive);
             button.setAttribute('aria-pressed', String(isActive));
+
+            if (layerSummary) {
+                layerSummary.textContent = activeTypes.size.toLocaleString('fa-IR');
+            }
+
             renderMarkers();
             updateList({ resetScroll: true });
         });
