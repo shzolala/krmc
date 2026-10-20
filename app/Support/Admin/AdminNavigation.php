@@ -51,6 +51,10 @@ class AdminNavigation
                 $resources,
             );
 
+            if ($key === 'geography') {
+                $items[] = self::item('لینک و QR نقشه', 'qr-code', route('panel.admin.map-links'), request()->routeIs('panel.admin.map-links'));
+            }
+
             if ($key === 'finance') {
                 array_unshift($items, self::item('نمای کلی مالی', 'chart-pie', route('panel.admin.finance'), request()->routeIs('panel.admin.finance')));
             }

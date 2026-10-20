@@ -2,7 +2,7 @@
     $markerList = collect($mapMarkers)->filter()->values();
     $centerLat = $markerList->avg('lat') ?: 30.2839;
     $centerLng = $markerList->avg('lng') ?: 57.0834;
-    $typeLabels = collect($layers)->mapWithKeys(fn (array $layer, string $type) => [$type => $layer['label']])->all();
+    $typeLabels = collect($layers)->mapWithKeys(fn (array $layer, string $type) => [$type => $layer['singular']])->all();
 @endphp
 
 <x-layouts.site
@@ -24,11 +24,13 @@
         data-center-lat="{{ $centerLat }}"
         data-center-lng="{{ $centerLng }}"
         data-markers='@json($markerList, JSON_UNESCAPED_UNICODE)'
+        data-share-endpoint="{{ route('map.share') }}"
+        data-csrf="{{ csrf_token() }}"
         data-type-labels='@json($typeLabels, JSON_UNESCAPED_UNICODE)'
     >
         <h1 class="sr-only">نقشه یکپارچه کوهنوردی کرمان</h1>
 
-        <div class="shrink-0">
+        <div class="relative z-20 shrink-0">
             <div class="mx-auto flex max-w-[1800px] flex-wrap items-center gap-2 px-3 py-2 sm:px-5">
                 <label class="relative block w-full sm:w-80 lg:w-96" data-map-search-wrap>
                     <span class="sr-only">جستجو روی نقشه</span>
@@ -76,22 +78,40 @@
                         x-show="open"
                         x-cloak
                         x-transition.opacity
-                        class="absolute start-0 top-full z-[1000] mt-2 w-64 rounded-2xl bg-white p-1.5 shadow-xl shadow-navy-900/15 ring-1 ring-navy-900/10"
+                        class="absolute start-0 top-full z-50 mt-2 w-64 rounded-xl bg-white p-1 shadow-xl shadow-navy-900/15 ring-1 ring-navy-900/10"
                     >
+                        <button
+                            type="button"
+                            data-map-layer-all
+                            aria-pressed="true"
+                            class="map-explorer-layer map-explorer-layer--all is-active mb-1 flex w-full cursor-pointer items-center gap-2.5 rounded-lg border-b border-navy-900/5 px-2.5 py-1.5 text-[13px] font-bold text-ink transition hover:bg-sand"
+                        >
+                            <span class="map-explorer-layer__check flex h-4 w-4 shrink-0 items-center justify-center rounded ring-1 ring-navy-900/25">
+                                <svg class="map-explorer-layer__tick h-2.5 w-2.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 10.5 3.5 3.5 7.5-8"/></svg>
+                                <svg class="map-explorer-layer__dash h-2.5 w-2.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M5 10h10"/></svg>
+                            </span>
+                            <span class="flex-1 text-start">همه</span>
+                            <span class="text-xs font-normal text-muted">{{ fa_num(array_sum($counts)) }}</span>
+                        </button>
                         @foreach ($layers as $type => $layer)
-                            <button
-                                type="button"
-                                data-map-layer="{{ $type }}"
-                                aria-pressed="true"
-                                class="map-explorer-layer is-active flex w-full cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-sm text-ink transition hover:bg-sand"
-                            >
-                                <span class="map-explorer-layer__check flex h-5 w-5 shrink-0 items-center justify-center rounded-md ring-1 ring-navy-900/25">
-                                    <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 10.5 3.5 3.5 7.5-8"/></svg>
-                                </span>
-                                <span class="h-2.5 w-2.5 shrink-0 rounded-full" style="background: {{ $layer['color'] }}"></span>
-                                <span class="flex-1 text-start font-medium">{{ $layer['label'] }}</span>
-                                <span class="text-xs text-muted">{{ fa_num($counts[$type] ?? 0) }}</span>
-                            </button>
+                            <div class="map-explorer-layer-row flex items-center gap-0.5">
+                                <button
+                                    type="button"
+                                    data-map-layer="{{ $type }}"
+                                    aria-pressed="true"
+                                    class="map-explorer-layer is-active flex min-w-0 flex-1 cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-[13px] text-ink transition hover:bg-sand"
+                                >
+                                    <span class="map-explorer-layer__check flex h-4 w-4 shrink-0 items-center justify-center rounded ring-1 ring-navy-900/25">
+                                        <svg class="h-2.5 w-2.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 10.5 3.5 3.5 7.5-8"/></svg>
+                                    </span>
+                                    <span class="h-2 w-2 shrink-0 rounded-full" style="background: {{ $layer['color'] }}"></span>
+                                    <span class="flex-1 truncate text-start font-medium">{{ $layer['label'] }}</span>
+                                    <span class="text-xs text-muted">{{ fa_num($counts[$type] ?? 0) }}</span>
+                                </button>
+                                <button type="button" data-map-layer-only="{{ $type }}" title="نمایش فقط {{ $layer['label'] }}" aria-label="نمایش فقط {{ $layer['label'] }}" aria-pressed="false" class="map-explorer-layer__solo cursor-pointer rounded-md p-1.5 text-muted transition hover:bg-sand hover:text-navy-900 focus-visible:opacity-100">
+                                    <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17-5-5 5-5M18 17l-5-5 5-5"/></svg>
+                                </button>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -122,15 +142,17 @@
                 </p>
             </section>
 
-            <section data-map-stage class="map-explorer__stage relative min-h-0 lg:col-span-5 xl:col-span-5">
+            <section data-map-stage class="map-explorer__stage relative isolate min-h-0 lg:col-span-5 xl:col-span-5">
                 <div data-map-canvas dir="ltr" class="absolute inset-0"></div>
 
                 <div class="pointer-events-none absolute inset-x-3 top-3 z-[500] flex justify-between gap-2">
                     <div class="pointer-events-auto flex overflow-hidden rounded-xl bg-white/95 shadow-lg shadow-navy-900/10 ring-1 ring-navy-900/10">
-                        <button type="button" data-map-base="streets" class="map-explorer-base is-active cursor-pointer px-3 py-2 text-xs font-semibold transition">خیابان</button>
+                        <button type="button" data-map-base="topo" class="map-explorer-base is-active cursor-pointer px-3 py-2 text-xs font-semibold transition">توپوگرافی</button>
                         <button type="button" data-map-base="satellite" class="map-explorer-base cursor-pointer px-3 py-2 text-xs font-semibold transition">ماهواره</button>
+                        <button type="button" data-map-base="streets" class="map-explorer-base cursor-pointer px-3 py-2 text-xs font-semibold transition">ساده</button>
                     </div>
 
+                    <div class="pointer-events-auto flex gap-2">
                     <button
                         type="button"
                         data-map-locate
@@ -138,8 +160,51 @@
                     >
                         موقعیت من
                     </button>
+                    <button
+                        type="button"
+                        data-map-share-open
+                        class="pointer-events-auto inline-flex cursor-pointer items-center gap-1.5 rounded-xl bg-navy-900 px-3 py-2 text-xs font-bold text-white shadow-lg shadow-navy-900/20 transition hover:bg-navy-800"
+                    >
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
+                        اشتراک‌گذاری
+                    </button>
+                    </div>
                 </div>
             </section>
         </div>
     </div>
+
+    <dialog data-map-share class="map-share" aria-labelledby="map-share-title">
+        <form method="dialog" class="map-share__close"><button aria-label="بستن">×</button></form>
+        <h2 id="map-share-title" class="text-base font-extrabold text-navy-900">اشتراک‌گذاری این نقشه</h2>
+        <p class="mt-1 text-xs text-muted">لینک دقیقاً همین حالت نقشه را برای دیگران باز می‌کند.</p>
+
+        <div class="mt-4 grid gap-2 text-sm text-ink">
+            <label class="map-share__option"><input type="checkbox" data-share-opt="view" checked> محدودهٔ فعلی نقشه (مرکز و زوم)</label>
+            <label class="map-share__option" data-share-opt-wrap="types"><input type="checkbox" data-share-opt="types" checked> <span>فقط لایه‌های انتخاب‌شده</span></label>
+            <label class="map-share__option" data-share-opt-wrap="focus"><input type="checkbox" data-share-opt="focus" checked> <span>مکان انتخاب‌شده: <b data-share-focus-name></b></span></label>
+            <label class="map-share__option" data-share-opt-wrap="q"><input type="checkbox" data-share-opt="q" checked> <span>جستجوی «<b data-share-q-text></b>»</span></label>
+            <div class="map-share__bases" role="radiogroup" aria-label="نوع نقشه">
+                <span>نوع نقشه:</span>
+                <label><input type="radio" name="share-base" data-share-base value="topo" checked> توپوگرافی</label>
+                <label><input type="radio" name="share-base" data-share-base value="satellite"> ماهواره</label>
+                <label><input type="radio" name="share-base" data-share-base value="streets"> ساده</label>
+            </div> 
+        </div>
+
+        <div class="mt-4 flex items-center gap-3">
+            <div data-share-qr class="map-share__qr" aria-hidden="true"></div>
+            <div class="min-w-0 flex-1">
+                <input readonly dir="ltr" data-share-url class="w-full rounded-lg border-0 bg-sand px-3 py-2 font-mono text-xs text-ink ring-1 ring-navy-900/10" value="">
+                <div class="mt-2 flex flex-wrap gap-1.5">
+                    <button type="button" data-share-copy class="map-share__btn map-share__btn--primary">کپی لینک</button>
+                    <button type="button" data-share-native class="map-share__btn" hidden>ارسال…</button>
+                    <a data-share-telegram target="_blank" rel="noopener" class="map-share__btn">تلگرام</a>
+                    <a data-share-whatsapp target="_blank" rel="noopener" class="map-share__btn">واتساپ</a>
+                    <a data-share-download class="map-share__btn">QR</a>
+                </div>
+            </div>
+        </div>
+        <p data-share-status class="mt-3 min-h-4 text-xs text-muted" role="status"></p>
+    </dialog>
 </x-layouts.site>

@@ -11,6 +11,7 @@ use App\Http\Controllers\MapController;
 use App\Http\Controllers\Panel\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Panel\Admin\FinanceController as AdminFinanceController;
 use App\Http\Controllers\Panel\Admin\ImpersonationController;
+use App\Http\Controllers\Panel\Admin\MapLinkController;
 use App\Http\Controllers\Panel\Admin\ResourceController as AdminResourceController;
 use App\Http\Controllers\Panel\Admin\RoleController as AdminRoleController;
 use App\Http\Controllers\Panel\Admin\UserController as AdminUserController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\ShelterController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ShortLinkController;
 use App\Http\Controllers\SponsorController;
 use App\Livewire\Panel\EditClubProfile;
 use App\Livewire\Panel\EditCoachProfile;
@@ -39,6 +41,9 @@ use Modules\Review\Livewire\ModerateReviews;
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('/map', MapController::class)->name('map');
+Route::post('/map/share', [ShortLinkController::class, 'store'])->middleware('throttle:20,1')->name('map.share');
+Route::get('/map/qr/{code}', [ShortLinkController::class, 'qr'])->name('map.short.qr');
+Route::get('/m/{code}', [ShortLinkController::class, 'show'])->name('map.short');
 Route::get('/peaks', [PeakController::class, 'index'])->name('peaks.index');
 Route::get('/membership-plans', PricingController::class)->name('pricing');
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
@@ -101,6 +106,7 @@ Route::middleware('auth')->prefix('panel')->name('panel.')->group(function (): v
         Route::get('/', AdminDashboardController::class)->name('dashboard');
         Route::get('/roles', AdminRoleController::class)->name('roles');
         Route::get('/finance', AdminFinanceController::class)->name('finance');
+        Route::get('/map-links', MapLinkController::class)->name('map-links');
 
         Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
         Route::get('/users/create', [AdminUserController::class, 'create'])->name('users.create');

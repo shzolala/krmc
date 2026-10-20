@@ -87,7 +87,13 @@ export function createBaseLayers(L) {
         },
     );
 
-    return { streets, satellite };
+    const topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        maxZoom: 17,
+        keepBuffer: 4,
+        attribution: 'Map data &copy; OpenStreetMap, SRTM | Style &copy; OpenTopoMap',
+    });
+
+    return { streets, satellite, topo };
 }
 
 export function colorFor(type) {

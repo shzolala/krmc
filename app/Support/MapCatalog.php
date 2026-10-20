@@ -10,12 +10,71 @@ use App\Models\MountainRegion;
 use App\Models\ProgramReport;
 use App\Models\Shelter;
 use App\Models\Shop;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 
 class MapCatalog
 {
+    private const CACHE_KEY = 'map.catalog';
+
+    private const CACHE_TTL_SECONDS = 600;
+
     /**
-     * @return array{markers: Collection<int, array<string, mixed>>, counts: array<string, int>, layers: array<string, array{label: string, color: string}>}
+     * @return list<class-string<Model>>
+     */
+    public static function sourceModels(): array
+    {
+        return [
+            MountainRegion::class,
+            Destination::class,
+            Attraction::class,
+            Club::class,
+            Accommodation::class,
+            Shelter::class,
+            Shop::class,
+            ProgramReport::class,
+        ];
+    }
+
+    /**
+     * Clears the cached catalog whenever a source record is saved or deleted.
+     */
+    public static function flushWhenChanged(): void
+    {
+        foreach (self::sourceModels() as $model) {
+            $model::saved(fn () => self::flush());
+            $model::deleted(fn () => self::flush());
+        }
+    }
+
+    public static function flush(): void
+    {
+        Cache::forget(self::CACHE_KEY);
+    }
+
+    /**
+     * Same as build(), served from the cache for a few minutes.
+     *
+     * @return array{markers: Collection<int, array<string, mixed>>, counts: array<string, int>, layers: array<string, array{label: string, singular: string, color: string}>}
+     */
+    public function cached(): array
+    {
+        /** Only plain arrays are cached: the cache store does not unserialize objects such as Collection. */
+        $cached = Cache::remember(self::CACHE_KEY, self::CACHE_TTL_SECONDS, function (): array {
+            $catalog = $this->build();
+            $catalog['markers'] = $catalog['markers']->all();
+
+            return $catalog;
+        });
+
+        $cached['markers'] = collect($cached['markers']);
+
+        return $cached;
+    }
+
+    /**
+     * @return array{markers: Collection<int, array<string, mixed>>, counts: array<string, int>, layers: array<string, array{label: string, singular: string, color: string}>}
      */
     public function build(): array
     {
@@ -50,19 +109,21 @@ class MapCatalog
     }
 
     /**
-     * @return array<string, array{label: string, color: string}>
+     * `label` names the layer as a filter chip, `singular` names a single place of that layer on cards and popups.
+     *
+     * @return array<string, array{label: string, singular: string, color: string}>
      */
     public function layers(): array
     {
         return [
-            'region' => ['label' => 'مناطق کوهستانی', 'color' => '#0f766e'],
-            'destination' => ['label' => 'قله‌ها و نقاط طبیعی', 'color' => '#d4a017'],
-            'attraction' => ['label' => 'جاذبه‌های گردشگری', 'color' => '#7c3aed'],
-            'accommodation' => ['label' => 'اقامتگاه‌ها', 'color' => '#2563eb'],
-            'shelter' => ['label' => 'پناهگاه‌ها', 'color' => '#b45309'],
-            'program' => ['label' => 'برنامه‌ها', 'color' => '#c026d3'],
-            'club' => ['label' => 'باشگاه‌ها', 'color' => '#0b1f3a'],
-            'shop' => ['label' => 'فروشگاه‌ها', 'color' => '#1a7a4c'],
+            'region' => ['label' => 'کوهستان‌ها', 'singular' => 'منطقه کوهستانی', 'color' => '#0f766e'],
+            'destination' => ['label' => 'قله‌ها و طبیعت', 'singular' => 'قله / مقصد', 'color' => '#d4a017'],
+            'attraction' => ['label' => 'دیدنی‌ها', 'singular' => 'جاذبه گردشگری', 'color' => '#7c3aed'],
+            'accommodation' => ['label' => 'اقامت', 'singular' => 'اقامتگاه', 'color' => '#2563eb'],
+            'shelter' => ['label' => 'پناهگاه‌ها', 'singular' => 'پناهگاه', 'color' => '#b45309'],
+            'program' => ['label' => 'برنامه‌های اخیر', 'singular' => 'گزارش برنامه', 'color' => '#c026d3'],
+            'club' => ['label' => 'باشگاه‌ها', 'singular' => 'باشگاه', 'color' => '#0b1f3a'],
+            'shop' => ['label' => 'تجهیزات', 'singular' => 'فروشگاه', 'color' => '#1a7a4c'],
         ];
     }
 

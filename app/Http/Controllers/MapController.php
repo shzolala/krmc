@@ -9,7 +9,7 @@ class MapController extends Controller
 {
     public function __invoke(MapCatalog $catalog): View
     {
-        $map = $catalog->build();
+        $map = $catalog->cached();
 
         return view('map.index', [
             'mapMarkers' => $map['markers'],

@@ -50,6 +50,50 @@ function cardHtml(marker, typeLabel) {
     `;
 }
 
+/**
+ * Deep-link parameters (for shareable links and QR codes). None of them is shown in the UI.
+ *
+ * types=shelter,destination   only these layers
+ * ids=destination-3,shelter-5 only these places
+ * lat=..&lng=..&r=5           only places within r km of the point
+ * lat=..&lng=..&z=14          just center the view on the point
+ * focus=destination-3         fly to this place and open its popup
+ * q=text                      search term
+ * base=satellite|streets      base layer (default is topographic)
+ */
+export function readScope(search, knownTypes) {
+    const params = new URLSearchParams(search);
+    const list = (key) =>
+        (params.get(key) || '')
+            .split(',')
+            .map((item) => item.trim())
+            .filter(Boolean);
+    const number = (key) => {
+        const raw = params.get(key);
+        const value = raw === null || raw.trim() === '' ? NaN : Number(raw);
+
+        return Number.isFinite(value) ? value : null;
+    };
+
+    const types = list('types').filter((type) => knownTypes.includes(type));
+    const ids = list('ids');
+    const lat = number('lat');
+    const lng = number('lng');
+    const hasPoint = lat !== null && lng !== null && Math.abs(lat) <= 90 && Math.abs(lng) <= 180;
+    const radius = hasPoint ? number('r') : null;
+
+    return {
+        types: types.length ? new Set(types) : null,
+        ids: ids.length ? new Set(ids) : null,
+        point: hasPoint ? { lat, lng } : null,
+        radiusKm: radius !== null && radius > 0 ? radius : null,
+        zoom: number('z'),
+        focus: params.get('focus') || null,
+        query: (params.get('q') || '').trim(),
+        base: ['topo', 'satellite', 'streets'].includes(params.get('base')) ? params.get('base') : null,
+    };
+}
+
 export function initExplorer(root) {
     const L = window.L;
     const canvas = root.querySelector('[data-map-canvas]');
@@ -65,6 +109,8 @@ export function initExplorer(root) {
     const searchInput = root.querySelector('[data-map-search]');
     const sortSelect = root.querySelector('[data-map-sort]');
     const layerButtons = [...root.querySelectorAll('[data-map-layer]')];
+    const allLayersBtn = root.querySelector('[data-map-layer-all]');
+    const onlyButtons = [...root.querySelectorAll('[data-map-layer-only]')];
     const layerSummary = root.querySelector('[data-map-layer-summary]');
     const locateBtn = root.querySelector('[data-map-locate]');
     const fitBtn = root.querySelector('[data-map-fit]');
@@ -78,9 +124,10 @@ export function initExplorer(root) {
     const typeLabels = parseJson(root.dataset.typeLabels, {});
     const allMarkers = sortMarkers(parseJson(root.dataset.markers, []));
     const markersById = new Map(allMarkers.map((marker) => [marker.id, marker]));
-    const activeTypes = new Set(
-        layerButtons.length ? layerButtons.map((button) => button.dataset.mapLayer) : allMarkers.map((m) => m.type),
-    );
+    const allTypes = layerButtons.length ? layerButtons.map((button) => button.dataset.mapLayer) : allMarkers.map((m) => m.type);
+    const activeTypes = new Set(allTypes);
+    const scope = readScope(window.location.search, allTypes);
+    const hasManualView = Boolean(scope.point && !scope.radiusKm && !scope.ids && scope.zoom !== null);
 
     let searchTerm = '';
     let sortMode = sortSelect?.value || 'featured';
@@ -92,8 +139,9 @@ export function initExplorer(root) {
     let listFrame = null;
     let popupTimer = null;
 
-    const { streets, satellite } = createBaseLayers(L);
-    let activeBase = streets;
+    const baseLayers = createBaseLayers(L);
+    let activeBaseKey = 'topo';
+    let activeBase = baseLayers.topo;
 
     const map = L.map(canvas, {
         zoomControl: false,
@@ -131,8 +179,20 @@ export function initExplorer(root) {
         return desktop.matches || root.classList.contains('show-map');
     }
 
+    function distanceKm(marker) {
+        return L.latLng(scope.point.lat, scope.point.lng).distanceTo([marker.lat, marker.lng]) / 1000;
+    }
+
     function matchesFilters(marker) {
         if (!activeTypes.has(marker.type)) {
+            return false;
+        }
+
+        if (scope.ids && !scope.ids.has(marker.id)) {
+            return false;
+        }
+
+        if (scope.point && scope.radiusKm && distanceKm(marker) > scope.radiusKm) {
             return false;
         }
 
@@ -316,6 +376,12 @@ export function initExplorer(root) {
     }
 
     function fitAll({ animate = true } = {}) {
+        if (scope.point && scope.radiusKm) {
+            map.fitBounds(L.latLng(scope.point.lat, scope.point.lng).toBounds(scope.radiusKm * 2000), { animate });
+
+            return;
+        }
+
         const items = filteredMarkers();
 
         if (items.length === 0) {
@@ -336,31 +402,87 @@ export function initExplorer(root) {
         updateList({ resetScroll: true });
     }
 
+    function syncLayerButtons() {
+        layerButtons.forEach((button) => {
+            const isActive = activeTypes.has(button.dataset.mapLayer);
+            button.classList.toggle('is-active', isActive);
+            button.setAttribute('aria-pressed', String(isActive));
+        });
+
+        onlyButtons.forEach((button) => {
+            const isSolo = activeTypes.size === 1 && activeTypes.has(button.dataset.mapLayerOnly) && allTypes.length > 1;
+            button.setAttribute('aria-pressed', String(isSolo));
+            button.closest('.map-explorer-layer-row')?.classList.toggle('is-solo', isSolo);
+        });
+
+        if (allLayersBtn) {
+            const everything = activeTypes.size === allTypes.length;
+
+            allLayersBtn.classList.toggle('is-active', everything);
+            allLayersBtn.classList.toggle('is-partial', !everything && activeTypes.size > 0);
+            allLayersBtn.setAttribute('aria-pressed', everything ? 'true' : activeTypes.size > 0 ? 'mixed' : 'false');
+        }
+
+        if (layerSummary) {
+            layerSummary.textContent = activeTypes.size.toLocaleString('fa-IR');
+        }
+    }
+
+    function applyFilters() {
+        syncLayerButtons();
+        renderMarkers();
+        updateList({ resetScroll: true });
+    }
+
+    /** Layers are independent checkboxes; the header button selects or clears all of them. */
     layerButtons.forEach((button) => {
         button.addEventListener('click', () => {
             const type = button.dataset.mapLayer;
 
             if (activeTypes.has(type)) {
-                if (activeTypes.size === 1) {
-                    return;
-                }
-
                 activeTypes.delete(type);
             } else {
                 activeTypes.add(type);
             }
 
-            const isActive = activeTypes.has(type);
-            button.classList.toggle('is-active', isActive);
-            button.setAttribute('aria-pressed', String(isActive));
+            applyFilters();
+        });
+    });
 
-            if (layerSummary) {
-                layerSummary.textContent = activeTypes.size.toLocaleString('fa-IR');
+    /** Double-clicking a layer row is a shortcut for showing only that layer. */
+    layerButtons.forEach((button) => {
+        button.addEventListener('dblclick', () => {
+            activeTypes.clear();
+            activeTypes.add(button.dataset.mapLayer);
+            applyFilters();
+        });
+    });
+
+    onlyButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const type = button.dataset.mapLayerOnly;
+            const isSolo = activeTypes.size === 1 && activeTypes.has(type);
+
+            activeTypes.clear();
+
+            if (isSolo) {
+                allTypes.forEach((item) => activeTypes.add(item));
+            } else {
+                activeTypes.add(type);
             }
 
-            renderMarkers();
-            updateList({ resetScroll: true });
+            applyFilters();
         });
+    });
+
+    allLayersBtn?.addEventListener('click', () => {
+        if (activeTypes.size === allTypes.length) {
+            activeTypes.clear();
+        } else {
+            allTypes.forEach((type) => activeTypes.add(type));
+        }
+
+        applyFilters();
     });
 
     let searchTimer = null;
@@ -438,20 +560,45 @@ export function initExplorer(root) {
         );
     });
 
+    /** Clears every filter and deep-link restriction, then frames all places. */
     fitBtn?.addEventListener('click', () => {
+        allTypes.forEach((type) => activeTypes.add(type));
+        scope.ids = null;
+        scope.radiusKm = null;
+        searchTerm = '';
+
+        if (searchInput) {
+            searchInput.value = '';
+        }
+
+        syncLayerButtons();
+        renderMarkers();
+        updateList({ resetScroll: true });
+
         if (isMapVisible()) {
+            map.closePopup();
             fitAll();
         }
     });
 
     baseButtons.forEach((button) => {
         button.addEventListener('click', () => {
-            map.removeLayer(activeBase);
-            activeBase = button.dataset.mapBase === 'satellite' ? satellite : streets;
-            activeBase.addTo(map);
-            baseButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+            setBase(button.dataset.mapBase);
         });
     });
+
+    function setBase(key) {
+        if (!baseLayers[key]) {
+            return;
+        }
+
+        map.removeLayer(activeBase);
+        activeBaseKey = key;
+        activeBase = baseLayers[key];
+        activeBase.addTo(map);
+        map.setMaxZoom(activeBase.options.maxZoom);
+        baseButtons.forEach((item) => item.classList.toggle('is-active', item.dataset.mapBase === key));
+    }
 
     mobileToggle?.addEventListener('click', () => setMobileMapOpen(!root.classList.contains('show-map')));
 
@@ -477,7 +624,11 @@ export function initExplorer(root) {
 
         if (!hasInitialFit) {
             hasInitialFit = true;
-            fitAll({ animate: false });
+
+            if (!hasManualView) {
+                fitAll({ animate: false });
+            }
+
             renderMarkers();
             updateList();
         } else {
@@ -500,6 +651,170 @@ export function initExplorer(root) {
 
     desktop.addEventListener('change', () => updateList({ resetScroll: true }));
 
+    if (scope.types) {
+        activeTypes.clear();
+        scope.types.forEach((type) => activeTypes.add(type));
+    }
+
+    if (scope.query && searchInput) {
+        searchTerm = scope.query.toLowerCase();
+        searchInput.value = scope.query;
+    }
+
+    if (scope.base) {
+        setBase(scope.base);
+    }
+
+    if (hasManualView) {
+        map.setView([scope.point.lat, scope.point.lng], scope.zoom);
+    }
+
+    if (scope.focus && markersById.has(scope.focus)) {
+        pendingFlyId = scope.focus;
+        selectedId = scope.focus;
+    }
+
+    const isDeepLink = Boolean(scope.types || scope.ids || scope.point || scope.focus);
+
+    if (isDeepLink && !desktop.matches) {
+        setMobileMapOpen(true);
+    }
+
+    initShare();
+    syncLayerButtons();
     renderMarkers();
     updateList();
+
+    /** Share dialog: serializes the current map state into the same URL parameters readScope() understands. */
+    function initShare() {
+        const dialog = document.querySelector('[data-map-share]');
+        const openBtn = root.querySelector('[data-map-share-open]');
+
+        if (!dialog || !openBtn) {
+            return;
+        }
+
+        const field = (selector) => dialog.querySelector(selector);
+        const option = (name) => field(`[data-share-opt="${name}"]`);
+        const wrap = (name) => field(`[data-share-opt-wrap="${name}"]`);
+        const urlInput = field('[data-share-url]');
+        const status = field('[data-share-status]');
+        const nativeBtn = field('[data-share-native]');
+        let requestId = 0;
+
+        function buildQuery() {
+            const params = new URLSearchParams();
+
+            if (option('types').checked && activeTypes.size > 0 && activeTypes.size < allTypes.length) {
+                params.set('types', allTypes.filter((type) => activeTypes.has(type)).join(','));
+            }
+
+            if (option('q').checked && searchTerm) {
+                params.set('q', searchInput?.value.trim() || searchTerm);
+            }
+
+            if (option('focus').checked && selectedId) {
+                params.set('focus', selectedId);
+            }
+
+            if (option('view').checked) {
+                const center = map.getCenter();
+                params.set('lat', center.lat.toFixed(5));
+                params.set('lng', center.lng.toFixed(5));
+                params.set('z', String(Math.round(map.getZoom() * 2) / 2));
+            }
+
+            const base = field('[data-share-base]:checked')?.value;
+
+            if (base && base !== 'topo') {
+                params.set('base', base);
+            }
+
+            return params.toString();
+        }
+
+        async function refresh() {
+            const current = ++requestId;
+            status.textContent = 'در حال ساخت لینک…';
+
+            try {
+                const response = await fetch(root.dataset.shareEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                        'X-CSRF-TOKEN': root.dataset.csrf,
+                    },
+                    body: JSON.stringify({ query: buildQuery() }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(String(response.status));
+                }
+
+                const data = await response.json();
+
+                if (current !== requestId) {
+                    return;
+                }
+
+                const text = encodeURIComponent(`نقشه کوهنوردی کرمان\n${data.url}`);
+                urlInput.value = data.url;
+                field('[data-share-qr]').innerHTML = `<img src="${data.qr}" alt="" class="h-full w-full">`;
+                field('[data-share-download]').href = data.download;
+                field('[data-share-telegram]').href = `https://t.me/share/url?url=${encodeURIComponent(data.url)}&text=${encodeURIComponent('نقشه کوهنوردی کرمان')}`;
+                field('[data-share-whatsapp]').href = `https://wa.me/?text=${text}`;
+                status.textContent = '';
+            } catch {
+                status.textContent = 'ساخت لینک ممکن نشد؛ دوباره تلاش کنید.';
+            }
+        }
+
+        function prepare() {
+            const hasFilter = activeTypes.size > 0 && activeTypes.size < allTypes.length;
+            const hasQuery = Boolean(searchTerm);
+            const focused = selectedId ? markersById.get(selectedId) : null;
+
+            wrap('types').hidden = !hasFilter;
+            wrap('q').hidden = !hasQuery;
+            wrap('focus').hidden = !focused;
+            field('[data-share-focus-name]').textContent = focused?.label || '';
+            field('[data-share-q-text]').textContent = searchInput?.value.trim() || '';
+            const current = field(`[data-share-base][value="${activeBaseKey}"]`);
+
+            if (current) {
+                current.checked = true;
+            }
+        }
+
+        openBtn.addEventListener('click', () => {
+            prepare();
+            dialog.showModal();
+            refresh();
+        });
+
+        dialog.querySelectorAll('[data-share-opt], [data-share-base]').forEach((input) => input.addEventListener('change', refresh));
+        dialog.addEventListener('click', (event) => {
+            if (event.target === dialog) {
+                dialog.close();
+            }
+        });
+
+        field('[data-share-copy]').addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(urlInput.value);
+                status.textContent = 'لینک کپی شد.';
+            } catch {
+                urlInput.select();
+                status.textContent = 'لینک انتخاب شد؛ با Ctrl+C کپی کنید.';
+            }
+        });
+
+        if (typeof navigator.share === 'function') {
+            nativeBtn.hidden = false;
+            nativeBtn.addEventListener('click', () => {
+                navigator.share({ title: 'نقشه کوهنوردی کرمان', url: urlInput.value }).catch(() => {});
+            });
+        }
+    }
 }

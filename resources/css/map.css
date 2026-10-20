@@ -256,15 +256,48 @@
     background: var(--color-navy-800);
 }
 
-.map-explorer-layer__check {
-    color: transparent;
+.map-chip {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
     background: #fff;
+    color: var(--color-navy-900);
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px rgb(11 31 58 / 0.12);
+    transition: background 0.15s, color 0.15s, box-shadow 0.15s;
 }
 
-.map-explorer-layer.is-active .map-explorer-layer__check {
+.map-chip:hover {
+    box-shadow: inset 0 0 0 1px rgb(11 31 58 / 0.35);
+}
+
+.map-chip__dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: var(--chip-color, var(--color-accent));
+}
+
+.map-chip__count {
+    font-size: 0.68rem;
+    font-weight: 500;
+    opacity: 0.6;
+}
+
+.map-chip.is-active {
     background: var(--color-navy-900);
     color: #fff;
     box-shadow: none;
+}
+
+.map-chip.is-active .map-chip__dot {
+    box-shadow: 0 0 0 2px #fff;
 }
 
 /* ───────── Cards ───────── */
@@ -478,4 +511,162 @@
     [data-map-explorer].show-map .map-card__actions {
         display: none;
     }
+}
+
+/* ───────── Share dialog ───────── */
+
+.map-share {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(26rem, calc(100vw - 1.5rem));
+    padding: 1.25rem;
+    border: 0;
+    border-radius: 1.25rem;
+    background: #fff;
+    box-shadow: 0 25px 60px rgb(11 31 58 / 0.35);
+}
+
+.map-share::backdrop {
+    background: rgb(11 31 58 / 0.55);
+    backdrop-filter: blur(2px);
+}
+
+.map-share__close {
+    position: absolute;
+    inset-block-start: 0.6rem;
+    inset-inline-end: 0.9rem;
+}
+
+.map-share__close button {
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-muted);
+    cursor: pointer;
+}
+
+.map-share__option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.map-share__option[hidden] {
+    display: none;
+}
+
+.map-share__qr {
+    flex-shrink: 0;
+    width: 7.5rem;
+    height: 7.5rem;
+    padding: 0.35rem;
+    border-radius: 0.75rem;
+    background: #fff;
+    box-shadow: inset 0 0 0 1px rgb(11 31 58 / 0.12);
+}
+
+.map-share__qr svg {
+    width: 100%;
+    height: 100%;
+}
+
+.map-share__btn {
+    padding: 0.35rem 0.7rem;
+    border-radius: 0.6rem;
+    background: var(--color-sand);
+    color: var(--color-navy-900);
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px rgb(11 31 58 / 0.12);
+}
+
+.map-share__btn[hidden] {
+    display: none;
+}
+
+.map-share__btn--primary {
+    background: var(--color-navy-900);
+    color: #fff;
+    box-shadow: none;
+}
+
+.map-explorer-layer__check {
+    color: transparent;
+    background: #fff;
+}
+
+.map-explorer-layer.is-active .map-explorer-layer__check {
+    background: var(--color-navy-900);
+    color: #fff;
+}
+
+.map-share__bases {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.9rem;
+    font-size: 0.85rem;
+}
+
+.map-share__bases label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+}
+
+.map-explorer-layer__dash {
+    display: none;
+}
+
+.map-explorer-layer--all.is-partial .map-explorer-layer__check {
+    background: var(--color-navy-900);
+    color: #fff;
+}
+
+.map-explorer-layer--all.is-partial .map-explorer-layer__tick {
+    display: none;
+}
+
+.map-explorer-layer--all.is-partial .map-explorer-layer__dash {
+    display: block;
+}
+
+.map-explorer-layer__solo {
+    opacity: 0.55;
+}
+
+.map-explorer-layer-row:hover .map-explorer-layer__solo,
+.map-explorer-layer__solo:focus-visible {
+    opacity: 1;
+}
+
+@media (pointer: coarse) {
+    .map-explorer-layer__solo {
+        padding: 0.65rem;
+        opacity: 0.7;
+    }
+
+    .map-explorer-layer {
+        padding-block: 0.65rem;
+    }
+}
+
+.map-explorer-layer-row {
+    transition: translate 0.2s ease, background 0.2s ease;
+}
+
+.map-explorer-layer-row.is-solo {
+    translate: -0.45rem 0;
+    border-radius: 0.5rem;
+    background: rgb(212 160 23 / 0.14);
+    box-shadow: inset 0 0 0 1px rgb(212 160 23 / 0.5);
+}
+
+.map-explorer-layer-row.is-solo .map-explorer-layer__solo {
+    opacity: 1;
+    background: var(--color-navy-900);
+    color: #fff;
 }
