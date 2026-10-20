@@ -1,23 +1,5 @@
 # ============================================================
-# Stage 1: Build frontend assets
-# ============================================================
-FROM node:22-alpine AS frontend
-
-WORKDIR /app
-
-COPY package.json package-lock.json vite.config.js vite-module-loader.js ./
-
-RUN npm ci --ignore-scripts
-
-# Copy only source files needed for the Vite build
-COPY resources/ resources/
-COPY Modules/ Modules/
-COPY public/ public/
-
-RUN npm run build
-
-# ============================================================
-# Stage 2: Install PHP dependencies
+# Stage 1: Install PHP dependencies
 # ============================================================
 FROM composer:2 AS vendor
 
@@ -36,6 +18,27 @@ RUN composer install \
 COPY . .
 
 RUN composer dump-autoload --optimize --no-dev
+
+# ============================================================
+# Stage 2: Build frontend assets (needs vendor/ for Flux CSS)
+# ============================================================
+FROM node:22-alpine AS frontend
+
+WORKDIR /app
+
+COPY package.json package-lock.json vite.config.js vite-module-loader.js ./
+
+RUN npm ci --ignore-scripts
+
+# Copy only source files needed for the Vite build
+COPY resources/ resources/
+COPY Modules/ Modules/
+COPY public/ public/
+
+# Flux CSS + Tailwind content sources live under Composer packages
+COPY --from=vendor /app/vendor ./vendor
+
+RUN npm run build
 
 # ============================================================
 # Stage 3: Production image
