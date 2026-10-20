@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('relation')->default('nearby');
             $table->timestamps();
 
-            $table->unique(['attraction_id', 'destination_id', 'relation']);
+            $table->unique(['attraction_id', 'destination_id', 'relation'], 'attraction_destination_unique');
         });
     }
 
