@@ -62,22 +62,21 @@
                     نمایش همه روی نقشه
                 </button>
 
-                <div class="relative" x-data="{ open: false }" @click.outside="open = false" @keydown.escape.window="open = false">
+                <div class="relative" data-map-layers-menu>
                     <button
                         type="button"
-                        @click="open = ! open"
-                        :aria-expanded="open"
+                        data-map-layers-toggle
+                        aria-expanded="false"
                         class="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-navy-900 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-navy-800"
                     >
                         <span>لایه‌ها</span>
                         <span data-map-layer-summary class="rounded-full bg-white/20 px-1.5 py-0.5 text-[10px]">{{ fa_num(count($layers)) }}</span>
-                        <svg class="h-3.5 w-3.5 transition" :class="open && 'rotate-180'" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.5 7.5 10 12l4.5-4.5-1-1L10 10 6.5 6.5z"/></svg>
+                        <svg class="map-layers-caret h-3.5 w-3.5 transition" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.5 7.5 10 12l4.5-4.5-1-1L10 10 6.5 6.5z"/></svg>
                     </button>
 
                     <div
-                        x-show="open"
-                        x-cloak
-                        x-transition.opacity
+                        data-map-layers-panel
+                        hidden
                         class="absolute start-0 top-full z-50 mt-2 w-64 rounded-xl bg-white p-1 shadow-xl shadow-navy-900/15 ring-1 ring-navy-900/10"
                     >
                         <button

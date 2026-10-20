@@ -434,6 +434,33 @@ export function initExplorer(root) {
         updateList({ resetScroll: true });
     }
 
+    /** Dropdown is plain JS so it keeps working even if Alpine/Livewire fail to load. */
+    const layersMenu = root.querySelector('[data-map-layers-menu]');
+    const layersToggle = layersMenu?.querySelector('[data-map-layers-toggle]');
+    const layersPanel = layersMenu?.querySelector('[data-map-layers-panel]');
+
+    function setLayersMenu(open) {
+        if (!layersPanel || !layersToggle) {
+            return;
+        }
+
+        layersPanel.hidden = !open;
+        layersToggle.setAttribute('aria-expanded', String(open));
+        layersToggle.querySelector('.map-layers-caret')?.classList.toggle('rotate-180', open);
+    }
+
+    layersToggle?.addEventListener('click', () => setLayersMenu(layersPanel.hidden));
+    document.addEventListener('click', (event) => {
+        if (layersMenu && !layersMenu.contains(event.target)) {
+            setLayersMenu(false);
+        }
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            setLayersMenu(false);
+        }
+    });
+
     /** Layers are independent checkboxes; the header button selects or clears all of them. */
     layerButtons.forEach((button) => {
         button.addEventListener('click', () => {
